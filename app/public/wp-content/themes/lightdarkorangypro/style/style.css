@@ -1,0 +1,21 @@
+/*
+Theme Name: Light Dark Orangy Pro
+Description: A minimal clean theme
+Version: 1.0.0
+Author: Your Name
+Text Domain: lightdarkorangypro
+*/
+
+:root {
+    --body-background-color: #ffffff; /* White baczkground for the body */
+    --primary-accent-color: #ff6b35;  /* A vibrant orange */
+    --orange: #f7931e; 
+    --text-color: #333333;         
+    --header-bg-color: #ffffff;     
+}
+
+body {
+    background-color: var(--body-background-color);
+    color: var(--text-color);
+    font-family: sans-serif; /* A generic fallback font */
+}

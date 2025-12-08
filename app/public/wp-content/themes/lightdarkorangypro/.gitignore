@@ -1,0 +1,21 @@
+screenshot.png
+
+# WordPress Core Files
+wp-config.php
+wp-content/uploads/
+wp-content/upgrade/
+wp-content/cache/
+
+# Theme Development
+*.log
+*.map
+node_modules/
+.DS_Store
+Thumbs.db
+.sass-cache/
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace

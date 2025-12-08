@@ -1,0 +1,24 @@
+[08-Dec-2025 07:12:20 UTC] PHP Parse error:  Unclosed '{' on line 180 in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\functions.php on line 181
+[08-Dec-2025 07:12:20 UTC] PHP Parse error:  Unclosed '{' on line 180 in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\functions.php on line 181
+[08-Dec-2025 07:12:30 UTC] PHP Warning:  require(C:\Users\user\Local Sites\noeldevs\app\public/wp-content/themes/lightdarkorangypro/inc/template-tags.php): Failed to open stream: No such file or directory in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\functions.php on line 102
+[08-Dec-2025 07:12:30 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\Users\user\Local Sites\noeldevs\app\public/wp-content/themes/lightdarkorangypro/inc/template-tags.php' (include_path='.:/usr/share/php:/www/wp-content/pear') in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\functions.php:102
+Stack trace:
+#0 C:\Users\user\Local Sites\noeldevs\app\public\wp-settings.php(710): include()
+#1 C:\Users\user\Local Sites\noeldevs\app\public\wp-config.php(103): require_once('C:\\Users\\user\\L...')
+#2 C:\Users\user\Local Sites\noeldevs\app\public\wp-load.php(50): require_once('C:\\Users\\user\\L...')
+#3 C:\Users\user\Local Sites\noeldevs\app\public\wp-blog-header.php(13): require_once('C:\\Users\\user\\L...')
+#4 C:\Users\user\Local Sites\noeldevs\app\public\index.php(17): require('C:\\Users\\user\\L...')
+#5 {main}
+  thrown in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\functions.php on line 102
+[08-Dec-2025 07:12:30 UTC] PHP Warning:  require(C:\Users\user\Local Sites\noeldevs\app\public/wp-content/themes/lightdarkorangypro/inc/template-tags.php): Failed to open stream: No such file or directory in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\functions.php on line 102
+[08-Dec-2025 07:12:30 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\Users\user\Local Sites\noeldevs\app\public/wp-content/themes/lightdarkorangypro/inc/template-tags.php' (include_path='.:/usr/share/php:/www/wp-content/pear') in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\functions.php:102
+Stack trace:
+#0 C:\Users\user\Local Sites\noeldevs\app\public\wp-settings.php(710): include()
+#1 C:\Users\user\Local Sites\noeldevs\app\public\wp-config.php(103): require_once('C:\\Users\\user\\L...')
+#2 C:\Users\user\Local Sites\noeldevs\app\public\wp-load.php(50): require_once('C:\\Users\\user\\L...')
+#3 C:\Users\user\Local Sites\noeldevs\app\public\wp-blog-header.php(13): require_once('C:\\Users\\user\\L...')
+#4 C:\Users\user\Local Sites\noeldevs\app\public\index.php(17): require('C:\\Users\\user\\L...')
+#5 {main}
+  thrown in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\functions.php on line 102
+[08-Dec-2025 08:14:52 UTC] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\header.php on line 2
+[08-Dec-2025 09:33:04 UTC] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\header.php on line 2

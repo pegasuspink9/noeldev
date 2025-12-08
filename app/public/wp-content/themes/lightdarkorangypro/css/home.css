@@ -1,0 +1,134 @@
+.hero {
+    padding-top: calc(var(--header-fixed-height) + 50px); /* Add padding to account for absolute header */
+    padding-bottom: 50px;
+    height: var(--hero-section-height); /* Set hero section height */
+    background: transparent; /* Background is handled by .hero-background-overlay */
+    position: relative; /* For z-index stacking */
+    z-index: 1; /* Ensure hero content is above the overlay */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.hero-title {
+    font-size: 3em;
+    margin-bottom: 10px;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90%;
+}
+
+.hero-subtitle {
+    font-size: 1.5em;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90%;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: var(--text-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.grid {
+    display: grid;
+    gap: 30px;
+}
+
+.grid-2 {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.grid-3 {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+}
+
+.project-card, .service-card {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.project-title, .service-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: var(--primary-accent-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.project-card p, .service-card p {
+    color: var(--text-color);
+    line-height: 1.6;
+    font-size: 0.9em;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        height: var(--hero-section-height-mobile, 200px);
+        padding-top: calc(var(--header-fixed-height-mobile) + 30px); /* Adjust padding for mobile header */
+    }
+    .hero-title {
+        font-size: 2em;
+    }
+    .hero-subtitle {
+        font-size: 1.2em;
+    }
+    .grid-3 {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    }
+    .grid-2 {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+    .section-title {
+        font-size: 2em;
+    }
+    .project-title, .service-title {
+        font-size: 1.2em;
+    }
+    .project-card p, .service-card p {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding-top: calc(var(--header-fixed-height-mobile) + 20px);
+        padding-bottom: 30px;
+    }
+    .hero-title {
+        font-size: 1.5em;
+    }
+    .hero-subtitle {
+        font-size: 1em;
+    }
+    .grid-3 {
+        grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    }
+    .grid-2 {
+        grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+    }
+    .project-title, .service-title {
+        font-size: 1em;
+    }
+    .project-card p, .service-card p {
+        font-size: 0.7em;
+    }
+}

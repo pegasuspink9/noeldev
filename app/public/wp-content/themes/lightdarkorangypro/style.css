@@ -1,0 +1,124 @@
+/*
+Theme Name: Light Dark Orangy Pro
+Description: A minimal clean theme
+Version: 1.0.0
+Author: Noel Avila
+Text Domain: lightdarkorangypro
+*/
+
+:root {
+    --body-background-color: #ffffff;
+    --primary-accent-color: #ff6b35;
+    --secondary-accent-color: #f7931e;
+    --text-color: #333333;
+    --header-bg-color: #ffffff;
+    --sidebar-bg-color: #f8f8f8;
+    --sidebar-text-color: #555555;
+
+    --hero-background-image: url('./images/palm-leaves.png');
+    --header-fixed-height: 80px;
+    --hero-section-height: 300px;
+
+    --burger-sidebar-width: 10%;
+    --profile-sidebar-width: 20%;
+    --main-content-width: 70%;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: auto;
+}
+
+body {
+    background-color: var(--body-background-color);
+    color: var(--text-color);
+    font-family: sans-serif;
+    position: relative;
+}
+
+.hero-background-overlay {
+    position: absolute;
+    top: 0;
+    left: var(--profile-sidebar-width);
+    width: var(--main-content-width);
+    height: calc(var(--header-fixed-height) + var(--hero-section-height));
+    background-image: var(--hero-background-image);
+    background-size: cover;
+    background-position: center;
+    z-index: 0; 
+}
+
+.site-container {
+    display: flex;
+    height: 100vh;
+    flex-wrap: nowrap;
+}
+
+.main-content-wrapper {
+    flex-grow: 1;
+    width: var(--main-content-width); 
+    overflow-y: auto;
+    position: relative;
+    min-width: 400px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.grid {
+    display: grid;
+    gap: 30px;
+}
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+.section { padding: 40px 0; }
+.section-light {
+    background-color: #f9f9f9;
+    position: relative;
+    z-index: 2;
+}
+
+.section#projects {
+    background-color: var(--body-background-color);
+    position: relative;
+    z-index: 2;
+}
+
+@media (max-width: 768px) {
+    .site-container {
+        /* No flex-direction: column here to keep columns side-by-side */
+    }
+
+    .burger-sidebar {
+        width: var(--burger-sidebar-width);
+        position: relative;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    }
+
+    .sidebar {
+        width: var(--profile-sidebar-width);
+        position: relative;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    }
+
+    .main-content-wrapper {
+        width: var(--main-content-width);
+        margin-left: 0;
+        overflow-y: auto;
+        min-width: 300px;
+    }
+
+    .hero-background-overlay {
+        height: calc(var(--header-fixed-height-mobile) + var(--hero-section-height-mobile, 200px));
+        left: 0;
+        width: 100%;
+    }
+    :root {
+        --header-fixed-height-mobile: 60px;
+    }
+}

@@ -1,0 +1,44 @@
+
+.burger-sidebar {
+    width: 5%; 
+    background-color: var(--sidebar-bg-color); 
+    color: var(--sidebar-text-color);
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1); 
+    flex-shrink: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center; 
+    position: relative; 
+    z-index: 11;
+    padding-top: 20px;
+}
+
+.burger-toggle {
+    background: var(--primary-accent-color);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1.5em;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.burger-toggle:hover {
+    background-color: var(--secondary-accent-color);
+}
+
+/* ==========================================
+   Responsive Burger Sidebar
+   ========================================== */
+@media (max-width: 768px) {
+    .burger-sidebar {
+        height: 60px;
+        padding: 10px 20px;
+        justify-content: flex-start;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        align-items: center;
+        padding-top: 0;
+    }
+}
