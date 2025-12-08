@@ -1,13 +1,53 @@
 <?php get_header(); ?>
 
+<div class="hero-background-overlay"></div>  <!-- Standalone background overlay -->
+
 <div class="site-container">
-    <?php get_sidebar(); // Profile sidebar on the left ?>
+    <?php get_sidebar();?>
 
     <div class="main-content-wrapper">
         <main>
             <section class="hero">
-                <h1 class="hero-title">Welcome to My Portfolio</h1>
-                <p class="hero-subtitle">Showcasing my work and services</p>
+                <h1 class="hero-title">I'm Noel Avila</h1>
+                <p class="hero-subtitle">Full-stack developer</p>
+            </section>
+
+            <section id="skills" class="section section-light">
+                <div class="container">
+                    <h2 class="section-title">My Skills & Tools</h2>
+                    
+                    <div class="grid grid-3">
+                        <div class="skill-card">
+                            <h3 class="skill-title">Frontend</h3>
+                            <p>HTML, CSS, JavaScript, React, Vue.js</p>
+                        </div>
+                        
+                        <div class="skill-card">
+                            <h3 class="skill-title">Backend</h3>
+                            <p>PHP, Node.js, Python, Laravel</p>
+                        </div>
+                        
+                        <div class="skill-card">
+                            <h3 class="skill-title">Database</h3>
+                            <p>MySQL, PostgreSQL, MongoDB</p>
+                        </div>
+                        
+                        <div class="skill-card">
+                            <h3 class="skill-title">DevOps</h3>
+                            <p>Git, Docker, AWS, CI/CD</p>
+                        </div>
+                        
+                        <div class="skill-card">
+                            <h3 class="skill-title">Design</h3>
+                            <p>Figma, Adobe XD, Photoshop</p>
+                        </div>
+                        
+                        <div class="skill-card">
+                            <h3 class="skill-title">Tools</h3>
+                            <p>VS Code, Postman, Webpack</p>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <section id="projects" class="section">
@@ -55,10 +95,10 @@
                     </div>
                 </div>
             </section>
-        </main><!-- Closes the main tag -->
-    </div><!-- Closes .main-content-wrapper -->
+        </main>
+    </div>
 
-    <?php get_template_part( 'burger-sidebar' ); // Burger sidebar on the far right ?>
-</div><!-- Closes .site-container -->
+    <?php get_template_part( 'burger-sidebar' ); ?>
+</div>
 
 <?php get_footer(); ?>

@@ -22,3 +22,4 @@ Stack trace:
   thrown in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\functions.php on line 102
 [08-Dec-2025 08:14:52 UTC] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\header.php on line 2
 [08-Dec-2025 09:33:04 UTC] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\header.php on line 2
+[08-Dec-2025 14:39:26 UTC] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\header.php on line 2

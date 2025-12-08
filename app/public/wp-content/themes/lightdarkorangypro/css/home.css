@@ -1,10 +1,17 @@
+@font-face {
+    font-family: 'Melo'; 
+    src: url('./font/melo.ttf') format('truetype'); /* ttf = truetype */
+    font-weight: normal;
+    font-style: normal;
+}
+
 .hero {
-    padding-top: calc(var(--header-fixed-height) + 50px); /* Add padding to account for absolute header */
-    padding-bottom: 50px;
-    height: var(--hero-section-height); /* Set hero section height */
-    background: transparent; /* Background is handled by .hero-background-overlay */
-    position: relative; /* For z-index stacking */
-    z-index: 1; /* Ensure hero content is above the overlay */
+    padding-top: 50px;
+    padding-bottom: 150px;
+    height: var(--hero-section-height); 
+    background: transparent;
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -13,16 +20,19 @@
     color: white;
 }
 
+
 .hero-title {
-    font-size: 3em;
+    font-size: 5em;
     margin-bottom: 10px;
     color: white;
+    font-family: 'Melo', sans-serif;
     text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 90%;
 }
+
 
 .hero-subtitle {
     font-size: 1.5em;

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -10,25 +9,22 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
-<!-- This is the background that spans both header and hero -->
-<div class="hero-background-overlay"></div>
-
 <!-- The main site header with navigation, positioned absolutely -->
 <header>
     <nav>
         <ul class="main-nav">
             <li>
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a>
-                    </li>
-                    <li>
-                        <a href="#projects">Projects</a>
-                    </li>
-                    <li>
-                        <a href="#services">Services</a>
-                    </li>
-                    <li>
-                        <a href="<?php echo esc_url( home_url( '/contact' ) ); ?>">Contact</a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
+            </li>
+            <li>
+                <a href="#projects">Projects</a>
+            </li>
+            <li>
+                <a href="#services">Services</a>
+            </li>
+            <li>
+                <a href="<?php echo esc_url( home_url( '/contact' ) ); ?>">Contact</a>
+            </li>
+        </ul>
+    </nav>
+</header>
