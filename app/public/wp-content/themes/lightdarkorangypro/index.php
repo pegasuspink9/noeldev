@@ -1,15 +1,37 @@
-<?php get_header(); ?>
 
 <div class="hero-background-overlay"></div>  <!-- Standalone background overlay -->
+
+<?php get_header(); ?>
 
 <div class="site-container">
     <?php get_sidebar();?>
 
     <div class="main-content-wrapper">
         <main>
-            <section class="hero">
-                <h1 class="hero-title">I'm Noel Avila</h1>
-                <p class="hero-subtitle">Full-stack developer</p>
+            <section class="hero" id="hero1">
+                <h1 class="hero-title">Welcome to my portfolio</h1>
+                <p class="hero-subtitle">Get to know me well!</p>
+
+                <a href="#contact" class="hero-cta" aria-label="Hire me now">Hire Me Now</a>
+            </section>
+
+            <section class="hero-right" id="hero2">
+                <div class="hero-right-inner">
+                    <div class="hero-right-content">
+                        <h1 class="hero-title-right">I'm </h1>
+                        <h1 class="hero-name-right">Noel Avila</h1>
+                        <p class="hero-subtitle-right">Aspiring Full-stack developer</p>
+                    </div>
+
+                    <div class="hero-right-figure">
+                        <img 
+                            src="<?php echo get_template_directory_uri(); ?>/images/placeholder.png" 
+                            class="hero-right-image"
+                            alt="Noel Avila portrait placeholder"
+                            loading="lazy"
+                        />
+                    </div>
+                </div>
             </section>
 
             <section id="skills" class="section section-light">
