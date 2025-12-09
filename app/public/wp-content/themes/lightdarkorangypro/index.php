@@ -18,11 +18,12 @@
             <section class="hero-right" id="hero2">
                 <div class="hero-right-inner">
                     <div class="hero-right-content">
-                        <h1 class="hero-title-right">I'm </h1>
-                        <h1 class="hero-name-right">Noel Avila</h1>
-                        <p class="hero-subtitle-right">Aspiring Full-stack developer</p>
+                        <p class="hero-title-right">Hi! I'm Noel Avila</p>
+                        <p class="hero-name-right">Aspiring Full-stack Developer</p>
+                        <p class="hero-description">
+                            <span id="typewriter-text"></span><span class="cursor">|</span>
+                        </p>
                     </div>
-
                     <div class="hero-right-figure">
                         <img 
                             src="<?php echo get_template_directory_uri(); ?>/images/placeholder.png" 

@@ -1,10 +1,19 @@
 @font-face {
     font-family: 'Melo'; 
-    src: url('./font/melo.ttf') format('truetype'); /* ttf = truetype */
+    /* Make sure the capitalization here matches your actual file name exactly */
+    src: url('./font/melo.ttf') format('truetype'); 
     font-weight: normal;
     font-style: normal;
+    font-display: swap; 
 }
 
+@font-face {
+    font-family: 'Bethany';
+    src: url('./font/Bethany.otf') format('opentype'); 
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; 
+}
 
 .hero-title, .hero-title-right {
     font-size: 7em;
@@ -14,7 +23,7 @@
     text-shadow: 2px 2px 5px rgba(218, 218, 218, 0.325);
     white-space: normal; 
     margin-top: -10px;
-    
+    line-height: 1.8;
     width: auto;
     overflow: visible; /* Changed from hidden */
     text-overflow: clip; 
@@ -27,8 +36,28 @@
 
 #hero2{
     height: 200px;
+    
+    margin-top: 30px;
 }
 
+.cursor {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.9); /* Match your text color */
+    width: 3px;
+    margin-left: 4px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    49% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+.hero-description {
+    min-height: 1.4em; /* Reserve space so layout doesn't shift */
+}
 
 
 .hero::before,
@@ -49,20 +78,22 @@
     height: var(--hero-section-height);
     min-height: 300px;
     box-sizing: border-box;
-    border-radius: 24px 24px 24px 24px;
-    overflow: hidden; /* Keep content inside */
+    border-radius: 24px 104px 24px 104px;
+    overflow: hidden; 
+    margin-bottom: 100px;
 }
 
 .hero-right {
-    border-radius: 100px 24px 80px 24px;
+     border-radius: 104px 24px 104px 24px;
     position: relative;
     clip-path: polygon(
-        -10% -20%,     /* extend top-left */
-        110% -20%,     /* extend top-right */
-        150% 50%,      /* allow right side bulge for top half */
-        110% 100%,     /* normal bottom-right */
+        -10% -20%,     
+        110% -20%,     
+        150% 50%,     
+        110% 100%,  
         -10% 100%      /* extend bottom-left */
     );
+    
 }
 
 .hero-right-inner {
@@ -75,6 +106,7 @@
     padding: 0 20px;
      position: relative; 
     z-index: 1; 
+    left: 20px;
 }
 
 /* Keep text aligned left within the left column */
@@ -83,7 +115,61 @@
     padding: 6px 12px; 
     position: relative;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0; 
+    line-height: 1;
 }
+
+.hero-title-right {
+    font-size: 2em; 
+    margin: 0;
+    padding: 0;
+    line-height: 1.1;
+    color: white;
+    font-family: 'Melo', sans-serif;
+    text-shadow: 2px 2px 5px rgba(218, 218, 218, 0.325);
+    font-weight: normal;
+}
+
+.hero-name-right {
+    font-size: 5em; /* Larger for emphasis */
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-family: 'Melo';
+    text-shadow: 2px 2px 5px rgba(218, 218, 218, 0.325);
+    line-height: 0.9;
+    font-weight: bold;
+}
+
+
+.hero-subtitle-right {
+    font-size: 2.5em;
+    margin: 0;
+    padding: 0;
+    margin-top: 5px; /* Small gap from name */
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    font-family: 'Melo', sans-serif;
+    line-height: 1.2;
+    text-align: left; /* Override the center alignment */
+    max-width: none; /* Remove max-width constraint */
+    white-space: normal;
+}
+
+.hero-description {
+    font-size: 1.8em;
+    margin: 0;
+    padding: 0;
+    margin-top: 5px;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'Melo', sans-serif;
+    line-height: 1.4;
+    text-align: left;
+    transition: opacity 300ms ease;
+}
+
 
 /* Figure container for easy centering and sizing */
 .hero-right-figure {
@@ -98,7 +184,7 @@
 .hero-right-image {
     width: 500px;
     position: relative; 
-    margin-right: 200px;
+    margin-left: -250px;
     margin-top: -50px; /* Pull up */
     z-index: 10;
     border-bottom-right-radius: 140px;
@@ -180,6 +266,7 @@
     -webkit-backdrop-filter: blur(8px) saturate(120%);
     transition: transform 280ms cubic-bezier(.2,.9,.3,1), box-shadow 280ms ease;
     margin: 10px 80px 0px 80px;
+    
 }
 
 
