@@ -42,6 +42,10 @@ function lightdarkorangypro_scripts() {
     wp_enqueue_script( 'lightdarkorangypro-typing', get_template_directory_uri() . '/js/typing-effect.js', array(), '1.0.0', true );
 
     wp_enqueue_script( 'lightdarkorangypro-card-style', get_template_directory_uri() . '/js/card-style.js', array(), '1.0.0', true );
+
+    wp_enqueue_script( 'lightdarkorangypro-skills-accordion', 
+        get_template_directory_uri() . '/js/skills-accordion.js', 
+        array(), '1.0.0', true );
 }
 add_action( 'wp_enqueue_scripts', 'lightdarkorangypro_scripts' );
 

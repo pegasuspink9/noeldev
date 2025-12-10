@@ -125,12 +125,12 @@ function lightdarkorangypro_save_project_meta($post_id) {
         delete_post_meta($post_id, '_project_tech_stack_ids');
     }
 }
-
-
 add_action('save_post', 'lightdarkorangypro_save_project_meta');
 
 
-
+/**
+ * SKILLS META BOXES WITH CATEGORY
+ */
 
 function lightdarkorangypro_add_skill_meta_box() {
     add_meta_box(
@@ -150,21 +150,36 @@ function lightdarkorangypro_render_skill_meta($post) {
     $skill_list = get_post_meta($post->ID, '_skill_list', true);
     $mastery_percent = get_post_meta($post->ID, '_skill_mastery_percent', true);
     $mastery_label = get_post_meta($post->ID, '_skill_mastery_label', true);
+    $skill_category = get_post_meta($post->ID, '_skill_category', true);
     ?>
     
+    <div class="ldo-meta-row">
+        <label><strong>Skill Category</strong></label>
+        <select name="skill_category" style="width:100%; padding:8px;">
+            <option value="">-- Select Category --</option>
+            <option value="Frontend" <?php selected($skill_category, 'Frontend'); ?>>Frontend</option>
+            <option value="Backend" <?php selected($skill_category, 'Backend'); ?>>Backend</option>
+            <option value="Database" <?php selected($skill_category, 'Database'); ?>>Database</option>
+            <option value="UI/UX" <?php selected($skill_category, 'UI/UX'); ?>>UI/UX</option>
+            <option value="DevOps" <?php selected($skill_category, 'DevOps'); ?>>DevOps</option>
+            <option value="Tools" <?php selected($skill_category, 'Tools'); ?>>Tools</option>
+        </select>
+        <p class="description">Choose which category this skill belongs to.</p>
+    </div>
+
     <div class="ldo-meta-row">
         <label>Skill List (e.g., HTML, CSS, React)</label>
         <textarea name="skill_list" rows="3" style="width:100%"><?php echo esc_textarea($skill_list); ?></textarea>
     </div>
 
     <div class="ldo-meta-row">
-        <label>Mastery Percentage (Number only)</label>
-        <input type="number" name="skill_mastery_percent" value="<?php echo esc_attr($mastery_percent); ?>" min="0" max="100">
+        <label>Mastery Percentage (0-100)</label>
+        <input type="number" name="skill_mastery_percent" value="<?php echo esc_attr($mastery_percent); ?>" min="0" max="100" style="width:100%; padding:8px;">
     </div>
 
     <div class="ldo-meta-row">
         <label>Mastery Label (e.g., "Advanced Level")</label>
-        <input type="text" name="skill_mastery_label" value="<?php echo esc_attr($mastery_label); ?>" style="width:100%">
+        <input type="text" name="skill_mastery_label" value="<?php echo esc_attr($mastery_label); ?>" style="width:100%; padding:8px;">
     </div>
     <?php
 }
@@ -173,6 +188,10 @@ function lightdarkorangypro_save_skill_meta($post_id) {
     if (!isset($_POST['skill_meta_nonce']) || !wp_verify_nonce($_POST['skill_meta_nonce'], 'save_skill_meta')) return;
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
     if (!current_user_can('edit_post', $post_id)) return;
+
+    // Save Category
+    if (isset($_POST['skill_category'])) 
+        update_post_meta($post_id, '_skill_category', sanitize_text_field($_POST['skill_category']));
 
     if (isset($_POST['skill_list'])) 
         update_post_meta($post_id, '_skill_list', sanitize_textarea_field($_POST['skill_list']));
@@ -184,5 +203,3 @@ function lightdarkorangypro_save_skill_meta($post_id) {
         update_post_meta($post_id, '_skill_mastery_label', sanitize_text_field($_POST['skill_mastery_label']));
 }
 add_action('save_post', 'lightdarkorangypro_save_skill_meta');
-
-
