@@ -114,27 +114,80 @@
             </div>
         </section>
 
-            <section id="projects" class="section">
-                <div class="container">
-                    <h2 class="section-title">Projects</h2>
-                    
-                    <div class="grid grid-3">
-                        <div class="project-card">
-                            <h3 class="project-title">Project 1</h3>
-                            <p>Description of your first project goes here.</p>
-                        </div>
-                         <div class="project-card">
-                            <h3 class="project-title">Project 2</h3>
-                            <p>Description of your second project goes here.</p>
-                        </div>
-                        
-                        <div class="project-card">
-                            <h3 class="project-title">Project 3</h3>
-                            <p>Description of your third project goes here.</p>
-                        </div>
-                    </div>
+    <section id="projects" class="section">
+    <div class="container">
+        <h2 class="section-title">Projects</h2>
+        
+        <!-- Changed to grid-4 -->
+        <div class="grid grid-4">
+            
+            <!-- Project 1 -->
+            <div class="project-card">
+                <div class="project-content">
+                    <h3 class="project-title">Project 1</h3>
+                    <p>Description of your first project goes here.</p>
                 </div>
-            </section>
+                <!-- Glass Arrow Button -->
+                <a href="#" class="project-btn" aria-label="View Project">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card">
+                 <div class="project-content">
+                    <h3 class="project-title">Project 2</h3>
+                    <p>Short description.</p>
+                </div>
+                <a href="#" class="project-btn" aria-label="View Project">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+            
+            <!-- Project 3 -->
+            <div class="project-card">
+                 <div class="project-content">
+                    <h3 class="project-title">Project 3</h3>
+                </div>
+                <a href="#" class="project-btn" aria-label="View Project">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="project-card">
+                 <div class="project-content">
+                    <h3 class="project-title">Project 4</h3>
+                </div>
+                <a href="#" class="project-btn" aria-label="View Project">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+
+             <!-- Project 5 (Will Wrap) -->
+             <div class="project-card">
+                 <div class="project-content">
+                    <h3 class="project-title">Project 5</h3>
+                    <p>This will wrap to the next line.</p>
+                </div>
+                <a href="#" class="project-btn" aria-label="View Project">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+
+                </div>
+            </div>
+        </section>
 
             <section id="services" class="section section-light">
                 <div class="container">
