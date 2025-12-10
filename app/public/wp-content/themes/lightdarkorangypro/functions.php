@@ -40,5 +40,14 @@ function lightdarkorangypro_scripts() {
     wp_enqueue_style( 'lightdarkorangypro-footer', get_template_directory_uri() . '/css/footer.css', array('lightdarkorangypro-style'), '1.0.0' );
 
     wp_enqueue_script( 'lightdarkorangypro-typing', get_template_directory_uri() . '/js/typing-effect.js', array(), '1.0.0', true );
+
+    wp_enqueue_script( 'lightdarkorangypro-card-style', get_template_directory_uri() . '/js/card-style.js', array(), '1.0.0', true );
 }
 add_action( 'wp_enqueue_scripts', 'lightdarkorangypro_scripts' );
+
+
+/**
+ * Load Custom Post Types and Fields
+ */
+require get_template_directory() . '/inc/cpt-registrations.php';
+require get_template_directory() . '/inc/custom-fields.php';

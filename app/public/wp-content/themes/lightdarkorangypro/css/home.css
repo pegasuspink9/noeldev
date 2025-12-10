@@ -329,8 +329,9 @@
 
 .section-title, .hero-subtitle-right{
     text-align: center;
-    font-size: 2.5em;
-    margin-bottom: 40px;
+    font-size: 9em;
+    font-family: 'Melo';
+    text-shadow: rgb(255, 255, 255);
     color: var(--text-color);
     white-space: nowrap;
     overflow: hidden;
