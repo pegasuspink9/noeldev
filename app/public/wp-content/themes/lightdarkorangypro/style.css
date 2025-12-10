@@ -38,9 +38,7 @@ body {
     min-height: 100vh; /* Ensure it fills screen */
 }
 
-
-
-
+/* Layered Background Effect */
 body::after {
     content: "";
     position: fixed;
@@ -56,10 +54,11 @@ body::after {
         rgba(48, 229, 54, 0.097) 100% /* Fade to whitish */
     );
     
+    
+    
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
 }
-
 
 header {
     padding: 20px;
@@ -103,7 +102,6 @@ header {
     border-radius: 50px;
 }
 
-
 .site-container {
     display: flex;
     height: 100vh;
@@ -130,199 +128,21 @@ header {
     gap: 30px;
 }
 
+/* General Grid Definitions */
 .grid-2 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
-.grid-3 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
-.section { padding: 60px 0; }
 
-/* SKILLS SECTION - FIXED STYLES */
-.section-light {
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.3) 0%, 
-        rgba(240, 240, 240, 0.2) 50%, 
-        rgba(255, 255, 255, 0.1) 100%);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    position: relative;
-    z-index: 2;
-    border-radius: 30px;
-    margin: 20px 80px;
-    padding: 60px 20px;
-    box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.08),
-        inset 0 1px 0 rgba(255, 255, 255, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    border-top: 1px solid rgba(255, 255, 255, 0.7);
-    overflow: hidden; /* Keep cards inside */
-}
-
-.section-title {
-    text-align: center;
-    font-size: 5em; 
-    font-family: 'Melo', sans-serif;
-    position: relative;
-    z-index: 1;
-    opacity: 0;
-    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
-}   
-
-
-
-#skills .section-title-skills {
-    color: rgb(255, 255, 255);
-     text-align: center;
-    font-size: 5em; 
-    font-family: 'Melo', sans-serif;
-    position: relative;
-    z-index: 1;
-    opacity: 0;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-}
-
-.skills-wrapper.section-light { 
-    display: flex;
-    gap: 10px;
-    padding: 30px 20px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    justify-content: center; 
-}
-
-
-#skills .skills-wrapper.section-light.expanded-active {
-    height: auto; /* Allow height to adjust to content */
-    overflow-y: visible; /* Show all content */
-}
-
-
-
-#skills .skills-wrapper.section-light {
-    position: relative;
-    z-index: 1; /* Establishes stacking context */
-    
-    /* Transparent bg here because layers are handled below */
-    background: transparent; 
-    
-    /* 3D Glass Borders (White highlights top/left) */
-    border-top: 2px solid rgba(255, 255, 255, 0.8);
-    border-left: 1px solid rgba(255, 255, 255, 0.6);
-    border-right: 1px solid rgba(255, 255, 255, 0.2);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    
-    /* Deep Shadows for 3D Volume */
-    box-shadow: 
-        0 30px 60px rgba(0, 0, 0, 0.2), /* Drop shadow */
-        inset 0 0 30px rgba(255, 255, 255, 0.3); /* Inner glass glow */
-        
-    /* Layout Properties (Same as before) */
-    border-radius: 30px 30px 30px 30px;
-    margin: -50px auto 0 auto; 
-    height: 150px;
-    overflow-y: hidden;
-    transition: height 0.5s ease-out;
-    padding: 50px 10px; 
-    width: 100%;
-    box-sizing: border-box;
-    display: flex;
-    gap: 10px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    justify-content: center; 
-}
-
-/* 2. Background Image Layer (Bottom) */
-#skills .skills-wrapper.section-light::before {
-    content: '';
-    position: absolute;
-    inset: 0; /* Fills the container */
-    z-index: -2; /* Puts it at the very back */
-    
-    /* The Image */
-    background-image: url('images/leavesforcards.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    
-    border-radius: inherit; /* Matches parent rounded corners */
-}
-
-/* 3. Blur & Tint Layer (Middle - The "Glass") */
-#skills .skills-wrapper.section-light::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1; /* sits on top of image, behind text */
-    
-    /* The Green Tint Gradient */
-    background: linear-gradient(
-        145deg, 
-        rgba(48, 229, 54, 0.3) 0%,   /* Green tint */
-        rgba(255, 255, 255, 0.1) 100% /* Fade to clear */
-    );
-    
-    /* The Blur Effect applied to the layer */
-    backdrop-filter: blur(15px) saturate(110%);
-    -webkit-backdrop-filter: blur(15px) saturate(110%);
-    
-    border-radius: inherit;
-}
-
-
-#skills {
-    padding-left: 5%;
-    padding-right: 5%;
-    margin-top: -80px;
-}
-
-
-#skills .section-title,
-#skills .section-title-skills {
-    animation: none; /* Remove auto animation */
-}
-
-#skills .section-title.visible,
-#skills .section-title-skills.visible {
-    animation: fadeInUp 0.8s ease forwards;
-}
-
-
-/* Animated Title */
-.section-title {
-    text-align: center;
-    font-size: 2.5px;
-    margin-bottom: 50px;
-    color: var(--text-color);
-    font-family: 'Melo', sans-serif;
-    position: relative;
-    z-index: 1;
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 0.8s ease forwards;
-}
-
-@keyframes fadeInUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-#skills .grid-4 {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-}
-
-
-
-
-.grid-4 {
+.grid-3 {
     display: grid;
-    /* This creates 4 equal columns. If content exceeds, it wraps. */
+    gap: 30px;
     grid-template-columns: repeat(3, 1fr);
 }
 
+/* 4 Column Grid (Used for Projects) */
+.grid-4 {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(4, 1fr);
+}
 
 .grid-4::-webkit-scrollbar {
     height: 6px;
@@ -342,471 +162,478 @@ header {
     background: rgba(255, 255, 255, 0.5);
 }
 
-/* Skill Card Scene - Compact */
-.skill-card-scene {
+.section { padding: 60px 0; }
+
+/* Generic Section Light (Used for Services, not Skills) */
+.section-light {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.3) 0%, 
+        rgba(240, 240, 240, 0.2) 50%, 
+        rgba(255, 255, 255, 0.1) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     position: relative;
-    min-width: 170px; 
-    width: 170px;
-    height: 220px;
-    perspective: 1000px;
-    cursor: pointer;
-    flex-shrink: 0;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-
-.skill-category-container {
-    /* 3D Glass Material with greenish tint */
-    background: linear-gradient(
-        145deg, 
-        rgba(48, 229, 54, 0.6) 0%, /* Greenish tint, slightly opaque */
-        rgba(255, 255, 255, 0.2) 100% /* Fades to a more transparent white */
-    );
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    
-    /* Icy/Crystal Border Effect for 3D */
-    border-top: 2px solid rgba(255, 255, 255, 0.9); /* Lighter top border */
-    border-left: 1px solid rgba(255, 255, 255, 0.6); /* Lighter left border */
-    border-right: 1px solid rgba(255, 255, 255, 0.2); /* Darker right border */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Darker bottom border */
-    
-    /* Shadow for "Floating" effect */
+    z-index: 2;
+    border-radius: 30px;
+    margin: 20px 80px;
+    padding: 60px 20px;
     box-shadow: 
-        0 10px 20px rgba(0, 0, 0, 0.1), /* Standard drop shadow */
-        inset 0 0 15px rgba(255, 255, 255, 0.5); /* Inner gloss for more depth */
-        
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        0 8px 32px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.7);
     overflow: hidden;
-    flex-shrink: 0; 
 }
 
-.skill-category-container:not(.expanded) {
-    width: 80px;
-    min-height: auto; 
-    height: 100px; /* This height ensures the header of the category card is visible within the wrapper's 100px height */
-    padding: 15px 10px;
-    display: flex; 
-    flex-direction: column;
-    align-items: center; 
-    justify-content: center; 
+/* Animations */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.skill-category-container.expanded {
-    flex: 1;
-    min-width: 700px;
-    height: auto;
-    padding: 20px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-}
-.category-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px 5px;
-    gap: 8px;
-}
-
-.skill-category-container:not(.expanded) .category-title {
-    writing-mode: horizontal-tb;
-    text-orientation: unset;
-    font-size: 1.5em;
-    white-space: nowrap;
-}
-
-.skill-category-container.expanded .category-header {
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.skill-category-container.expanded .category-title {
-    writing-mode: horizontal-tb;
-    font-size: 2em;
-}
-
-.skill-category-container.expanded .category-count {
-    margin-top: 0;
-}
-
-.skill-category-container:not(.expanded) .category-count {
-    display: inline-block;
-    margin-top: 0;
-    font-size: 0.8em;
-    padding: 3px 8px;
-    order:2
-}
-
-
-.category-cards-wrapper {
-    display: none; /* Hidden when compressed */
-    flex-wrap: wrap;
-    gap: 15px;
-    padding: 20px 10px;
-    justify-content: flex-start;
-}
-
-
-.skill-category-container.expanded .category-cards-wrapper {
-    display: flex;
-    flex-wrap: wrap; 
-    justify-content: flex-start;
-    padding: 20px 10px; 
-    gap: 15px; 
-    max-height: none; 
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.category-title {
+.section-title {
+    text-align: center;
+    font-size: 5em; 
     font-family: 'Melo', sans-serif;
-    color: #1a1a1a;
-    margin: 0;
-    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
-    transition: all 0.3s ease;
-}
-
-.category-count {
-    font-size: 0.9em;
-    color: #666;
-    font-family: 'Melo', sans-serif;
-    background: rgba(255, 255, 255, 0.5);
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-weight: 600;
-    margin-top: 10px;
-}
-
-
-.skill-category-container.expanded .category-cards-wrapper {
-    opacity: 1;
-    max-height: 2000px; /* Large enough to show all cards */
-}
-
-.skill-category-container .skill-card-scene {
-    min-width: 130px;
-    width: 130px;
-    height: 170px;
-    margin: 0;
-    opacity: 1;
-    transform: translateY(0);
-}
-
-
-.skill-category-container .skill-card-face {
-    padding: 12px 8px;
-}
-
-
-.skill-category-container .skill-title {
-    font-size: 0.95em;
-}
-
-.skill-category-container .skill-icon {
-    width: 40px;
-    height: 40px;
-}
-
-.skill-category-container .skill-card-face p {
-    font-size: 0.65em;
-}
-
-.skill-category-container .mastery-percent {
-    font-size: 2em;
-}
-
-.skill-category-container:not(.expanded):hover {
-    transform: translateY(-3px);
-    box-shadow: 
-        0 15px 30px rgba(0, 0, 0, 0.15),
-        inset 0 0 20px rgba(255, 255, 255, 0.6); /* Enhanced inner glow on hover */
-    background: linear-gradient(
-        145deg, 
-        rgba(48, 229, 54, 0.7) 0%, /* Slightly more opaque green on hover */
-        rgba(255, 255, 255, 0.3) 100%
-    );
-}
-
-.skill-category-container.expanded {
-    background: linear-gradient(
-        145deg, 
-        rgba(133, 198, 134, 0.541) 0%, 
-        rgba(255, 255, 255, 0.3) 100%
-    );
-    border-color: rgba(255, 255, 255, 0.8);
-    /* Keep other expanded styles */
-}
-
-.skills-wrapper.section-light::-webkit-scrollbar {
-    height: 8px;
-}
-
-.skills-wrapper.section-light::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-}
-
-.skills-wrapper.section-light::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
-}
-
-.skills-wrapper.section-light::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.5);
-}
-
-
-
-.skill-card {
     position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
+    z-index: 1;
+    opacity: 0;
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+    animation: fadeInUp 0.8s ease forwards;
+}   
+
+.section-title-projects {
+    text-align: center;
+    font-size: 3.5em; 
+    font-family: 'Melo', sans-serif;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+    animation: fadeInUp 0.8s ease forwards;
+    color: #ffffff;
 }
 
-.skill-card-scene:hover .skill-card {
-    transform: rotateY(180deg);
+/* ========================================
+   PROJECTS SECTION STYLES
+   ======================================== */
+/* ========================================
+   PROJECTS SECTION STYLES
+   ======================================== */
+
+#projects {
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-top: -160px;
 }
 
-.skill-card-scene:hover .skill-card-face {
+.project-card {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    
+    /* 3D Borders for Depth */
+    border-top: 5px solid rgba(255, 255, 255, 0.17);
+    border-left: 4px solid rgba(255, 255, 255, 0.136);
+    border-right: 2px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    
+    /* Curved bottom-right to complement button */
+    border-radius: 20px 20px 50px 20px;
+    
+    /* 3D Shadow Effect */
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7),
+        inset 0 0 20px rgba(255, 255, 255, 0.3);
+    
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 350px;
+}
+
+/* ========================================
+   UNIQUE PROJECT CARD COLORS
+   ======================================== */
+
+/* --- CARD 1: Fresh Green (Standard) --- */
+
+
+.tech-tag {
+    /* Floating Shape */
+    font-family: 'Melo', sans-serif;
+    border-radius: 50px; 
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #fff;
+    
+    /* Base Glass Style */
+    background: rgba(71, 169, 1, 0.15);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    
+    /* 3D Border */
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.7);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    
+    /* Subtle Shadow */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.tech-tag:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+
+.project-card:nth-child(1) .tech-tag {
+    background: linear-gradient(135deg, rgba(48, 229, 54, 0.2), rgba(255,255,255,0.1));
+    border-color: rgba(48, 229, 54, 0.5);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+/* CARD 2: Teal Theme */
+.project-card:nth-child(2) .tech-tag {
+    background: linear-gradient(135deg, rgba(26, 188, 156, 0.2), rgba(255,255,255,0.1));
+    border-color: rgba(26, 188, 156, 0.5);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+/* CARD 3: Lime Theme */
+.project-card:nth-child(3) .tech-tag {
+    background: linear-gradient(135deg, rgba(180, 230, 50, 0.2), rgba(255,255,255,0.1));
+    border-color: rgba(180, 230, 50, 0.5);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+/* CARD 4: Mint Theme */
+.project-card:nth-child(4) .tech-tag {
+    background: linear-gradient(135deg, rgba(60, 240, 200, 0.2), rgba(255,255,255,0.1));
+    border-color: rgba(60, 240, 200, 0.5);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.project-card:nth-child(1) {
     background: linear-gradient(
         145deg, 
-        rgba(255, 255, 255, 0.2) 0%, 
-        rgba(48, 229, 54, 0.6) 100%
+        rgba(0, 255, 8, 0.4) 0%, /* Fresh Green */
+        rgba(255, 255, 255, 0.2) 100%
+    );
+    /* Shadow matches the green */
+    box-shadow: 
+        0 15px 35px rgba(48, 229, 54, 0.15), 
+        inset 0 1px 0 rgba(255, 255, 255, 0.7),
+        inset 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.project-card:nth-child(1):hover {
+    background: linear-gradient(
+        145deg, 
+        rgba(48, 229, 54, 0.5) 0%, 
+        rgba(255, 255, 255, 0.3) 100%
     );
     box-shadow: 
-        0 15px 35px rgba(0, 0, 0, 0.15),
-        0 0 20px rgba(255, 255, 255, 0.4); /* Glow */
+        0 25px 50px rgba(48, 229, 54, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8),
+        inset 0 0 30px rgba(255, 255, 255, 0.4);
+}
+
+/* --- CARD 2: Teal / Sea Green --- */
+.project-card:nth-child(2) {
+    background: linear-gradient(
+        145deg, 
+        rgba(26, 188, 156, 0.4) 0%, /* Teal */
+        rgba(255, 255, 255, 0.2) 100%
+    );
+    box-shadow: 
+        0 15px 35px rgba(26, 188, 156, 0.15), 
+        inset 0 1px 0 rgba(255, 255, 255, 0.7),
+        inset 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.project-card:nth-child(2):hover {
+    background: linear-gradient(
+        145deg, 
+        rgba(26, 188, 156, 0.5) 0%, 
+        rgba(255, 255, 255, 0.3) 100%
+    );
+    box-shadow: 
+        0 25px 50px rgba(26, 188, 156, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8),
+        inset 0 0 30px rgba(255, 255, 255, 0.4);
+}
+
+/* --- CARD 3: Lime / Electric Green --- */
+.project-card:nth-child(3) {
+    background: linear-gradient(
+        145deg, 
+        rgba(180, 230, 50, 0.4) 0%, /* Lime */
+        rgba(255, 255, 255, 0.2) 100%
+    );
+    box-shadow: 
+        0 15px 35px rgba(180, 230, 50, 0.15), 
+        inset 0 1px 0 rgba(255, 255, 255, 0.7),
+        inset 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.project-card:nth-child(3):hover {
+    background: linear-gradient(
+        145deg, 
+        rgba(180, 230, 50, 0.5) 0%, 
+        rgba(255, 255, 255, 0.3) 100%
+    );
+    box-shadow: 
+        0 25px 50px rgba(180, 230, 50, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8),
+        inset 0 0 30px rgba(255, 255, 255, 0.4);
+}
+
+/* --- CARD 4: Mint / Cyan Green --- */
+.project-card:nth-child(4) {
+    background: linear-gradient(
+        145deg, 
+        rgba(60, 240, 200, 0.4) 0%, /* Mint */
+        rgba(255, 255, 255, 0.2) 100%
+    );
+    box-shadow: 
+        0 15px 35px rgba(60, 240, 200, 0.15), 
+        inset 0 1px 0 rgba(255, 255, 255, 0.7),
+        inset 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.project-card:nth-child(4):hover {
+    background: linear-gradient(
+        145deg, 
+        rgba(60, 240, 200, 0.5) 0%, 
+        rgba(255, 255, 255, 0.3) 100%
+    );
+    box-shadow: 
+        0 25px 50px rgba(60, 240, 200, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8),
+        inset 0 0 30px rgba(255, 255, 255, 0.4);
+}
+
+/* Optional: Make the button match the card color on hover */
+.project-card:nth-child(2) .project-btn {
+    background: linear-gradient(145deg, rgba(26, 188, 156, 0.6) 0%, rgba(255, 255, 255, 0.3) 100%);
+}
+.project-card:nth-child(3) .project-btn {
+    background: linear-gradient(145deg, rgba(180, 230, 50, 0.6) 0%, rgba(255, 255, 255, 0.3) 100%);
+}
+.project-card:nth-child(4) .project-btn {
+    background: linear-gradient(145deg, rgba(60, 240, 200, 0.6) 0%, rgba(255, 255, 255, 0.3) 100%);
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8),
+        inset 0 0 30px rgba(255, 255, 255, 0.4);
+    background: linear-gradient(
+        145deg, 
+        rgba(48, 229, 54, 0.5) 0%, 
+        rgba(255, 255, 255, 0.3) 100%
+    );
+}
+
+/* Project Header (Title + Separator) */
+.project-header {
+    padding: 20px 20px 0 20px;
+    z-index: 2;
+    position: relative;
+}
+
+.project-title {
+    font-size: 1.6em;
+    color: #1a1a1a;
+    font-weight: 700;
+    font-family: 'Melo', sans-serif;
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 3D Glass Separator Line */
+.project-separator {
+    width: 100%;
+    height: 3px;
+    position: relative;
+    margin-bottom: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(48, 229, 54, 0.6) 50%,
+        rgba(255, 255, 255, 0.1) 100%
+    );
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    border-radius: 2px;
+}
+
+/* Project Preview Image Container */
+.project-preview {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px 10px 0 0;
+}
+
+.project-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
 }
 
 
-.skill-card-face {
+/* Overlay for better text readability if needed */
+.project-preview::after {
+    content: '';
     position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.3) 0%,
+        transparent 100%
+    );
+    pointer-events: none;
+}
+
+/* Project Content (Description text - optional) */
+.project-content {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 70px; 
+    z-index: 2;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px; 
+}
+
+.project-content p {
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    font-size: 0.95em;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* 3D Glass Arrow Button - Bottom Right */
+.project-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
     
     /* 3D Glass Material */
     background: linear-gradient(
-        145deg, 
-        rgba(48, 229, 54, 0.6) 0%, 
-        rgba(255, 255, 255, 0.2) 100%
+        145deg,
+        rgba(48, 229, 54, 0.6) 0%,
+        rgba(255, 255, 255, 0.3) 100%
     );
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     
-    /* Icy/Crystal Border Effect */
-    border-top: 2px solid rgba(255, 255, 255, 0.9);
-    border-left: 1px solid rgba(255, 255, 255, 0.6);
-    border-right: 1px solid rgba(255, 255, 255, 0.2);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    /* Perfect Circle */
+    border-radius: 50%;
     
-    /* Shadow for "Floating" effect */
+    /* 3D Border Effect */
+    border-top: 3px solid rgba(255, 255, 255, 0.9);
+    border-left: 2px solid rgba(255, 255, 255, 0.7);
+    border-right: 2px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    
+    /* 3D Shadow */
     box-shadow: 
-        0 10px 20px rgba(0, 0, 0, 0.1),
-        inset 0 0 15px rgba(255, 255, 255, 0.5); /* Inner gloss */
-        
-    border-radius: 20px;
-    padding: 20px 15px;
-    box-sizing: border-box;
+        0 8px 20px rgba(0, 0, 0, 0.15),
+        inset 0 0 15px rgba(255, 255, 255, 0.5);
     
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    z-index: 3;
+    
+    /* Slight overlap to integrate with card curve */
+    margin-right: -5px;
+    margin-bottom: -5px;
 }
 
-.skill-card-front {
-    transform: rotateY(0deg);
+.project-btn svg {
+    width: 24px;
+    height: 24px;
+    stroke: #1a1a1a;
+    stroke-width: 2.5;
+    transition: transform 0.3s ease;
 }
 
-
-.skill-card-back {
-    transform: rotateY(180deg);
+.project-btn:hover {
+    transform: translate(-3px, -3px) scale(1.05);
     background: linear-gradient(
-        145deg, 
-        rgba(230, 240, 255, 0.8) 0%, 
+        145deg,
+        rgba(48, 229, 54, 0.8) 0%,
         rgba(255, 255, 255, 0.4) 100%
     );
+    box-shadow: 
+        0 15px 30px rgba(48, 229, 54, 0.3),
+        inset 0 0 20px rgba(255, 255, 255, 0.7);
 }
 
-.skill-title {
-    font-family: 'Melo', sans-serif;
-    font-size: 1.1em;
-    margin: 0 0 8px 0;
-    color: #1a1a1a;
-    text-shadow: 0 1px 2px rgba(255,255,255,0.8);
-    font-weight: 600;
+.project-btn:hover svg {
+    transform: translateX(4px);
 }
 
-.skill-card-face p {
-    font-size: 0.7em;
-    line-height: 1.3;
-    color: #333;
-    margin: 5px 0;
-    font-weight: 500;
-    text-align: center;
+.project-btn:active {
+    transform: translate(-1px, -1px) scale(1);
 }
 
-.card-separator {
-    width: 40%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(0,0,0,0.2), transparent);
-    margin: 8px auto;
-    border-radius: 2px;
-}
 
-.skill-icon {
-    width: 50px;
-    height: 50px;
-    object-fit: contain;
-    border-radius: 50%;
-    margin: 8px 0;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    border: 2px solid rgba(255,255,255,0.9);
-    background: rgba(255, 255, 255, 0.5);
-    padding: 5px;
-}
 
-.mastery-percent {
-    font-size: 2.5em;
-    font-weight: bold;
-    font-family: 'Melo', sans-serif;
-    margin: 10px 0;
-    background: linear-gradient(135deg, #333, #666);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.project-card {
+/* Service Cards (Basic styling similar to projects) */
+.service-card {
     background: linear-gradient(135deg, 
         rgba(255, 255, 255, 0.5), 
         rgba(255, 255, 255, 0.2));
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     padding: 30px;
-    border-radius: 300px; 
-    margin-top: 0;
-    box-shadow: 
-        0 8px 24px rgba(255, 255, 255, 0.08),
-        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
+    text-align: center;
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-top: 2px solid rgba(255, 255, 255, 0.8);
     transition: all 0.3s ease;
-    
-    position: relative; 
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 250px;
-    text-align: left;
 }
 
-
-
-
-#projects{
-    padding-left: 5%;
-    padding-right: 5%;
-    margin-top: -230px;
-}
-
-.project-card:hover, .service-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 
-        0 12px 32px rgba(0, 0, 0, 0.12),
-        inset 0 1px 0 rgba(255, 255, 255, 0.7);
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.6), 
-        rgba(255, 255, 255, 0.3));
-    border-color: rgba(255, 255, 255, 0.8);
-}
-
-.project-title, .service-title {
-    font-size: 1.6em;
-    margin-bottom: 15px;
-    color: #1a1a1a;
-    font-weight: 600;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.project-card p, .service-card p {
-    color: #333333;
-    line-height: 1.8;
-    font-size: 1em;
-}
-
-.project-content {
-    margin-bottom: 20px; /* Space between text and button */
-}
-
-.project-btn {
-    position: absolute; 
-    bottom: 0px;     
-    right: 0px;      
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    
-    background: linear-gradient(
-        145deg, 
-        rgba(48, 229, 54, 0.4) 0%, 
-        rgba(255, 255, 255, 0.2) 100%
-    );
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    
-    border-top: 10px solid rgba(255, 255, 255, 0.675);
-    border-left: 10px solid rgba(255, 255, 255, 0.675);
-    border-right: 10px solid rgba(255, 255, 255, 0.675);
-    border-bottom: 10px solid rgba(255, 255, 255, 0.675);
-    
-}
-
-.project-btn svg {
-    width: 20px;
-    height: 20px;
-    stroke: #333;
-    transition: transform 0.3s ease;
-}
-
-.project-btn:hover {
-    transform: translateY(-3px);
-    background: linear-gradient(
-        145deg, 
-        rgba(48, 229, 54, 0.6) 0%, 
-        rgba(255, 255, 255, 0.4) 100%
-    );
-    box-shadow: 
-        0 12px 20px rgba(48, 229, 54, 0.2),
-        inset 0 0 15px rgba(255, 255, 255, 0.6);
-}
-
-.project-btn:hover svg {
-    transform: translateX(3px); /* Move arrow slightly right */
-}
 
 /* RESPONSIVE STYLES */
+@media (max-width: 1024px) {
+     .grid-3 { grid-template-columns: repeat(2, 1fr); }
+}
+
 @media (max-width: 768px) {
-
-
     header {
         min-height: var(--header-fixed-height-mobile);
         justify-content: center;
@@ -815,67 +642,6 @@ header {
         position: fixed;
     }
 
-      .category-title {
-        font-size: 1.5em;
-    }
-    .grid-4 { grid-template-columns: 1fr; }
-
-   .skill-category-container:not(.expanded) {
-        width: 60px;
-        height: 80px; 
-        padding: 10px 5px; 
-    }
-    #skills .skills-wrapper.section-light.expanded-active {
-        height: auto;
-        overflow-y: visible;
-    }
-
-
-     .skill-category-container:not(.expanded) .category-title {
-        font-size: 1.2em;
-    }
-
-     .skill-category-container.expanded {
-        min-width: 500px;
-    }
-    
-    .skill-category-container .skill-card-scene {
-        min-width: 110px;
-        width: 110px;
-        height: 150px;
-    }
-
-    .section-light {
-        margin: 20px;
-        padding: 40px 15px;
-    }
-
-    .section-title {
-        font-size: 1em;
-        margin-bottom: 30px;
-    }
-
-     .grid-4 { grid-template-columns: repeat(2, 1fr); }
-
-    .skill-card-scene {
-        min-width: 140px;
-        width: 140px;
-        height: 180px;
-    }
-
-    .skill-title {
-        font-size: 1em;
-    }
-
-    .skill-icon {
-        width: 40px;
-        height: 40px;
-    }
-
-    .mastery-percent {
-        font-size: 2em;
-    }
-    
     .main-nav {
         flex-direction: column;
         border-radius: 15px;
@@ -913,6 +679,13 @@ header {
     .grid-2 {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
+    
+    .grid-3 { grid-template-columns: 1fr; }
+    
+    .tech-tag {
+        padding: 4px 10px;
+        font-size: 0.7rem;
+    }
 
     .project-title, .service-title {
         font-size: 1.3em;
@@ -922,6 +695,39 @@ header {
         padding: 20px;
         border-radius: 15px;
     }
+    
+    .section-light {
+        margin: 20px;
+        padding: 40px 15px;
+    }
+    
+    .section-title {
+        font-size: 1em;
+        margin-bottom: 30px;
+    }
+
+    .project-card {
+        min-height: 300px;
+        border-radius: 20px 20px 45px 20px;
+    }
+    
+    .project-title {
+        font-size: 1.3em;
+    }
+    
+    .project-btn {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .project-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .grid-4 { 
+        grid-template-columns: repeat(2, 1fr); 
+    }
 }
 
 @media (max-width: 480px) {
@@ -929,39 +735,7 @@ header {
         padding: 15px;
         position: fixed;
     }
-    .category-title {
-        font-size: 1.2em;
-    }
     
-    .category-count {
-        font-size: 0.75em;
-        padding: 3px 10px;
-    }
-    
-    .skill-category-container:not(.expanded) {
-        width: 50px;
-        height: 70px; 
-        padding: 8px 5px; 
-    }
-    #skills .skills-wrapper.section-light.expanded-active {
-        height: auto;
-        overflow-y: visible;
-    }
-
-    .skill-category-container:not(.expanded) .category-title {
-        font-size: 1em;
-    }
-    
-    .skill-category-container.expanded {
-        min-width: 350px;
-    }
-    
-    .skill-category-container .skill-card-scene {
-        min-width: 100px;
-        width: 100px;
-        height: 140px;
-    }
-
     .section-light {
         margin: 15px;
         padding: 30px 10px;
@@ -992,39 +766,25 @@ header {
         font-size: 1.1em;
     }
 
-    .grid-4 {
-        gap: 12px;
-    }
-
-    .skill-card-scene {
-        min-width: 120px;
-        width: 120px;
-        height: 160px;
-    }
-
-    .skill-title {
-        font-size: 0.9em;
-    }
-
-    .skill-icon {
-        width: 35px;
-        height: 35px;
-    }
-
-    .mastery-percent {
-        font-size: 1.8em;
-    }
-
-    .skill-card-face p {
-        font-size: 0.65em;
-    }
-
     .grid-3 {
         grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     }
 
     .grid-2 {
         grid-template-columns: 1fr;
+    }
+    
+    .grid-3 { grid-template-columns: 1fr; }
+    
+    .tech-tag {
+        padding: 4px 10px;
+        font-size: 0.7rem;
+    }
+
+    
+    .grid-4 {
+        grid-template-columns: 1fr;
+        gap: 12px;
     }
 
     .project-title, .service-title {
@@ -1034,5 +794,29 @@ header {
     .project-card, .service-card {
         padding: 15px;
         border-radius: 12px;
+    }
+
+     .project-card {
+        min-height: 250px;
+        border-radius: 15px 15px 40px 15px;
+    }
+    
+    .project-title {
+        font-size: 1.1em;
+    }
+    
+    .project-btn {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .project-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .grid-4 {
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
 }

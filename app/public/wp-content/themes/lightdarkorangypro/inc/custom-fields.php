@@ -16,7 +16,6 @@ function lightdarkorangypro_add_project_meta_box() {
 }
 add_action('add_meta_boxes', 'lightdarkorangypro_add_project_meta_box');
 
-// 2. Render the Fields (The HTML in the admin area)
 function lightdarkorangypro_render_project_meta($post) {
     // Security nonce
     wp_nonce_field('save_project_meta', 'project_meta_nonce');
@@ -27,7 +26,9 @@ function lightdarkorangypro_render_project_meta($post) {
     $completion_date = get_post_meta($post->ID, '_project_completion_date', true);
     $role = get_post_meta($post->ID, '_project_role', true);
     $gallery = get_post_meta($post->ID, '_project_gallery', true);
-    $selected_tech = get_post_meta($post->ID, '_project_tech_stack_ids', true); // Returns array
+    
+    // Get currently selected skills
+    $selected_tech = get_post_meta($post->ID, '_project_tech_stack_ids', true); 
     if(!is_array($selected_tech)) $selected_tech = array();
 
     ?>
@@ -35,12 +36,41 @@ function lightdarkorangypro_render_project_meta($post) {
         .ldo-meta-row { margin-bottom: 15px; }
         .ldo-meta-row label { display: block; font-weight: bold; margin-bottom: 5px; }
         .ldo-meta-row input[type="text"], .ldo-meta-row input[type="url"], .ldo-meta-row textarea { width: 100%; }
-        .ldo-tech-checkboxes { max-height: 150px; overflow-y: scroll; border: 1px solid #ddd; padding: 10px; }
+        
+        /* Checkbox Container Styles */
+        .ldo-tech-checkboxes { 
+            max-height: 300px; 
+            overflow-y: scroll; 
+            border: 1px solid #ddd; 
+            padding: 10px; 
+            background: #fff;
+        }
+        .ldo-tech-category {
+            margin-top: 10px;
+            margin-bottom: 5px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #eee;
+            font-weight: 700;
+            color: #2271b1; /* WordPress Blue */
+            text-transform: uppercase;
+            font-size: 11px;
+        }
+        .ldo-tech-item {
+            display: inline-block;
+            margin-right: 15px;
+            margin-bottom: 5px;
+        }
     </style>
 
     <div class="ldo-meta-row">
         <label for="client_name">Client Name</label>
         <input type="text" id="client_name" name="project_client_name" value="<?php echo esc_attr($client_name); ?>">
+    </div>
+
+    
+    <div class="ldo-meta-row">
+        <label for="project_role">Imag / Role</label>
+        <textarea id="project_role" name="project_role" rows="4"><?php echo esc_textarea($role); ?></textarea>
     </div>
 
     <div class="ldo-meta-row">
@@ -58,26 +88,55 @@ function lightdarkorangypro_render_project_meta($post) {
         <textarea id="project_role" name="project_role" rows="4"><?php echo esc_textarea($role); ?></textarea>
     </div>
 
+    
+
     <div class="ldo-meta-row">
-        <label>Tech Stack Used</label>
+        <label>Tech Stack / Skills Used</label>
         <div class="ldo-tech-checkboxes">
             <?php 
-            // Query all Tech Stack posts
-            $tech_stacks = get_posts(array('post_type' => 'tech_stack', 'numberposts' => -1, 'orderby' => 'title', 'order' => 'ASC'));
+            // 1. Fetch ALL Skills
+            $all_skills = get_posts(array(
+                'post_type'      => 'skill', // Change from 'tech_stack' to 'skill'
+                'numberposts'    => -1,
+                'orderby'        => 'title',
+                'order'          => 'ASC'
+            ));
             
-            if($tech_stacks) {
-                foreach($tech_stacks as $tech) {
-                    $checked = in_array($tech->ID, $selected_tech) ? 'checked' : '';
-                    echo '<label style="font-weight:normal; margin-bottom:5px;">';
-                    echo '<input type="checkbox" name="project_tech_stack_ids[]" value="' . $tech->ID . '" ' . $checked . '> ' . esc_html($tech->post_title);
-                    echo '</label><br>';
+            if($all_skills) {
+                // 2. Group Skills by their Category Meta
+                $grouped_skills = array();
+                
+                foreach($all_skills as $skill) {
+                    $cat = get_post_meta($skill->ID, '_skill_category', true);
+                    if(empty($cat)) { $cat = 'Uncategorized'; }
+                    $grouped_skills[$cat][] = $skill;
+                }
+
+                // 3. Define Category Sort Order
+                $cat_order = array('Frontend', 'Backend', 'Database', 'UI/UX', 'DevOps', 'Tools', 'Uncategorized');
+
+                // 4. Render Groups
+                foreach($cat_order as $category_name) {
+                    if(isset($grouped_skills[$category_name])) {
+                        echo '<div class="ldo-tech-category">' . esc_html($category_name) . '</div>';
+                        
+                        foreach($grouped_skills[$category_name] as $skill_post) {
+                            $checked = in_array($skill_post->ID, $selected_tech) ? 'checked' : '';
+                            ?>
+                            <label class="ldo-tech-item">
+                                <input type="checkbox" name="project_tech_stack_ids[]" value="<?php echo $skill_post->ID; ?>" <?php echo $checked; ?>> 
+                                <?php echo esc_html($skill_post->post_title); ?>
+                            </label>
+                            <?php
+                        }
+                    }
                 }
             } else {
-                echo 'No Tech Stacks found. Please add some in the Tech Stack menu.';
+                echo 'No Skills found. Please add items to the "Skills" menu first.';
             }
             ?>
         </div>
-        <p class="description">Select the technologies used in this project.</p>
+        <p class="description">Select the skills from your existing library that were used in this project.</p>
     </div>
 
     <div class="ldo-meta-row">

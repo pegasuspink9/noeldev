@@ -4,36 +4,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
     categoryContainers.forEach(container => {
         container.addEventListener('click', function(e) {
-            // Do not trigger if clicking on a skill card within an already expanded category
             if (e.target.closest('.skill-card-scene') && this.classList.contains('expanded')) {
                 return;
             }
             
             const isExpanded = this.classList.contains('expanded');
             
-            // Collapse all containers first
+            // 1. Collapse all containers first
             categoryContainers.forEach(c => c.classList.remove('expanded'));
             
-            // If the clicked container was not expanded, expand it
             if (!isExpanded) {
                 this.classList.add('expanded');
-                skillsWrapper.classList.add('expanded-active'); // Add class to wrapper to expand it
+                skillsWrapper.classList.add('expanded-active');
                 
-                // Smooth scroll to show the expanded container
                 setTimeout(() => {
                     this.scrollIntoView({ 
                         behavior: 'smooth', 
-                        block: 'nearest' 
+                        block: 'center',  // Centers vertically
+                        inline: 'center'  // Centers horizontally (This is the key fix)
                     });
-                }, 100);
+                }, 300); 
+                
             } else {
-                // If it was already expanded and clicked again, collapse it and shrink the wrapper
-                skillsWrapper.classList.remove('expanded-active'); // Remove class from wrapper
+                skillsWrapper.classList.remove('expanded-active');
             }
         });
     });
 
-    // Optional: Collapse all categories and shrink wrapper if clicking outside the skills wrapper
+    // Collapse when clicking outside
     document.addEventListener('click', function(e) {
         if (!e.target.closest('.skills-wrapper.section-light')) {
             categoryContainers.forEach(c => c.classList.remove('expanded'));

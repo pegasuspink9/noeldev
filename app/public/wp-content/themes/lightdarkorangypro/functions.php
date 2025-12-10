@@ -29,6 +29,9 @@ function lightdarkorangypro_scripts() {
     
     // Home page styles
     wp_enqueue_style( 'lightdarkorangypro-home', get_template_directory_uri() . '/css/home.css', array('lightdarkorangypro-style'), '1.0.0' );
+    
+    // Skills styles
+    wp_enqueue_style( 'lightdarkorangypro-skills', get_template_directory_uri() . '/css/skills.css', array('lightdarkorangypro-style'), '1.0.0' );
 
     // Sidebar styles
     wp_enqueue_style( 'lightdarkorangypro-sidebar', get_template_directory_uri() . '/css/sidebar.css', array('lightdarkorangypro-style'), '1.0.0' );
@@ -46,9 +49,16 @@ function lightdarkorangypro_scripts() {
     wp_enqueue_script( 'lightdarkorangypro-skills-accordion', 
         get_template_directory_uri() . '/js/skills-accordion.js', 
         array(), '1.0.0', true );
+        
+
+    wp_enqueue_style( 'lightdarkorangypro-style', get_stylesheet_uri(), array(), '1.0.0' );
+
+    if ( is_singular('project') ) {
+    wp_enqueue_style( 'lightdarkorangypro-project-single', get_template_directory_uri() . '/css/project-single.css', array('lightdarkorangypro-style'), '1.0.0' );
+}
+
 }
 add_action( 'wp_enqueue_scripts', 'lightdarkorangypro_scripts' );
-
 
 /**
  * Load Custom Post Types and Fields

@@ -1,6 +1,5 @@
 @font-face {
     font-family: 'Melo'; 
-    /* Make sure the capitalization here matches your actual file name exactly */
     src: url('./font/melo.ttf') format('truetype'); 
     font-weight: normal;
     font-style: normal;
@@ -327,17 +326,6 @@
     text-align: center; /* Ensure centered */
 }
 
-.section-title, .hero-subtitle-right{
-    text-align: center;
-    font-size: 9em;
-    font-family: 'Melo';
-    text-shadow: rgb(255, 255, 255);
-    color: var(--text-color);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
 .grid {
     display: grid;
     gap: 30px;
@@ -347,32 +335,9 @@
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 }
 
-.grid-3 {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-}
 
-.project-card, .service-card {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    text-align: center;
-}
 
-.project-title, .service-title {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-    color: var(--primary-accent-color);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
 
-.project-card p, .service-card p {
-    color: var(--text-color);
-    line-height: 1.6;
-    font-size: 0.9em;
-}
 
 @media (max-width: 768px) {
     .hero {
@@ -390,15 +355,6 @@
     }
     .grid-2 {
         grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    }
-    .section-title {
-        font-size: 2em;
-    }
-    .project-title, .service-title {
-        font-size: 1.2em;
-    }
-    .project-card p, .service-card p {
-        font-size: 0.8em;
     }
 
     .hero-right-inner {
@@ -446,11 +402,5 @@
     }
     .grid-2 {
         grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
-    }
-    .project-title, .service-title {
-        font-size: 1em;
-    }
-    .project-card p, .service-card p {
-        font-size: 0.7em;
     }
 }

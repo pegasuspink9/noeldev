@@ -35,157 +35,83 @@
                 </div>
             </section>
 
-        <section id="skills" class="section">
+        <?php get_template_part('./skills'); ?>
+
+        <section id="projects" class="section">
         <div class="container">
-        <h1 class="section-title-skills">My Skills & Tools</h1>
-
-        <div class="skills-wrapper section-light">
-            <?php
-            // Define categories
-            $categories = array(
-                'Frontend' => array(),
-                'Backend' => array(),
-                'Database' => array(),
-                'UI/UX' => array(),
-                'DevOps' => array(),
-                'Tools' => array()
-            );
-
-            // Query all skills
-            $skills_query = new WP_Query(array(
-                'post_type'      => 'skill',
-                'posts_per_page' => -1,
-                'order'          => 'ASC',
-                'orderby'        => 'date'
-            ));
-
-            // Organize skills by category
-            if ($skills_query->have_posts()) :
-                while ($skills_query->have_posts()) : $skills_query->the_post();
-                    $skill_category = get_post_meta(get_the_ID(), '_skill_category', true);
-                    
-                    if (!$skill_category || !isset($categories[$skill_category])) {
-                        $skill_category = 'Tools'; // Default category
-                    }
-                    
-                    $categories[$skill_category][] = array(
-                        'title' => get_the_title(),
-                        'list' => get_post_meta(get_the_ID(), '_skill_list', true),
-                        'percent' => get_post_meta(get_the_ID(), '_skill_mastery_percent', true),
-                        'label' => get_post_meta(get_the_ID(), '_skill_mastery_label', true),
-                        'icon' => get_the_post_thumbnail_url(get_the_ID(), 'full') ?: get_template_directory_uri() . '/images/placeholder.png'
-                    );
-                endwhile;
-                wp_reset_postdata();
-            endif;
-
-            // Display categories
-            foreach ($categories as $category_name => $skills) :
-                if (empty($skills)) continue; // Skip empty categories
-                ?>
-                <div class="skill-category-container" data-category="<?php echo esc_attr(strtolower($category_name)); ?>">
-                    <div class="category-header">
-                        <h2 class="category-title"><?php echo esc_html($category_name); ?></h2>
-                        <span class="category-count"><?php echo count($skills); ?> skills</span>
-                    </div>
-                    
-                    <div class="category-cards-wrapper">
-                        <?php foreach ($skills as $skill) : ?>
-                            <div class="skill-card-scene">
-                                <div class="skill-card">
-                                    <div class="skill-card-face skill-card-front">
-                                        <h3 class="skill-title"><?php echo esc_html($skill['title']); ?></h3>
-                                        <div class="card-separator"></div>
-                                        <img src="<?php echo esc_url($skill['icon']); ?>" class="skill-icon" alt="<?php echo esc_attr($skill['title']); ?>">
-                                        <p><?php echo esc_html($skill['list']); ?></p>
-                                    </div>
-                                    <div class="skill-card-face skill-card-back">
-                                        <h3 class="skill-title">Mastery</h3>
-                                        <div class="mastery-percent"><?php echo esc_html($skill['percent']); ?>%</div>
-                                        <p><?php echo esc_html($skill['label']); ?></p>
-                                    </div>
-                                </div>
-                            </div>
-                                <?php endforeach; ?>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-        </section>
-
-    <section id="projects" class="section">
-    <div class="container">
-        <h2 class="section-title">Projects</h2>
+        <h2 class="section-title-projects">Projects</h2>
         
-        <!-- Changed to grid-4 -->
-        <div class="grid grid-4">
+        <div class="grid grid-3">
+            <?php
+            // 1. Query the 'project' Post Type
+            $args = array(
+                'post_type'      => 'project',
+                'posts_per_page' => -1, // Show all projects
+                'orderby'        => 'date',
+                'order'          => 'DESC'
+            );
             
-            <!-- Project 1 -->
-            <div class="project-card">
-                <div class="project-content">
-                    <h3 class="project-title">Project 1</h3>
-                    <p>Description of your first project goes here.</p>
-                </div>
-                <!-- Glass Arrow Button -->
-                <a href="#" class="project-btn" aria-label="View Project">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </a>
-            </div>
-
-            <!-- Project 2 -->
-            <div class="project-card">
-                 <div class="project-content">
-                    <h3 class="project-title">Project 2</h3>
-                    <p>Short description.</p>
-                </div>
-                <a href="#" class="project-btn" aria-label="View Project">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </a>
-            </div>
+            $projects_query = new WP_Query($args);
             
-            <!-- Project 3 -->
-            <div class="project-card">
-                 <div class="project-content">
-                    <h3 class="project-title">Project 3</h3>
-                </div>
-                <a href="#" class="project-btn" aria-label="View Project">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </a>
-            </div>
+            // 2. Start the Loop
+            if ($projects_query->have_posts()) :
+                while ($projects_query->have_posts()) : $projects_query->the_post();
+                    
+                    // Get Tech Stack for the card content
+                    $tech_ids = get_post_meta(get_the_ID(), '_project_tech_stack_ids', true);
+                    $thumb_url = get_the_post_thumbnail_url(get_the_ID(), 'large');
+                    
+                    // Fallback image if none set
+                    if(!$thumb_url) {
+                        $thumb_url = get_template_directory_uri() . '/images/placeholder.png';
+                    }
+                    ?>
 
-            <!-- Project 4 -->
-            <div class="project-card">
-                 <div class="project-content">
-                    <h3 class="project-title">Project 4</h3>
-                </div>
-                <a href="#" class="project-btn" aria-label="View Project">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </a>
-            </div>
+                    <!-- Dynamic Card Structure (Matches your CSS exactly) -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-title"><?php the_title(); ?></h3>
+                            <div class="project-separator"></div>
+                        </div>
+                        
+                        <div class="project-preview">
+                            <img src="<?php echo esc_url($thumb_url); ?>"
+                                alt="<?php the_title_attribute(); ?>"
+                                loading="lazy"
+                            />
+                        </div>
+                        
+                        <div class="project-content">
+                            <?php 
+                            // Display up to 4 Tech Stack items as tags
+                            if(is_array($tech_ids) && !empty($tech_ids)) {
+                                $count = 0;
+                                foreach($tech_ids as $tid) {
+                                    if($count >= 4) break; // Limit to 4 tags on card
+                                    $t_post = get_post($tid);
+                                    if($t_post) {
+                                        echo '<span class="tech-tag">' . esc_html($t_post->post_title) . '</span>';
+                                    }
+                                    $count++;
+                                }
+                            }
+                            ?>
+                        </div>
+                        
+                        <!-- THE FIX: Dynamic Permalink -->
+                        <a href="<?php the_permalink(); ?>" class="project-btn" aria-label="View Project">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
 
-             <!-- Project 5 (Will Wrap) -->
-             <div class="project-card">
-                 <div class="project-content">
-                    <h3 class="project-title">Project 5</h3>
-                    <p>This will wrap to the next line.</p>
-                </div>
-                <a href="#" class="project-btn" aria-label="View Project">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </a>
+                <?php endwhile; 
+                wp_reset_postdata(); // Reset query
+            else : ?>
+                <p style="color:white;">No projects found. Please add them in the Dashboard.</p>
+            <?php endif; ?>
             </div>
-
-                </div>
             </div>
         </section>
 
