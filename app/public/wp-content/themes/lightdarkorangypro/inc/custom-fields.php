@@ -209,10 +209,11 @@ add_action('add_meta_boxes', 'lightdarkorangypro_add_skill_meta_box');
 function lightdarkorangypro_render_skill_meta($post) {
     wp_nonce_field('save_skill_meta', 'skill_meta_nonce');
 
-    $skill_list = get_post_meta($post->ID, '_skill_list', true);
+    
     $mastery_percent = get_post_meta($post->ID, '_skill_mastery_percent', true);
     $mastery_label = get_post_meta($post->ID, '_skill_mastery_label', true);
     $skill_category = get_post_meta($post->ID, '_skill_category', true);
+    $skill_icon_url = get_post_meta($post->ID, '_skill_icon_url', true);
     ?>
     
     <div class="ldo-meta-row">
@@ -230,18 +231,15 @@ function lightdarkorangypro_render_skill_meta($post) {
     </div>
 
     <div class="ldo-meta-row">
-        <label>Skill List (e.g., HTML, CSS, React)</label>
-        <textarea name="skill_list" rows="3" style="width:100%"><?php echo esc_textarea($skill_list); ?></textarea>
+        <label for="skill_icon_url">Skill Icon URL</label>
+        <input type="url" id="skill_icon_url" name="skill_icon_url" value="<?php echo esc_attr($skill_icon_url); ?>" style="width:100%; padding:8px;">
+        <p class="description">Enter the URL for the skill icon (e.g., from your media library or a CDN). If left blank, the post's featured image will be used as a fallback, or a default icon if neither is available.</p>
     </div>
+    
 
     <div class="ldo-meta-row">
         <label>Mastery Percentage (0-100)</label>
         <input type="number" name="skill_mastery_percent" value="<?php echo esc_attr($mastery_percent); ?>" min="0" max="100" style="width:100%; padding:8px;">
-    </div>
-
-    <div class="ldo-meta-row">
-        <label>Mastery Label (e.g., "Advanced Level")</label>
-        <input type="text" name="skill_mastery_label" value="<?php echo esc_attr($mastery_label); ?>" style="width:100%; padding:8px;">
     </div>
     <?php
 }
@@ -255,13 +253,19 @@ function lightdarkorangypro_save_skill_meta($post_id) {
     if (isset($_POST['skill_category'])) 
         update_post_meta($post_id, '_skill_category', sanitize_text_field($_POST['skill_category']));
 
-    if (isset($_POST['skill_list'])) 
-        update_post_meta($post_id, '_skill_list', sanitize_textarea_field($_POST['skill_list']));
-    
-    if (isset($_POST['skill_mastery_percent'])) 
-        update_post_meta($post_id, '_skill_mastery_percent', (int)$_POST['skill_mastery_percent']);
-
     if (isset($_POST['skill_mastery_label'])) 
         update_post_meta($post_id, '_skill_mastery_label', sanitize_text_field($_POST['skill_mastery_label']));
+
+    if (isset($_POST['skill_icon_url'])) 
+        update_post_meta($post_id, '_skill_icon_url', esc_url_raw($_POST['skill_icon_url']));
+    else
+        delete_post_meta($post_id, '_skill_icon_url');
+
+    if (isset($_POST['skill_mastery_percent'])) 
+        update_post_meta($post_id, '_skill_mastery_percent', intval($_POST['skill_mastery_percent']));
+    else
+        delete_post_meta($post_id, '_skill_mastery_percent');
+
+
 }
 add_action('save_post', 'lightdarkorangypro_save_skill_meta');

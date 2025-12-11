@@ -15,7 +15,7 @@ header {
 .main-nav {
     list-style: none;
     display: inline-flex;
-    padding: 2px;  
+    padding: 5px 15px 5px 15px;  
     margin-left: 0;
 }
 
@@ -27,11 +27,12 @@ header {
     display: block;
     padding: 10px 25px;
     color: white;
+    font-family: 'BebasKai', sans-serif;
     text-decoration: none;
     transition: background-color 0.3s ease;
-    background: rgba(255, 255, 255, 0.148);  /* Added individual background */
-    border-radius: 50px;  /* Added individual border-radius */
-    border: 1px solid white;  /* Added individual border */
+    background: rgba(255, 255, 255, 0.148);  
+    border-radius: 50px; 
+    border: 1px solid white;  
 }
 
 .main-nav a:hover {

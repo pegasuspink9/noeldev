@@ -21,6 +21,22 @@
 }
 
 
+
+.mastery-label {
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1a1a1a;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 0.8em;
+    margin-top: 5px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
 #skills .section-title,
 #skills .section-title-skills {
     animation: none;
@@ -248,9 +264,9 @@
 /* Skill Cards */
 .skill-card-scene {
     position: relative;
-    min-width: 170px; 
-    width: 170px;
-    height: 220px;
+    min-width: 120px;
+    width: 120px; 
+    height: 150px; /* Adjusted to maintain aspect ratio */
     perspective: 1000px;
     cursor: pointer;
     flex-shrink: 0;
@@ -260,9 +276,9 @@
 }
 
 .skill-category-container .skill-card-scene {
-    min-width: 130px;
-    width: 130px;
-    height: 170px;
+    min-width: 90px; 
+    width: 90px;
+    height: 115px; /* Adjusted to maintain aspect ratio */
     margin: 0;
     opacity: 1;
     transform: translateY(0);
@@ -272,8 +288,12 @@
     position: relative;
     width: 100%;
     height: 100%;
-    transition: transform 0.6s;
+    min-height: 50px;
+    min-width: 50px;
+    transition: transform 0.6s ease-in-out;
     transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    will-change: transform;
 }
 
 .skill-card-scene:hover .skill-card {
@@ -286,6 +306,7 @@
     height: 100%;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+    overflow: hidden;
     
     background: linear-gradient(
         145deg, 
@@ -337,19 +358,21 @@
     transform: rotateY(180deg);
     background: linear-gradient(
         145deg, 
-        rgba(230, 240, 255, 0.8) 0%, 
-        rgba(255, 255, 255, 0.4) 100%
+        rgba(48, 229, 54, 0.6) 0%, 
+        rgba(255, 255, 255, 0.2) 100%
     );
 }
 
 .skill-title {
     font-family: 'Melo', sans-serif;
     font-size: 1.1em;
-    margin: 0 0 8px 0;
+    margin: 0 0 4px 0; 
     color: #1a1a1a;
+    margin-bottom: -10px;
     text-shadow: 0 1px 2px rgba(255,255,255,0.8);
     font-weight: 600;
 }
+
 
 .skill-category-container .skill-title {
     font-size: 0.95em;
@@ -377,27 +400,20 @@
 }
 
 .skill-icon {
-    width: 50px;
-    height: 50px;
-    object-fit: contain;
-    border-radius: 50%;
-    margin: 8px 0;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    border: 2px solid rgba(255,255,255,0.9);
-    background: rgba(255, 255, 255, 0.5);
-    padding: 5px;
+    width: 50%;
+    height: auto;
 }
 
 .skill-category-container .skill-icon {
-    width: 40px;
-    height: 40px;
+    width: 90%;
+    height: auto;
 }
 
 .mastery-percent {
     font-size: 2.5em;
     font-weight: bold;
     font-family: 'Melo', sans-serif;
-    margin: 10px 0;
+    margin: 0px 0; 
     background: linear-gradient(135deg, #333, #666);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
