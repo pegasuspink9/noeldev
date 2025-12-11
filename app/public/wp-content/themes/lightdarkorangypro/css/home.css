@@ -7,12 +7,14 @@
 }
 
 @font-face {
-    font-family: 'Bethany';
-    src: url('./font/Bethany.otf') format('opentype'); 
+    font-family: 'BebasKai'; 
+    src: url('./font/BebasKai.ttf') format('truetype'); 
     font-weight: normal;
     font-style: normal;
     font-display: swap; 
 }
+
+
 
 .hero-title, .hero-title-right {
     font-size: 7em;
@@ -77,13 +79,13 @@
     height: var(--hero-section-height);
     min-height: 300px;
     box-sizing: border-box;
-    border-radius: 24px 104px 24px 104px;
+    border-radius: 24px 24px 24px 24px;
     overflow: hidden; 
     margin-bottom: 100px;
 }
 
 .hero-right {
-     border-radius: 104px 24px 104px 24px;
+     border-radius: 24px 24px 24px 24px;
     position: relative;
     clip-path: polygon(
         -10% -20%,     
@@ -198,11 +200,11 @@
 .hero .hero-cta {
     position: absolute;
     right: 30px;                
-    bottom: 24px;                /* distance from bottom edge */
-    z-index: 5;                  /* above hero content and overlays */
+    bottom: 24px;               
+    z-index: 5;                
     display: inline-block;
     padding: 10px 20px;
-    border-radius: 999px;        /* pill-style */
+    border-radius: 999px;        
     color: #ffffff;
     text-decoration: none;
     font-weight: 700;
@@ -294,8 +296,9 @@
     inset: 0;
     border-radius: inherit;
     z-index: -1;
-    background: linear-gradient(180deg, rgba(255,255,255,0.55), rgba(255,255,255,0.05));
-    backdrop-filter: blur(6px) saturate(110%);
+    border: 1px solid white;
+    box-shadow: ivory;
+    backdrop-filter: blur(10px) saturate(110%);
     -webkit-backdrop-filter: blur(6px) saturate(110%);
 }
 

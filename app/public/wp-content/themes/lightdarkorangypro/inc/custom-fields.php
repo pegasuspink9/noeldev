@@ -8,7 +8,7 @@ function lightdarkorangypro_add_project_meta_box() {
     add_meta_box(
         'project_details_meta',      // ID
         'Project Details',           // Title
-        'lightdarkorangypro_render_project_meta', // Callback function
+        'lightdarkorangypro_render_project_meta', 
         'project',                   // Screen (Post Type)
         'normal',                    // Context
         'high'                       // Priority
@@ -26,6 +26,7 @@ function lightdarkorangypro_render_project_meta($post) {
     $completion_date = get_post_meta($post->ID, '_project_completion_date', true);
     $role = get_post_meta($post->ID, '_project_role', true);
     $gallery = get_post_meta($post->ID, '_project_gallery', true);
+    $preview_image_url = get_post_meta($post->ID, '_project_preview_image_url', true);
     
     // Get currently selected skills
     $selected_tech = get_post_meta($post->ID, '_project_tech_stack_ids', true); 
@@ -66,18 +67,19 @@ function lightdarkorangypro_render_project_meta($post) {
         <label for="client_name">Client Name</label>
         <input type="text" id="client_name" name="project_client_name" value="<?php echo esc_attr($client_name); ?>">
     </div>
-
     
-    <div class="ldo-meta-row">
-        <label for="project_role">Imag / Role</label>
-        <textarea id="project_role" name="project_role" rows="4"><?php echo esc_textarea($role); ?></textarea>
-    </div>
-
     <div class="ldo-meta-row">
         <label for="project_url">Project URL</label>
         <input type="url" id="project_url" name="project_url" value="<?php echo esc_attr($project_url); ?>">
     </div>
 
+    <div class="ldo-meta-row">
+        <label for="project_preview_image_url">Project Preview Image URL</label>
+        <input type="url" id="project_preview_image_url" name="project_preview_image_url" value="<?php echo esc_attr($preview_image_url); ?>">
+        <p class="description">Enter a URL for the project's main preview image (e.g., from your media library or a CDN).</p>
+    </div>
+
+    
     <div class="ldo-meta-row">
         <label for="completion_date">Completion Date</label>
         <input type="date" id="completion_date" name="project_completion_date" value="<?php echo esc_attr($completion_date); ?>">
@@ -96,14 +98,13 @@ function lightdarkorangypro_render_project_meta($post) {
             <?php 
             // 1. Fetch ALL Skills
             $all_skills = get_posts(array(
-                'post_type'      => 'skill', // Change from 'tech_stack' to 'skill'
+                'post_type'      => 'skill', 
                 'numberposts'    => -1,
                 'orderby'        => 'title',
                 'order'          => 'ASC'
             ));
             
             if($all_skills) {
-                // 2. Group Skills by their Category Meta
                 $grouped_skills = array();
                 
                 foreach($all_skills as $skill) {
@@ -112,10 +113,8 @@ function lightdarkorangypro_render_project_meta($post) {
                     $grouped_skills[$cat][] = $skill;
                 }
 
-                // 3. Define Category Sort Order
                 $cat_order = array('Frontend', 'Backend', 'Database', 'UI/UX', 'DevOps', 'Tools', 'Uncategorized');
 
-                // 4. Render Groups
                 foreach($cat_order as $category_name) {
                     if(isset($grouped_skills[$category_name])) {
                         echo '<div class="ldo-tech-category">' . esc_html($category_name) . '</div>';
@@ -174,13 +173,17 @@ function lightdarkorangypro_save_project_meta($post_id) {
     if (isset($_POST['project_gallery'])) 
         update_post_meta($post_id, '_project_gallery', sanitize_text_field($_POST['project_gallery']));
 
+     if (isset($_POST['project_preview_image_url'])) // Save the new field
+        update_post_meta($post_id, '_project_preview_image_url', esc_url_raw($_POST['project_preview_image_url']));
+    else
+        delete_post_meta($post_id, '_project_preview_image_url');
+
     // Save Tech Stack (Array)
     if (isset($_POST['project_tech_stack_ids'])) {
         // Sanitize array of IDs
         $tech_ids = array_map('intval', $_POST['project_tech_stack_ids']);
         update_post_meta($post_id, '_project_tech_stack_ids', $tech_ids);
     } else {
-        // If nothing selected, clear the meta
         delete_post_meta($post_id, '_project_tech_stack_ids');
     }
 }

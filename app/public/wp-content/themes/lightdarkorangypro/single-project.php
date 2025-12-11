@@ -13,24 +13,47 @@ get_header(); ?>
         <main class="single-project-main">
             
             <?php while ( have_posts() ) : the_post(); 
-                // 1. Retrieve Custom Fields
                 $client = get_post_meta(get_the_ID(), '_project_client_name', true);
                 $url = get_post_meta(get_the_ID(), '_project_url', true);
                 $date = get_post_meta(get_the_ID(), '_project_completion_date', true);
                 $role = get_post_meta(get_the_ID(), '_project_role', true);
                 
-                // Tech Stack is an array of IDs
                 $tech_ids = get_post_meta(get_the_ID(), '_project_tech_stack_ids', true); 
                 
-                // Gallery is a string of URLs separated by commas
                 $gallery_string = get_post_meta(get_the_ID(), '_project_gallery', true);
+                
+                // Get the preview image URL for hero background
+                $preview_image_url = get_post_meta(get_the_ID(), '_project_preview_image_url', true);
+                $hero_style = '';
+                if (!empty($preview_image_url)) {
+                    $hero_style = ' style="background-image: url(' . esc_url($preview_image_url) . ');"';
+                }
             ?>
 
-            <!-- Hero / Title Section -->
-            <div class="project-hero glass-panel">
+            <!-- Hero: Title Only -->
+            <div class="project-hero glass-panel"<?php echo $hero_style; ?>>
                 <div class="project-hero-inner">
                     <h1 class="single-title"><?php the_title(); ?></h1>
+                </div>
+            </div>
+
+            <?php if(has_post_thumbnail()): ?>
+            <div class="project-banner glass-panel">
+                <?php the_post_thumbnail('full', ['class' => 'featured-img']); ?>
+            </div>
+            <?php endif; ?>
+
+            <div class="project-body-grid">
+                
+                <!-- Main Content Column -->
+                <div class="project-main-content glass-panel compressed-content">
+                    <h3 class="section-heading">Project Overview</h3>
                     
+                    <div class="the-content">
+                        <?php the_content(); ?>
+                    </div>
+
+                    <!-- MOVED: Meta Boxes (Client, Role, etc) are now here -->
                     <div class="project-meta-grid">
                         <div class="meta-box">
                             <span class="meta-label">Client</span>
@@ -41,39 +64,28 @@ get_header(); ?>
                             <span class="meta-value"><?php echo $role ? esc_html($role) : 'Full Stack Dev'; ?></span>
                         </div>
                         <div class="meta-box">
-                            <span class="meta-label">Date</span>
-                            <span class="meta-value"><?php echo $date ? esc_html($date) : 'Ongoing'; ?></span>
-                        </div>
+                                <span class="meta-label">Date</span>
+                                <span class="meta-value">
+                                    <?php 
+                                    if ($date) {
+                                        echo esc_html(date('F j, Y', strtotime($date)));
+                                    } else {
+                                        echo 'Ongoing';
+                                    }
+                                    ?>
+                                </span>
+                            </div>
+
                         <div class="meta-box">
                             <span class="meta-label">Live Link</span>
                             <?php if($url): ?>
-                                <a href="<?php echo esc_url($url); ?>" target="_blank" class="meta-link">Visit Site <span class="arrow">↗</span></a>
+                                <a href="<?php echo esc_url($url); ?>" target="_blank" class="meta-link">Visit Site </a>
                             <?php else: ?>
                                 <span class="meta-value">Offline</span>
                             <?php endif; ?>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- Featured Image -->
-            <?php if(has_post_thumbnail()): ?>
-            <div class="project-banner glass-panel">
-                <?php the_post_thumbnail('full', ['class' => 'featured-img']); ?>
-            </div>
-            <?php endif; ?>
-
-            <!-- Main Content Area -->
-            <div class="project-body-grid">
-                
-                <!-- Left: Description & Gallery -->
-                <div class="project-main-content glass-panel">
-                    <h3 class="section-heading">Project Overview</h3>
-                    <div class="the-content">
-                        <?php the_content(); ?>
-                    </div>
-
-                    <!-- Gallery Section -->
                     <?php if($gallery_string): 
                         $gallery_images = explode(',', $gallery_string);
                     ?>
@@ -92,55 +104,63 @@ get_header(); ?>
                     <?php endif; ?>
                 </div>
 
+                <!-- Sidebar Column -->
                 <div class="project-sidebar glass-panel">
                     <h3 class="section-heading">Tech Stack</h3>
                     <div class="single-tech-container-wrapper">
                         <?php 
-                        if(is_array($tech_ids) && !empty($tech_ids)) {
-                            
-                            // 1. Group skills by category
-                            $grouped_skills = array();
-                            
-                            foreach($tech_ids as $tid) {
-                                $skill_post = get_post($tid);
-                                if($skill_post) {
-                                    // Get category, default to 'Other' if missing
-                                    $cat = get_post_meta($tid, '_skill_category', true);
-                                    if(empty($cat)) { $cat = 'Other'; }
-                                    
-                                    $grouped_skills[$cat][] = $skill_post;
-                                }
-                            }
-
-                            // 2. Define Sort Order (Optional, ensures specific order)
-                            $cat_order = array('Frontend', 'Backend', 'Database', 'UI/UX', 'DevOps', 'Tools', 'Other');
-
-                            // 3. Display Groups
-                            foreach($cat_order as $cat_name) {
-                                if(isset($grouped_skills[$cat_name])) {
-                                    echo '<div class="tech-category-group">';
-                                    echo '<h4 class="tech-cat-title">' . esc_html($cat_name) . '</h4>';
-                                    echo '<div class="single-tech-container">';
-                                    
-                                    foreach($grouped_skills[$cat_name] as $skill) {
-                                        echo '<span class="single-tech-tag">' . esc_html($skill->post_title) . '</span>';
+                            if(is_array($tech_ids) && !empty($tech_ids)) {
+                                $grouped_skills = array();
+                                foreach($tech_ids as $tid) {
+                                    $skill_post = get_post($tid);
+                                    if($skill_post) {
+                                        $cat = get_post_meta($tid, '_skill_category', true);
+                                        if(empty($cat)) { $cat = 'Other'; }
+                                        $grouped_skills[$cat][] = $skill_post;
                                     }
-                                    
-                                    echo '</div>'; // End container
-                                    echo '</div>'; // End group
                                 }
+                                $cat_order = array('Frontend', 'Backend', 'Database', 'UI/UX', 'DevOps', 'Tools', 'Other');
+                                
+                                // Define an array of gradient color pairs for variety (add more as needed)
+                                $gradient_colors = array(
+                                    array('rgba(255, 99, 133, 0.77)', 'rgba(255, 255, 255, 0.37)'), // Red-pink
+                                    array('rgba(54, 162, 235, 0.77)', 'rgba(255, 255, 255, 0.37)'), // Blue
+                                    array('rgba(255, 205, 86, 0.77)', 'rgba(255, 255, 255, 0.37)'),  // Yellow
+                                    array('rgba(75, 192, 192, 0.77)', 'rgba(255, 255, 255, 0.37)'), // Teal
+                                    array('rgba(153, 102, 255, 0.77)', 'rgba(255, 255, 255, 0.37)'), // Purple
+                                    array('rgba(255, 159, 64, 0.77)', 'rgba(255, 255, 255, 0.37)'),  // Orange
+                                    array('rgba(201, 203, 207, 0.77)', 'rgba(255, 255, 255, 0.37)'), // Gray
+                                );
+                                
+                                $color_index = 0; // Counter to cycle through colors
+                                
+                                foreach($cat_order as $cat_name) {
+                                    if(isset($grouped_skills[$cat_name])) {
+                                        echo '<div class="tech-category-group">';
+                                        echo '<h4 class="tech-cat-title">' . esc_html($cat_name) . '</h4>';
+                                        echo '<div class="single-tech-container">';
+                                        foreach($grouped_skills[$cat_name] as $skill) {
+                                            // Get the current color pair and cycle through the array
+                                            $current_colors = $gradient_colors[$color_index % count($gradient_colors)];
+                                            $bg_gradient = 'linear-gradient(135deg, ' . $current_colors[0] . ', ' . $current_colors[1] . ')';
+                                            
+                                            // Output the tag with inline background style
+                                            echo '<span class="single-tech-tag" style="background: ' . $bg_gradient . ';" data-color-index="' . ($color_index % count($gradient_colors)) . '">' . esc_html($skill->post_title) . '</span>';
+                                            
+                                            $color_index++; // Increment for next tag
+                                        }
+                                        echo '</div></div>'; 
+                                    }
+                                }
+                            } else {
+                                echo '<p>No tech stack defined.</p>';
                             }
-
-                        } else {
-                            echo '<p>No tech stack defined.</p>';
-                        }
-                        ?>
+                            ?>
                     </div>
                 </div>
 
             </div>
 
-            <!-- Navigation -->
             <div class="project-navigation">
                 <a href="<?php echo home_url('/#projects'); ?>" class="nav-btn glass-btn">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>

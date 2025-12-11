@@ -6,6 +6,16 @@ Author: Noel Avila
 Text Domain: lightdarkorangypro
 */
 
+@font-face {
+    font-family: 'BebasKai'; 
+    src: url('./font/BebasKai.ttf') format('truetype'); 
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; 
+}
+
+
+
 :root {
     --body-background-color: #f5f5f5;
     --primary-accent-color: #333333;
@@ -31,34 +41,52 @@ html, body {
 }
 
 body {
-    background-color: #5e5e5ebe; /* Fallback color */
+    background-color: transparent; 
     color: var(--text-color);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     position: relative;
-    min-height: 100vh; /* Ensure it fills screen */
+    height: 100vh; 
 }
 
-/* Layered Background Effect */
-body::after {
+body:before {
     content: "";
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;    
-    
-    background: linear-gradient(
-        135deg, 
-        rgba(46, 192, 51, 0.762) 0%,
-        rgba(48, 229, 54, 0.097) 100% /* Fade to whitish */
-    );
-    
-    
-    
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    z-index: -2;
+
+    background: #298f50;
+    background: radial-gradient(circle,rgb(27, 96, 53) 0%, rgb(0, 0, 0) 100%);
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-image 0.3s ease;
 }
+
+/* Layered Background Effect */
+body::after {
+    content: "";
+    position: fixed; /* Use fixed for full viewport background */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    
+    background-color: li;
+    
+    backdrop-filter: blur(50px) saturate(120%);
+    -webkit-backdrop-filter: blur(20px) saturate(120%);
+
+     background: linear-gradient(135deg, 
+        rgba(16, 16, 16, 0.3) 0%, 
+        rgba(54, 54, 54, 0.2) 50%, 
+        rgba(255, 255, 255, 0.1) 100%);
+}
+
 
 header {
     padding: 20px;
@@ -206,8 +234,8 @@ header {
 
 .section-title-projects {
     text-align: center;
-    font-size: 3.5em; 
-    font-family: 'Melo', sans-serif;
+    font-size: 5.5em; 
+    font-family: 'BebasKai', sans-serif;
     position: relative;
     z-index: 1;
     opacity: 0;
@@ -216,12 +244,7 @@ header {
     color: #ffffff;
 }
 
-/* ========================================
-   PROJECTS SECTION STYLES
-   ======================================== */
-/* ========================================
-   PROJECTS SECTION STYLES
-   ======================================== */
+/* ================================== */
 
 #projects {
     padding-left: 5%;
@@ -233,14 +256,16 @@ header {
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     
-    /* 3D Borders for Depth */
-    border-top: 5px solid rgba(255, 255, 255, 0.17);
+    border-top: 2px solid rgba(255, 255, 255, 0.17);
     border-left: 4px solid rgba(255, 255, 255, 0.136);
     border-right: 2px solid rgba(255, 255, 255, 0.2);
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     
-    /* Curved bottom-right to complement button */
-    border-radius: 20px 20px 50px 20px;
+    border-radius: 30px 30px 140px 30px;
+    
+    /* Mask for bottom right tip */
+    mask: radial-gradient(120px at 100% 100%, #0000 95%, #000);
+    -webkit-mask: radial-gradient(90px at 100% 100%, #0000 95%, #000);
     
     /* 3D Shadow Effect */
     box-shadow: 
@@ -253,8 +278,12 @@ header {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    min-height: 350px;
+    height: 350px;
+    margin-top: -60px;
 }
+
+
+
 
 /* ========================================
    UNIQUE PROJECT CARD COLORS
@@ -297,11 +326,28 @@ header {
 }
 
 
-.project-card:nth-child(1) .tech-tag {
-    background: linear-gradient(135deg, rgba(48, 229, 54, 0.2), rgba(255,255,255,0.1));
-    border-color: rgba(48, 229, 54, 0.5);
-    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+.project-wrapper {
+    position: relative;
+    display: block; 
 }
+
+.project-card-description {
+    color: #f0f0f0; 
+    font-size: 0.8rem; 
+    line-height: 1.3;
+    margin: 0; /* Remove all margins */
+    max-height: 2.6em; /* About 2 lines */
+    overflow: hidden;
+    font-family: 'BebasKai', sans-serif;
+    text-overflow: ellipsis;
+    display: -webkit-box; 
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+
+
 
 /* CARD 2: Teal Theme */
 .project-card:nth-child(2) .tech-tag {
@@ -324,119 +370,10 @@ header {
     text-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
-.project-card:nth-child(1) {
-    background: linear-gradient(
-        145deg, 
-        rgba(0, 255, 8, 0.4) 0%, /* Fresh Green */
-        rgba(255, 255, 255, 0.2) 100%
-    );
-    /* Shadow matches the green */
-    box-shadow: 
-        0 15px 35px rgba(48, 229, 54, 0.15), 
-        inset 0 1px 0 rgba(255, 255, 255, 0.7),
-        inset 0 0 20px rgba(255, 255, 255, 0.3);
-}
 
-.project-card:nth-child(1):hover {
-    background: linear-gradient(
-        145deg, 
-        rgba(48, 229, 54, 0.5) 0%, 
-        rgba(255, 255, 255, 0.3) 100%
-    );
-    box-shadow: 
-        0 25px 50px rgba(48, 229, 54, 0.25),
-        inset 0 1px 0 rgba(255, 255, 255, 0.8),
-        inset 0 0 30px rgba(255, 255, 255, 0.4);
-}
 
-/* --- CARD 2: Teal / Sea Green --- */
-.project-card:nth-child(2) {
-    background: linear-gradient(
-        145deg, 
-        rgba(26, 188, 156, 0.4) 0%, /* Teal */
-        rgba(255, 255, 255, 0.2) 100%
-    );
-    box-shadow: 
-        0 15px 35px rgba(26, 188, 156, 0.15), 
-        inset 0 1px 0 rgba(255, 255, 255, 0.7),
-        inset 0 0 20px rgba(255, 255, 255, 0.3);
-}
-
-.project-card:nth-child(2):hover {
-    background: linear-gradient(
-        145deg, 
-        rgba(26, 188, 156, 0.5) 0%, 
-        rgba(255, 255, 255, 0.3) 100%
-    );
-    box-shadow: 
-        0 25px 50px rgba(26, 188, 156, 0.25),
-        inset 0 1px 0 rgba(255, 255, 255, 0.8),
-        inset 0 0 30px rgba(255, 255, 255, 0.4);
-}
-
-/* --- CARD 3: Lime / Electric Green --- */
-.project-card:nth-child(3) {
-    background: linear-gradient(
-        145deg, 
-        rgba(180, 230, 50, 0.4) 0%, /* Lime */
-        rgba(255, 255, 255, 0.2) 100%
-    );
-    box-shadow: 
-        0 15px 35px rgba(180, 230, 50, 0.15), 
-        inset 0 1px 0 rgba(255, 255, 255, 0.7),
-        inset 0 0 20px rgba(255, 255, 255, 0.3);
-}
-
-.project-card:nth-child(3):hover {
-    background: linear-gradient(
-        145deg, 
-        rgba(180, 230, 50, 0.5) 0%, 
-        rgba(255, 255, 255, 0.3) 100%
-    );
-    box-shadow: 
-        0 25px 50px rgba(180, 230, 50, 0.25),
-        inset 0 1px 0 rgba(255, 255, 255, 0.8),
-        inset 0 0 30px rgba(255, 255, 255, 0.4);
-}
-
-/* --- CARD 4: Mint / Cyan Green --- */
-.project-card:nth-child(4) {
-    background: linear-gradient(
-        145deg, 
-        rgba(60, 240, 200, 0.4) 0%, /* Mint */
-        rgba(255, 255, 255, 0.2) 100%
-    );
-    box-shadow: 
-        0 15px 35px rgba(60, 240, 200, 0.15), 
-        inset 0 1px 0 rgba(255, 255, 255, 0.7),
-        inset 0 0 20px rgba(255, 255, 255, 0.3);
-}
-
-.project-card:nth-child(4):hover {
-    background: linear-gradient(
-        145deg, 
-        rgba(60, 240, 200, 0.5) 0%, 
-        rgba(255, 255, 255, 0.3) 100%
-    );
-    box-shadow: 
-        0 25px 50px rgba(60, 240, 200, 0.25),
-        inset 0 1px 0 rgba(255, 255, 255, 0.8),
-        inset 0 0 30px rgba(255, 255, 255, 0.4);
-}
-
-/* Optional: Make the button match the card color on hover */
-.project-card:nth-child(2) .project-btn {
-    background: linear-gradient(145deg, rgba(26, 188, 156, 0.6) 0%, rgba(255, 255, 255, 0.3) 100%);
-}
-.project-card:nth-child(3) .project-btn {
-    background: linear-gradient(145deg, rgba(180, 230, 50, 0.6) 0%, rgba(255, 255, 255, 0.3) 100%);
-}
-.project-card:nth-child(4) .project-btn {
-    background: linear-gradient(145deg, rgba(60, 240, 200, 0.6) 0%, rgba(255, 255, 255, 0.3) 100%);
-}
 
 .project-card:hover {
-    transform: translateY(-8px);
     box-shadow: 
         0 25px 50px rgba(0, 0, 0, 0.18),
         inset 0 1px 0 rgba(255, 255, 255, 0.8),
@@ -450,28 +387,36 @@ header {
 
 /* Project Header (Title + Separator) */
 .project-header {
-    padding: 20px 20px 0 20px;
+    padding: 15px 15px 10px 15px; /* Reduced padding */
     z-index: 2;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Tight spacing between elements */
 }
 
 .project-title {
-    font-size: 1.6em;
-    color: #1a1a1a;
-    font-weight: 700;
-    font-family: 'Melo', sans-serif;
-    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+    font-size: 1.4em; /* Slightly smaller */
+    margin: 0; /* Remove all margins */
+    color: #ffffff;
+    font-family: 'BebasKai', sans-serif;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
     white-space: nowrap;
     overflow: hidden;
+    
+    font-weight: 700;
+    font-style: italic;
     text-overflow: ellipsis;
+    line-height: 1.2; /* Tighter line height */
 }
+
 
 /* 3D Glass Separator Line */
 .project-separator {
     width: 100%;
-    height: 3px;
+    height: 2px; 
     position: relative;
-    margin-bottom: 0;
+    margin: 5px 0 0 0; 
     background: linear-gradient(
         90deg,
         rgba(255, 255, 255, 0.1) 0%,
@@ -549,8 +494,7 @@ header {
     justify-content: center;
     width: 60px;
     height: 60px;
-    
-    /* 3D Glass Material */
+
     background: linear-gradient(
         145deg,
         rgba(48, 229, 54, 0.6) 0%,
@@ -559,10 +503,8 @@ header {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     
-    /* Perfect Circle */
     border-radius: 50%;
     
-    /* 3D Border Effect */
     border-top: 3px solid rgba(255, 255, 255, 0.9);
     border-left: 2px solid rgba(255, 255, 255, 0.7);
     border-right: 2px solid rgba(255, 255, 255, 0.2);
@@ -576,10 +518,10 @@ header {
     transition: all 0.3s ease;
     cursor: pointer;
     z-index: 3;
+
+    margin-right: 5px;
+    margin-bottom: 5px;
     
-    /* Slight overlap to integrate with card curve */
-    margin-right: -5px;
-    margin-bottom: -5px;
 }
 
 .project-btn svg {
@@ -640,6 +582,21 @@ header {
         left: var(--profile-sidebar-width);
         width: var(--main-content-width);
         position: fixed;
+    }
+
+    .project-header {
+        padding: 10px 10px 6px 10px;
+        gap: 3px;
+    }
+    
+    .project-title {
+        font-size: 1.2em;
+        line-height: 1.1;
+    }
+    
+    .project-card-description {
+        font-size: 0.7rem;
+        line-height: 1.2;
     }
 
     .main-nav {
@@ -736,6 +693,20 @@ header {
         position: fixed;
     }
     
+    .project-header {
+        padding: 8px 8px 5px 8px;
+        gap: 2px;
+    }
+    
+    .project-title {
+        font-size: 1.1em;
+    }
+    
+    .project-card-description {
+        font-size: 0.65rem;
+    }
+
+
     .section-light {
         margin: 15px;
         padding: 30px 10px;

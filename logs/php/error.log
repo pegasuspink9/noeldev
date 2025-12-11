@@ -23,3 +23,6 @@ Stack trace:
 [08-Dec-2025 08:14:52 UTC] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\header.php on line 2
 [08-Dec-2025 09:33:04 UTC] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\header.php on line 2
 [08-Dec-2025 14:39:26 UTC] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\header.php on line 2
+[11-Dec-2025 00:55:43 UTC] PHP Parse error:  syntax error, unexpected token "<" in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\index.php on line 94
+[11-Dec-2025 03:31:11 UTC] PHP Warning:  Undefined variable $cat_order in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\single-project.php on line 134
+[11-Dec-2025 03:31:11 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\single-project.php on line 134

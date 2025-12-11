@@ -5,31 +5,7 @@
 
 function lightdarkorangypro_register_cpts() {
 
-    // --- 1. Tech Stack CPT ---
-    register_post_type('tech_stack', array(
-        'labels' => array(
-            'name' => 'Tech Stacks',
-            'singular_name' => 'Tech Stack',
-            'add_new_item' => 'Add New Tech Stack',
-            'edit_item' => 'Edit Tech Stack',
-        ),
-        'public' => true,
-        'has_archive' => false,
-        'menu_icon' => 'dashicons-code-standards',
-        'supports' => array('title', 'thumbnail'), // Title serves as the Tech Name
-        'show_in_rest' => true,
-    ));
-
-    // Taxonomy: Tech Category
-    register_taxonomy('tech_category', 'tech_stack', array(
-        'labels' => array(
-            'name' => 'Tech Categories',
-            'singular_name' => 'Tech Category',
-        ),
-        'hierarchical' => true, // Like standard Categories
-        'show_in_rest' => true,
-    ));
-
+  
     // --- 2. Project CPT ---
     register_post_type('project', array(
         'labels' => array(
