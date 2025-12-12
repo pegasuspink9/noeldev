@@ -4,15 +4,19 @@ document.addEventListener('DOMContentLoaded', function() {
         rootMargin: '0px 0px -50px 0px'
     };
 
-    const observer = new IntersectionObserver(function(entries) {
+    let observerCallback = (entries) => {
+    requestAnimationFrame(() => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('visible'); // Add class instead
+                entry.target.classList.add('visible');
                 entry.target.style.opacity = '1';
                 entry.target.style.transform = 'translateY(0)';
             }
         });
-    }, observerOptions);
+    });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
 
     // Observe both possible class names
     const sectionTitle = document.querySelector('#skills .section-title, #skills .section-title-skills');

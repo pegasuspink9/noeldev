@@ -6,14 +6,22 @@
  */
 
 // Define categories
-$categories = array(
-    'Frontend' => array(),
-    'Backend' => array(),
-    'Database' => array(),
-    'UI/UX' => array(),
-    'DevOps' => array(),
-    'Tools' => array()
-);
+$skill_categories = get_terms(array(
+    'taxonomy' => 'skill_category',
+    'hide_empty' => false, // Include empty categories if needed
+));
+
+$categories = array();
+if (!empty($skill_categories)) {
+    foreach ($skill_categories as $cat) {
+        $categories[$cat->name] = array(); // Use category name as key
+    }
+}
+
+// Add a default if no categories exist
+if (empty($categories)) {
+    $categories['Uncategorized'] = array();
+}
 
 $skills_query = new WP_Query(array(
     'post_type'      => 'skill',
@@ -22,12 +30,15 @@ $skills_query = new WP_Query(array(
     'orderby'        => 'date'
 ));
 
+
 if ($skills_query->have_posts()) :
     while ($skills_query->have_posts()) : $skills_query->the_post();
-        $skill_category = get_post_meta(get_the_ID(), '_skill_category', true);
+        // Get category from taxonomy
+        $skill_terms = get_the_terms(get_the_ID(), 'skill_category');
+        $skill_category = (!empty($skill_terms) && !is_wp_error($skill_terms)) ? $skill_terms[0]->name : 'Uncategorized';
         
-        if (!$skill_category || !isset($categories[$skill_category])) {
-            $skill_category = 'Tools'; // Default category
+        if (!isset($categories[$skill_category])) {
+            $categories[$skill_category] = array(); // Fallback
         }
 
         $percent = get_post_meta(get_the_ID(), '_skill_mastery_percent', true);

@@ -26,3 +26,105 @@ Stack trace:
 [11-Dec-2025 00:55:43 UTC] PHP Parse error:  syntax error, unexpected token "<" in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\index.php on line 94
 [11-Dec-2025 03:31:11 UTC] PHP Warning:  Undefined variable $cat_order in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\single-project.php on line 134
 [11-Dec-2025 03:31:11 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\single-project.php on line 134
+[12-Dec-2025 00:41:28 UTC] PHP Warning:  Undefined variable $selected_categories in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php on line 106
+[12-Dec-2025 00:41:28 UTC] PHP Fatal error:  Uncaught TypeError: in_array(): Argument #2 ($haystack) must be of type array, null given in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php:106
+Stack trace:
+#0 C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php(106): in_array(2, NULL)
+#1 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\includes\template.php(1453): lightdarkorangypro_render_project_meta(Object(WP_Post), Array)
+#2 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\includes\post.php(2400): do_meta_boxes(Object(WP_Screen), 'normal', Object(WP_Post))
+#3 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\edit-form-blocks.php(383): the_block_editor_meta_boxes()
+#4 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\post.php(187): require('C:\\Users\\user\\L...')
+#5 {main}
+  thrown in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php on line 106
+[12-Dec-2025 00:41:29 UTC] PHP Warning:  Trying to access array offset on value of type bool in C:\Users\user\Local Sites\noeldevs\app\public\wp-includes\class-wp-recovery-mode-email-service.php on line 367
+[12-Dec-2025 00:41:29 UTC] PHP Warning:  Trying to access array offset on value of type bool in C:\Users\user\Local Sites\noeldevs\app\public\wp-includes\class-wp-recovery-mode-email-service.php on line 368
+[12-Dec-2025 00:41:33 UTC] PHP Warning:  Undefined variable $selected_categories in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php on line 106
+[12-Dec-2025 00:41:33 UTC] PHP Fatal error:  Uncaught TypeError: in_array(): Argument #2 ($haystack) must be of type array, null given in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php:106
+Stack trace:
+#0 C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php(106): in_array(2, NULL)
+#1 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\includes\template.php(1453): lightdarkorangypro_render_project_meta(Object(WP_Post), Array)
+#2 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\includes\post.php(2400): do_meta_boxes(Object(WP_Screen), 'normal', Object(WP_Post))
+#3 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\edit-form-blocks.php(383): the_block_editor_meta_boxes()
+#4 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\post.php(187): require('C:\\Users\\user\\L...')
+#5 {main}
+  thrown in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php on line 106
+[12-Dec-2025 00:41:37 UTC] PHP Warning:  Undefined variable $selected_categories in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php on line 106
+[12-Dec-2025 00:41:37 UTC] PHP Fatal error:  Uncaught TypeError: in_array(): Argument #2 ($haystack) must be of type array, null given in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php:106
+Stack trace:
+#0 C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php(106): in_array(2, NULL)
+#1 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\includes\template.php(1453): lightdarkorangypro_render_project_meta(Object(WP_Post), Array)
+#2 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\includes\post.php(2400): do_meta_boxes(Object(WP_Screen), 'normal', Object(WP_Post))
+#3 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\edit-form-blocks.php(383): the_block_editor_meta_boxes()
+#4 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\post.php(187): require('C:\\Users\\user\\L...')
+#5 {main}
+  thrown in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php on line 106
+[12-Dec-2025 00:43:20 UTC] PHP Warning:  Undefined variable $selected_categories in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php on line 106
+[12-Dec-2025 00:43:20 UTC] PHP Fatal error:  Uncaught TypeError: in_array(): Argument #2 ($haystack) must be of type array, null given in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php:106
+Stack trace:
+#0 C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php(106): in_array(2, NULL)
+#1 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\includes\template.php(1453): lightdarkorangypro_render_project_meta(Object(WP_Post), Array)
+#2 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\includes\post.php(2400): do_meta_boxes(Object(WP_Screen), 'normal', Object(WP_Post))
+#3 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\edit-form-blocks.php(383): the_block_editor_meta_boxes()
+#4 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\post.php(187): require('C:\\Users\\user\\L...')
+#5 {main}
+  thrown in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php on line 106
+[12-Dec-2025 00:43:27 UTC] PHP Warning:  Undefined variable $selected_categories in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php on line 106
+[12-Dec-2025 00:43:27 UTC] PHP Fatal error:  Uncaught TypeError: in_array(): Argument #2 ($haystack) must be of type array, null given in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php:106
+Stack trace:
+#0 C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php(106): in_array(2, NULL)
+#1 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\includes\template.php(1453): lightdarkorangypro_render_project_meta(Object(WP_Post), Array)
+#2 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\includes\post.php(2400): do_meta_boxes(Object(WP_Screen), 'normal', Object(WP_Post))
+#3 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\edit-form-blocks.php(383): the_block_editor_meta_boxes()
+#4 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\post-new.php(72): require('C:\\Users\\user\\L...')
+#5 {main}
+  thrown in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php on line 106
+[12-Dec-2025 00:47:33 UTC] PHP Warning:  Undefined variable $selected_categories in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php on line 106
+[12-Dec-2025 00:47:33 UTC] PHP Fatal error:  Uncaught TypeError: in_array(): Argument #2 ($haystack) must be of type array, null given in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php:106
+Stack trace:
+#0 C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php(106): in_array(2, NULL)
+#1 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\includes\template.php(1453): lightdarkorangypro_render_project_meta(Object(WP_Post), Array)
+#2 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\includes\post.php(2400): do_meta_boxes(Object(WP_Screen), 'normal', Object(WP_Post))
+#3 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\edit-form-blocks.php(383): the_block_editor_meta_boxes()
+#4 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\post.php(187): require('C:\\Users\\user\\L...')
+#5 {main}
+  thrown in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php on line 106
+[12-Dec-2025 00:47:42 UTC] PHP Warning:  Undefined variable $selected_categories in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php on line 106
+[12-Dec-2025 00:47:42 UTC] PHP Fatal error:  Uncaught TypeError: in_array(): Argument #2 ($haystack) must be of type array, null given in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php:106
+Stack trace:
+#0 C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php(106): in_array(2, NULL)
+#1 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\includes\template.php(1453): lightdarkorangypro_render_project_meta(Object(WP_Post), Array)
+#2 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\includes\post.php(2400): do_meta_boxes(Object(WP_Screen), 'normal', Object(WP_Post))
+#3 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\edit-form-blocks.php(383): the_block_editor_meta_boxes()
+#4 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\post-new.php(72): require('C:\\Users\\user\\L...')
+#5 {main}
+  thrown in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php on line 106
+[12-Dec-2025 00:49:12 UTC] PHP Warning:  Undefined variable $selected_categories in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php on line 106
+[12-Dec-2025 00:49:12 UTC] PHP Fatal error:  Uncaught TypeError: in_array(): Argument #2 ($haystack) must be of type array, null given in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php:106
+Stack trace:
+#0 C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php(106): in_array(2, NULL)
+#1 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\includes\template.php(1453): lightdarkorangypro_render_project_meta(Object(WP_Post), Array)
+#2 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\includes\post.php(2400): do_meta_boxes(Object(WP_Screen), 'normal', Object(WP_Post))
+#3 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\edit-form-blocks.php(383): the_block_editor_meta_boxes()
+#4 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\post-new.php(72): require('C:\\Users\\user\\L...')
+#5 {main}
+  thrown in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php on line 106
+[12-Dec-2025 01:00:09 UTC] PHP Warning:  Undefined variable $selected_tech in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php on line 117
+[12-Dec-2025 01:00:09 UTC] PHP Fatal error:  Uncaught TypeError: in_array(): Argument #2 ($haystack) must be of type array, null given in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php:117
+Stack trace:
+#0 C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php(117): in_array(13, NULL)
+#1 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\includes\template.php(1453): lightdarkorangypro_render_project_meta(Object(WP_Post), Array)
+#2 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\includes\post.php(2400): do_meta_boxes(Object(WP_Screen), 'normal', Object(WP_Post))
+#3 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\edit-form-blocks.php(383): the_block_editor_meta_boxes()
+#4 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\post.php(187): require('C:\\Users\\user\\L...')
+#5 {main}
+  thrown in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php on line 117
+[12-Dec-2025 01:01:15 UTC] PHP Warning:  Undefined variable $selected_tech in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php on line 117
+[12-Dec-2025 01:01:15 UTC] PHP Fatal error:  Uncaught TypeError: in_array(): Argument #2 ($haystack) must be of type array, null given in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php:117
+Stack trace:
+#0 C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php(117): in_array(13, NULL)
+#1 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\includes\template.php(1453): lightdarkorangypro_render_project_meta(Object(WP_Post), Array)
+#2 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\includes\post.php(2400): do_meta_boxes(Object(WP_Screen), 'normal', Object(WP_Post))
+#3 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\edit-form-blocks.php(383): the_block_editor_meta_boxes()
+#4 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\post.php(187): require('C:\\Users\\user\\L...')
+#5 {main}
+  thrown in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php on line 117

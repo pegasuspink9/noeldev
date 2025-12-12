@@ -110,51 +110,64 @@ get_header(); ?>
                     <div class="single-tech-container-wrapper">
                         <?php 
                             if(is_array($tech_ids) && !empty($tech_ids)) {
-                                $grouped_skills = array();
-                                foreach($tech_ids as $tid) {
-                                    $skill_post = get_post($tid);
-                                    if($skill_post) {
-                                        $cat = get_post_meta($tid, '_skill_category', true);
-                                        if(empty($cat)) { $cat = 'Other'; }
-                                        $grouped_skills[$cat][] = $skill_post;
-                                    }
+                            $grouped_skills = array();
+                            foreach($tech_ids as $tid) {
+                                $skill_post = get_post($tid);
+                                if($skill_post) {
+                                    $terms = get_the_terms($tid, 'skill_category');
+                                    $cat = (!empty($terms) && !is_wp_error($terms)) ? strtolower($terms[0]->name) : 'uncategorized';
+                                    $grouped_skills[$cat][] = $skill_post;
                                 }
-                                $cat_order = array('Frontend', 'Backend', 'Database', 'UI/UX', 'DevOps', 'Tools', 'Other');
-                                
-                                // Define an array of gradient color pairs for variety (add more as needed)
-                                $gradient_colors = array(
-                                    array('rgba(255, 99, 133, 0.77)', 'rgba(255, 255, 255, 0.37)'), // Red-pink
-                                    array('rgba(54, 162, 235, 0.77)', 'rgba(255, 255, 255, 0.37)'), // Blue
-                                    array('rgba(255, 205, 86, 0.77)', 'rgba(255, 255, 255, 0.37)'),  // Yellow
-                                    array('rgba(75, 192, 192, 0.77)', 'rgba(255, 255, 255, 0.37)'), // Teal
-                                    array('rgba(153, 102, 255, 0.77)', 'rgba(255, 255, 255, 0.37)'), // Purple
-                                    array('rgba(255, 159, 64, 0.77)', 'rgba(255, 255, 255, 0.37)'),  // Orange
-                                    array('rgba(201, 203, 207, 0.77)', 'rgba(255, 255, 255, 0.37)'), // Gray
-                                );
-                                
-                                $color_index = 0; // Counter to cycle through colors
-                                
-                                foreach($cat_order as $cat_name) {
-                                    if(isset($grouped_skills[$cat_name])) {
-                                        echo '<div class="tech-category-group">';
-                                        echo '<h4 class="tech-cat-title">' . esc_html($cat_name) . '</h4>';
-                                        echo '<div class="single-tech-container">';
-                                        foreach($grouped_skills[$cat_name] as $skill) {
-                                            // Get the current color pair and cycle through the array
-                                            $current_colors = $gradient_colors[$color_index % count($gradient_colors)];
-                                            $bg_gradient = 'linear-gradient(135deg, ' . $current_colors[0] . ', ' . $current_colors[1] . ')';
-                                            
-                                            // Output the tag with inline background style
-                                            echo '<span class="single-tech-tag" style="background: ' . $bg_gradient . ';" data-color-index="' . ($color_index % count($gradient_colors)) . '">' . esc_html($skill->post_title) . '</span>';
-                                            
-                                            $color_index++; // Increment for next tag
-                                        }
-                                        echo '</div></div>'; 
-                                    }
-                                }
-                            } else {
-                                echo '<p>No tech stack defined.</p>';
                             }
+                            
+                            // Preferred order for known categories (lowercase for matching)
+                            $preferred_order = array('frontend', 'backend', 'database', 'ui/ux', 'devops', 'tools', 'uncategorized');
+                            
+                            // Build display list: prioritize preferred order, then add any extras
+                            $display_cats = array();
+                            foreach($preferred_order as $cat) {
+                                if(isset($grouped_skills[$cat])) {
+                                    $display_cats[$cat] = $grouped_skills[$cat];
+                                }
+                            }
+                            // Add any categories not in preferred order
+                            foreach($grouped_skills as $cat => $skills) {
+                                if(!isset($display_cats[$cat])) {
+                                    $display_cats[$cat] = $skills;
+                                }
+                            }
+                            
+                            // Define gradient colors (unchanged)
+                            $gradient_colors = array(
+                                array('rgba(255, 99, 133, 0.77)', 'rgba(255, 255, 255, 0.37)'), // Red-pink
+                                array('rgba(54, 162, 235, 0.77)', 'rgba(255, 255, 255, 0.37)'), // Blue
+                                array('rgba(255, 205, 86, 0.77)', 'rgba(255, 255, 255, 0.37)'),  // Yellow
+                                array('rgba(75, 192, 192, 0.77)', 'rgba(255, 255, 255, 0.37)'), // Teal
+                                array('rgba(153, 102, 255, 0.77)', 'rgba(255, 255, 255, 0.37)'), // Purple
+                                array('rgba(255, 159, 64, 0.77)', 'rgba(255, 255, 255, 0.37)'),  // Orange
+                                array('rgba(201, 203, 207, 0.77)', 'rgba(255, 255, 255, 0.37)'), // Gray
+                            );
+                            
+                            $color_index = 0;
+                            
+                            // Display all categories dynamically
+                            foreach($display_cats as $cat_name => $skills) {
+                                echo '<div class="tech-category-group">';
+                                echo '<h4 class="tech-cat-title">' . esc_html(ucfirst($cat_name)) . '</h4>';
+                                echo '<div class="single-tech-container">';
+                                foreach($skills as $skill) {
+                                    $current_colors = $gradient_colors[$color_index % count($gradient_colors)];
+                                    $bg_gradient = 'linear-gradient(135deg, ' . $current_colors[0] . ', ' . $current_colors[1] . ')';
+                                    
+                                    echo '<span class="single-tech-tag" style="background: ' . $bg_gradient . ';" data-color-index="' . ($color_index % count($gradient_colors)) . '">' . esc_html($skill->post_title) . '</span>';
+                                    
+                                    $color_index++;
+                                }
+                                echo '</div></div>';
+                            }
+                        } else {
+                            echo '<p>No tech stack defined.</p>';
+                        }
                             ?>
                     </div>
                 </div>

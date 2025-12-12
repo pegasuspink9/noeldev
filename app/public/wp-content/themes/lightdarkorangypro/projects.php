@@ -16,7 +16,6 @@ if (!defined('ABSPATH')) {
         
         <div class="grid grid-3">
             <?php
-            // Define an array of gradient color pairs for variety
             $gradient_colors = array(
                 array('rgba(255, 99, 133, 0.77)', 'rgba(255, 255, 255, 0.37)'), // Red-pink
                 array('rgba(54, 162, 235, 0.77)', 'rgba(255, 255, 255, 0.37)'), // Blue
@@ -41,7 +40,6 @@ if (!defined('ABSPATH')) {
             if ($projects_query->have_posts()) :
                 while ($projects_query->have_posts()) : $projects_query->the_post();
                     
-                    // Get Tech Stack and preview image
                     $tech_ids = get_post_meta(get_the_ID(), '_project_tech_stack_ids', true);
                     $custom_preview_url = get_post_meta(get_the_ID(), '_project_preview_image_url', true);
 
@@ -52,7 +50,19 @@ if (!defined('ABSPATH')) {
                     } else {
                         $display_image_url = get_template_directory_uri() . '/images/placeholder.png';
                     }
+
+                    $tech_skills = array();
+
+                    if (is_array($tech_ids) && !empty($tech_ids)) {
+                        foreach ($tech_ids as $tid) {
+                            $t_post = get_post($tid);
+                            if ($t_post) {
+                                $tech_skills[] = $t_post->post_title;
+                            }
+                        }
+                    }
                     ?>
+
 
                     <div class="project-wrapper">
                         <div class="project-card">
@@ -76,18 +86,15 @@ if (!defined('ABSPATH')) {
                             
                             <div class="project-content">
                                 <?php 
-                                if(is_array($tech_ids) && !empty($tech_ids)) {
-                                    $count = 0;
-                                    foreach($tech_ids as $tid) {
-                                        if($count >= 4) break;
-                                        $t_post = get_post($tid);
-                                        if($t_post) {
-                                            $current_colors = $gradient_colors[array_rand($gradient_colors)];
-                                            $bg_gradient = 'linear-gradient(135deg, ' . $current_colors[0] . ', ' . $current_colors[1] . ')';
-                                            echo '<span class="tech-tag" style="background: ' . $bg_gradient . ';">' . esc_html($t_post->post_title) . '</span>';
-                                        }
-                                        $count++;
-                                    }
+                                 if (!empty($tech_skills)) {
+                                $count = 0;
+                                foreach ($tech_skills as $skill_name) {
+                                    if ($count >= 4) break; // Limit to 4 tags
+                                    $current_colors = $gradient_colors[array_rand($gradient_colors)];
+                                    $bg_gradient = 'linear-gradient(135deg, ' . $current_colors[0] . ', ' . $current_colors[1] . ')';
+                                    echo '<span class="tech-tag" style="background: ' . $bg_gradient . ';">' . esc_html($skill_name) . '</span>';
+                                    $count++;
+                                }
                                 }
                                 ?>
                             </div>

@@ -18,12 +18,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 skillsWrapper.classList.add('expanded-active');
                 
                 setTimeout(() => {
-                    this.scrollIntoView({ 
-                        behavior: 'smooth', 
-                        block: 'center',  // Centers vertically
-                        inline: 'center'  // Centers horizontally (This is the key fix)
+                    requestAnimationFrame(() => {
+                        this.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'center',
+                            inline: 'center'
+                        });
                     });
-                }, 300); 
+                }, 300);
                 
             } else {
                 skillsWrapper.classList.remove('expanded-active');

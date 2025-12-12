@@ -29,8 +29,12 @@ function lightdarkorangypro_render_project_meta($post) {
     $preview_image_url = get_post_meta($post->ID, '_project_preview_image_url', true);
     
     // Get currently selected skills
+    $selected_categories = get_post_meta($post->ID, '_project_skill_categories', true); 
+    if(!is_array($selected_categories)) $selected_categories = array();
+
     $selected_tech = get_post_meta($post->ID, '_project_tech_stack_ids', true); 
     if(!is_array($selected_tech)) $selected_tech = array();
+
 
     ?>
     <style>
@@ -90,52 +94,45 @@ function lightdarkorangypro_render_project_meta($post) {
         <textarea id="project_role" name="project_role" rows="4"><?php echo esc_textarea($role); ?></textarea>
     </div>
 
-    
 
     <div class="ldo-meta-row">
-        <label>Tech Stack / Skills Used</label>
-        <div class="ldo-tech-checkboxes">
-            <?php 
-            // 1. Fetch ALL Skills
-            $all_skills = get_posts(array(
-                'post_type'      => 'skill', 
-                'numberposts'    => -1,
-                'orderby'        => 'title',
-                'order'          => 'ASC'
-            ));
-            
-            if($all_skills) {
-                $grouped_skills = array();
-                
-                foreach($all_skills as $skill) {
-                    $cat = get_post_meta($skill->ID, '_skill_category', true);
-                    if(empty($cat)) { $cat = 'Uncategorized'; }
-                    $grouped_skills[$cat][] = $skill;
-                }
-
-                $cat_order = array('Frontend', 'Backend', 'Database', 'UI/UX', 'DevOps', 'Tools', 'Uncategorized');
-
-                foreach($cat_order as $category_name) {
-                    if(isset($grouped_skills[$category_name])) {
-                        echo '<div class="ldo-tech-category">' . esc_html($category_name) . '</div>';
-                        
-                        foreach($grouped_skills[$category_name] as $skill_post) {
-                            $checked = in_array($skill_post->ID, $selected_tech) ? 'checked' : '';
-                            ?>
-                            <label class="ldo-tech-item">
-                                <input type="checkbox" name="project_tech_stack_ids[]" value="<?php echo $skill_post->ID; ?>" <?php echo $checked; ?>> 
-                                <?php echo esc_html($skill_post->post_title); ?>
-                            </label>
-                            <?php
-                        }
-                    }
-                }
-            } else {
-                echo 'No Skills found. Please add items to the "Skills" menu first.';
+    <label>Tech Stack / Skills Used</label>
+    <div class="ldo-tech-checkboxes">
+        <?php 
+        // Fetch all skills and group by category
+        $all_skills = get_posts(array(
+            'post_type' => 'skill',
+            'numberposts' => -1,
+            'orderby' => 'title',
+            'order' => 'ASC'
+        ));
+        
+        if ($all_skills) {
+            $grouped_skills = array();
+            foreach ($all_skills as $skill) {
+                $terms = get_the_terms($skill->ID, 'skill_category');
+                $cat_name = (!empty($terms) && !is_wp_error($terms)) ? $terms[0]->name : 'Uncategorized';
+                $grouped_skills[$cat_name][] = $skill;
             }
-            ?>
-        </div>
-        <p class="description">Select the skills from your existing library that were used in this project.</p>
+            
+            foreach ($grouped_skills as $category_name => $skills) {
+                echo '<div class="ldo-tech-category">' . esc_html($category_name) . '</div>';
+                foreach ($skills as $skill) {
+                    $checked = in_array($skill->ID, $selected_tech) ? 'checked' : ''; // Note: Still using $selected_tech for individual skills
+                    ?>
+                    <label class="ldo-tech-item">
+                        <input type="checkbox" name="project_tech_stack_ids[]" value="<?php echo $skill->ID; ?>" <?php echo $checked; ?>> 
+                        <?php echo esc_html($skill->post_title); ?>
+                    </label>
+                    <?php
+                }
+            }
+        } else {
+            echo 'No Skills found. Please add them in the Skills menu.';
+        }
+        ?>
+    </div>
+    <p class="description">Select individual skills used in this project, grouped by category.</p>
     </div>
 
     <div class="ldo-meta-row">
@@ -178,14 +175,21 @@ function lightdarkorangypro_save_project_meta($post_id) {
     else
         delete_post_meta($post_id, '_project_preview_image_url');
 
-    // Save Tech Stack (Array)
+
+    if (isset($_POST['project_skill_categories'])) {
+        $category_ids = array_map('intval', $_POST['project_skill_categories']);
+        update_post_meta($post_id, '_project_skill_categories', $category_ids);
+    } else {
+        delete_post_meta($post_id, '_project_skill_categories');
+    }
+
     if (isset($_POST['project_tech_stack_ids'])) {
-        // Sanitize array of IDs
         $tech_ids = array_map('intval', $_POST['project_tech_stack_ids']);
         update_post_meta($post_id, '_project_tech_stack_ids', $tech_ids);
     } else {
         delete_post_meta($post_id, '_project_tech_stack_ids');
     }
+
 }
 add_action('save_post', 'lightdarkorangypro_save_project_meta');
 
@@ -212,23 +216,8 @@ function lightdarkorangypro_render_skill_meta($post) {
     
     $mastery_percent = get_post_meta($post->ID, '_skill_mastery_percent', true);
     $mastery_label = get_post_meta($post->ID, '_skill_mastery_label', true);
-    $skill_category = get_post_meta($post->ID, '_skill_category', true);
     $skill_icon_url = get_post_meta($post->ID, '_skill_icon_url', true);
     ?>
-    
-    <div class="ldo-meta-row">
-        <label><strong>Skill Category</strong></label>
-        <select name="skill_category" style="width:100%; padding:8px;">
-            <option value="">-- Select Category --</option>
-            <option value="Frontend" <?php selected($skill_category, 'Frontend'); ?>>Frontend</option>
-            <option value="Backend" <?php selected($skill_category, 'Backend'); ?>>Backend</option>
-            <option value="Database" <?php selected($skill_category, 'Database'); ?>>Database</option>
-            <option value="UI/UX" <?php selected($skill_category, 'UI/UX'); ?>>UI/UX</option>
-            <option value="DevOps" <?php selected($skill_category, 'DevOps'); ?>>DevOps</option>
-            <option value="Tools" <?php selected($skill_category, 'Tools'); ?>>Tools</option>
-        </select>
-        <p class="description">Choose which category this skill belongs to.</p>
-    </div>
 
     <div class="ldo-meta-row">
         <label for="skill_icon_url">Skill Icon URL</label>
@@ -248,10 +237,6 @@ function lightdarkorangypro_save_skill_meta($post_id) {
     if (!isset($_POST['skill_meta_nonce']) || !wp_verify_nonce($_POST['skill_meta_nonce'], 'save_skill_meta')) return;
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
     if (!current_user_can('edit_post', $post_id)) return;
-
-    // Save Category
-    if (isset($_POST['skill_category'])) 
-        update_post_meta($post_id, '_skill_category', sanitize_text_field($_POST['skill_category']));
 
     if (isset($_POST['skill_mastery_label'])) 
         update_post_meta($post_id, '_skill_mastery_label', sanitize_text_field($_POST['skill_mastery_label']));

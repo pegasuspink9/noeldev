@@ -52,7 +52,9 @@ document.addEventListener('DOMContentLoaded', function() {
             currentPhraseIndex = newIndex;
         }
 
-        setTimeout(type, typeSpeed);
+        requestAnimationFrame(() => {
+        setTimeout(type, typeSpeed); 
+        });
     }
 
     // Start the loop

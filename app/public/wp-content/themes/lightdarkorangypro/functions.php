@@ -66,3 +66,4 @@ add_action( 'wp_enqueue_scripts', 'lightdarkorangypro_scripts' );
  */
 require get_template_directory() . '/inc/cpt-registrations.php';
 require get_template_directory() . '/inc/custom-fields.php';
+require get_template_directory() . '/inc/taxonomies.php';

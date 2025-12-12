@@ -4,8 +4,6 @@
  */
 
 function lightdarkorangypro_register_cpts() {
-
-  
     // --- 2. Project CPT ---
     register_post_type('project', array(
         'labels' => array(
@@ -25,7 +23,7 @@ function lightdarkorangypro_register_cpts() {
         'labels' => array(
             'name' => 'Skills',
             'singular_name' => 'Skill Card',
-            'add_new_item' => 'Add New Skill Card',
+            'add_new_item' => 'Add New Skill/Tech Stack Card',
             'edit_item' => 'Edit Skill Card',
         ),
         'public' => true,
@@ -35,15 +33,6 @@ function lightdarkorangypro_register_cpts() {
         'show_in_rest' => true,
     ));
 
-
-      // Taxonomy: Project Type
-    register_taxonomy('project_type', 'project', array(
-        'labels' => array(
-            'name' => 'Project Types',
-            'singular_name' => 'Project Type',
-        ),
-        'hierarchical' => true,
-        'show_in_rest' => true,
-    ));
+    // Note: Taxonomies are now registered in inc/taxonomies.php
 }
 add_action('init', 'lightdarkorangypro_register_cpts');
