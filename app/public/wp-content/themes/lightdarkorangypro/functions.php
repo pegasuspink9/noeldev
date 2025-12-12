@@ -17,9 +17,7 @@ function lightdarkorangypro_setup() {
 }
 add_action( 'after_setup_theme', 'lightdarkorangypro_setup' );
 
-/**
- * Enqueue scripts and styles.
- */
+
 function lightdarkorangypro_scripts() {
     // Main stylesheet
     wp_enqueue_style( 'lightdarkorangypro-style', get_stylesheet_uri(), array(), '1.0.0' );
@@ -60,6 +58,42 @@ function lightdarkorangypro_scripts() {
     }
 }
 add_action( 'wp_enqueue_scripts', 'lightdarkorangypro_scripts' );
+
+
+function lightdarkorangypro_performance_optimizations() {
+    ?>
+    <style id="performance-optimizations">
+        /* Critical performance CSS loaded inline */
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Reduce motion for users who prefer it */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+        
+        /* Force GPU acceleration on critical elements */
+        .layer-card,
+        .hero,
+        .hero-right,
+        .project-card,
+        .skill-card {
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+        }
+    </style>
+    <?php
+}
+add_action( 'wp_head', 'lightdarkorangypro_performance_optimizations', 1 );
 
 /**
  * Load Custom Post Types and Fields

@@ -58,7 +58,7 @@ body:before {
     z-index: -2;
 
     background: #298f50;
-    background: radial-gradient(circle,rgb(27, 96, 53) 0%, rgb(0, 0, 0) 100%);
+    background: radial-gradient(circle,rgb(27, 56, 96) 0%, rgb(0, 0, 0) 100%);
 
     background-size: cover;
     background-position: center;
@@ -194,10 +194,7 @@ header {
 
 /* Generic Section Light (Used for Services, not Skills) */
 .section-light {
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.3) 0%, 
-        rgba(240, 240, 240, 0.2) 50%, 
-        rgba(255, 255, 255, 0.1) 100%);
+    background: transparent;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     position: relative;
@@ -246,12 +243,6 @@ header {
 
 /* ================================== */
 
-#projects {
-    padding-left: 5%;
-    padding-right: 5%;
-    margin-top: -160px;
-}
-
 .project-card {
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -283,13 +274,6 @@ header {
 }
 
 
-
-
-/* ========================================
-   UNIQUE PROJECT CARD COLORS
-   ======================================== */
-
-/* --- CARD 1: Fresh Green (Standard) --- */
 
 
 .tech-tag {
@@ -568,226 +552,188 @@ header {
     border-top: 2px solid rgba(255, 255, 255, 0.8);
     transition: all 0.3s ease;
 }
+/* ========================================
+   OPTIMIZED STACKING CARDS EFFECT
+   ======================================== */
+
+/* Enable GPU acceleration for smooth scrolling */
+.stack-layout {
+    width: 100%;
+    will-change: scroll-position;
+    transform: translateZ(0);
+}
+
+/* Optimized layer cards with GPU acceleration */
+.layer-card {
+    /* KEY: Sticky positioning for stacking effect */
+    position: sticky;
+    top: 0;
+    
+    /* Full viewport height for complete coverage */
+    min-height: 100vh;
+    
+    /* Flexbox layout */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    
+    /* GPU acceleration - CRITICAL for performance */
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    
+    /* Smooth transitions - optimized timing */
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    
+    /* Visual styling */
+    border-radius: 60px 60px 0 0;
+    box-shadow: 0 -15px 40px rgba(0, 0, 0, 0.15);
+    
+    padding-top: 40px;
+    box-sizing: border-box;
+    overflow: hidden;
+    
+    /* Performance optimization */
+    contain: layout style paint;
+}
 
 
-/* RESPONSIVE STYLES */
-@media (max-width: 1024px) {
-     .grid-3 { grid-template-columns: repeat(2, 1fr); }
+#layer-hero {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: none;
+    border-radius: 0;
+    min-height: auto;
+    margin-bottom: 0;
+    padding-top: 0;
+    z-index: 1;
+}
+
+/* Skills Layer - Optimized blur */
+#layer-skills {
+    top: 0;
+    z-index: 2;
+    /* CHANGE THIS GRADIENT */
+    background: linear-gradient(
+        135deg, 
+        rgba(223, 48, 229, 0.4) 0%,
+        rgba(0, 0, 0, 0.2) 100% 
+    );
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+}
+/* Projects Layer - Optimized blur */
+#layer-projects {
+    top: 0;
+    z-index: 2;
+    background: linear-gradient(
+        135deg, 
+        rgba(28, 180, 170, 0.4) 0%, /* Green start */
+        rgba(0, 0, 0, 0.2) 100% /* Fade to transparent/white */
+    );
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Services Layer - Optimized blur */
+#layer-services {
+    top: 0;
+    z-index: 2;
+    background: linear-gradient(
+        135deg, 
+        rgba(180, 28, 28, 0.4) 0%, /* Green start */
+        rgba(0, 0, 0, 0.2) 100% /* Fade to transparent/white */
+    );
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Performance optimization for layer content */
+.layer-content {
+    transform: translateZ(0);
+    will-change: contents;
+}
+
+/* Optimize images and heavy elements */
+.layer-card img {
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+/* Optimize scrolling container */
+.main-content-wrapper {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    transform: translateZ(0);
+}
+
+/* Reduce repaints on scroll */
+.hero,
+.hero-right,
+#skills,
+#projects,
+#services {
+    transform: translateZ(0);
+    will-change: auto;
+}
+
+/* --- RESET PREVIOUS NEGATIVE MARGINS --- */
+#skills, 
+#projects {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 40px;
+}
+
+/* Adjust Admin Bar offset if logged in */
+body.admin-bar .layer-card {
+    top: 32px;
+}
+
+/* Responsive adjustments - optimized */
+@media screen and (max-width: 782px) {
+    body.admin-bar .layer-card {
+        top: 46px;
+    }
 }
 
 @media (max-width: 768px) {
-    header {
-        min-height: var(--header-fixed-height-mobile);
-        justify-content: center;
-        left: var(--profile-sidebar-width);
-        width: var(--main-content-width);
-        position: fixed;
-    }
-
-    .project-header {
-        padding: 10px 10px 6px 10px;
-        gap: 3px;
+    .layer-card {
+        border-radius: 40px 40px 0 0;
+        /* Reduce blur further on mobile for better performance */
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
     }
     
-    .project-title {
-        font-size: 1.2em;
-        line-height: 1.1;
-    }
-    
-    .project-card-description {
-        font-size: 0.7rem;
-        line-height: 1.2;
-    }
-
-    .main-nav {
-        flex-direction: column;
-        border-radius: 15px;
-        padding: 10px;
-        margin-left: 0;
-    }
-
-    .main-nav li {
-        margin: 5px 0;
-    }
-
-    .main-nav a {
-        padding: 12px 20px;
-    }
-
-    .hero {
-        height: var(--hero-section-height-mobile, 200px);
-        padding-top: 50px;
-        border-radius: 30px;
-        margin: 15px;
-    }
-
-    .hero-title {
-        font-size: 2.2em;
-    }
-
-    .hero-subtitle {
-        font-size: 1.3em;
-    }
-
-    .grid-3 {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    }
-
-    .grid-2 {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
-    
-    .grid-3 { grid-template-columns: 1fr; }
-    
-    .tech-tag {
-        padding: 4px 10px;
-        font-size: 0.7rem;
-    }
-
-    .project-title, .service-title {
-        font-size: 1.3em;
-    }
-
-    .project-card, .service-card {
-        padding: 20px;
-        border-radius: 15px;
-    }
-    
-    .section-light {
-        margin: 20px;
-        padding: 40px 15px;
-    }
-    
-    .section-title {
-        font-size: 1em;
-        margin-bottom: 30px;
-    }
-
-    .project-card {
-        min-height: 300px;
-        border-radius: 20px 20px 45px 20px;
-    }
-    
-    .project-title {
-        font-size: 1.3em;
-    }
-    
-    .project-btn {
-        width: 50px;
-        height: 50px;
-    }
-    
-    .project-btn svg {
-        width: 20px;
-        height: 20px;
-    }
-    
-    .grid-4 { 
-        grid-template-columns: repeat(2, 1fr); 
+    #layer-skills,
+    #layer-projects,
+    #layer-services {
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
     }
 }
 
 @media (max-width: 480px) {
-    header {
-        padding: 15px;
-        position: fixed;
+    .layer-card {
+        border-radius: 30px 30px 0 0;
+        /* Minimal blur on small devices */
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(3px);
     }
     
-    .project-header {
-        padding: 8px 8px 5px 8px;
-        gap: 2px;
-    }
-    
-    .project-title {
-        font-size: 1.1em;
-    }
-    
-    .project-card-description {
-        font-size: 0.65rem;
-    }
-
-
-    .section-light {
-        margin: 15px;
-        padding: 30px 10px;
-    }
-
-    .section-title {
-        font-size: 1em;
-        margin-bottom: 25px;
-    }
-
-    .main-nav a {
-        padding: 10px 15px;
-        font-size: 14px;
-    }
-    
-    .hero {
-        padding-top: 40px;
-        padding-bottom: 40px;
-        border-radius: 25px;
-        margin: 10px;
-    }
-
-    .hero-title {
-        font-size: 1.8em;
-    }
-
-    .hero-subtitle {
-        font-size: 1.1em;
-    }
-
-    .grid-3 {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    }
-
-    .grid-2 {
-        grid-template-columns: 1fr;
-    }
-    
-    .grid-3 { grid-template-columns: 1fr; }
-    
-    .tech-tag {
-        padding: 4px 10px;
-        font-size: 0.7rem;
-    }
-
-    
-    .grid-4 {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-
-    .project-title, .service-title {
-        font-size: 1.1em;
-    }
-
-    .project-card, .service-card {
-        padding: 15px;
-        border-radius: 12px;
-    }
-
-     .project-card {
-        min-height: 250px;
-        border-radius: 15px 15px 40px 15px;
-    }
-    
-    .project-title {
-        font-size: 1.1em;
-    }
-    
-    .project-btn {
-        width: 45px;
-        height: 45px;
-    }
-    
-    .project-btn svg {
-        width: 18px;
-        height: 18px;
-    }
-    
-    .grid-4 {
-        grid-template-columns: 1fr;
-        gap: 20px;
+    #layer-skills,
+    #layer-projects,
+    #layer-services {
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(3px);
     }
 }

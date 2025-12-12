@@ -66,7 +66,6 @@
         content: '';
         position: absolute;
         inset: 0;
-        background-image: var(--hero-background-image);
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -75,13 +74,12 @@
     }
 
     .hero {
-        --hero-section-height: 420px;
+        --hero-section-height: 400px;
         height: var(--hero-section-height);
-        min-height: 300px;
+        min-height: 250px;
         box-sizing: border-box;
         border-radius: 24px 24px 24px 24px;
         overflow: hidden; 
-        margin-bottom: 100px;
     }
 
     .hero-right {
@@ -92,7 +90,7 @@
             110% -20%,     
             150% 50%,     
             110% 100%,  
-            -10% 100%      /* extend bottom-left */
+            -10% 100%    
         );
         
     }
@@ -101,7 +99,7 @@
         width: 100%;
         display: grid;
         grid-template-columns: 1fr minmax(170px, 300px);
-        gap: 22px;
+        gap: 30px;
         align-items: center;
         justify-content: space-between;
         padding: 0 20px;
@@ -279,13 +277,12 @@
         position: absolute;
         inset: 0;
         background-size: cover;
-        background-image: url('../images/palm-leaves.png');
         background-position: center;
         background-repeat: no-repeat;
         z-index: -2;
         border-radius: inherit;
         
-        border: 3px solid rgba(255,255,255,0.35);
+        border: 3px solid rgba(15, 60, 138, 0.423);;
         
     }
 
@@ -296,7 +293,7 @@
         inset: 0;
         border-radius: inherit;
         z-index: -1;
-        border: 1px solid white;
+        border: 1px solid rgb(15, 60, 138);
         box-shadow: ivory;
         backdrop-filter: blur(10px) saturate(110%);
         -webkit-backdrop-filter: blur(6px) saturate(110%);

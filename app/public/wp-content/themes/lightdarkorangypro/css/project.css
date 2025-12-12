@@ -20,10 +20,9 @@
 #projects {
     padding-left: 5%;
     padding-right: 5%;
-    margin-top: -160px;
-    /* Ensure stacking context */
     position: relative;
     z-index: 40; 
+    margin-top: -100px;
 }
 
 /* Project Wrapper */
@@ -33,8 +32,6 @@
 }
 
 
-/* Project Card Shadow (3D Effect) */
-/* Project Card Shadow (3D Effect) */
 .project-card-shadow {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -127,8 +124,10 @@
     border-radius: 30px 30px 140px 30px;
     
     /* Mask for bottom right tip */
+    
     mask: radial-gradient(120px at 100% 100%, #0000 95%, #000);
     -webkit-mask: radial-gradient(90px at 100% 100%, #0000 95%, #000);
+    
     
     /* 3D Shadow Effect */
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
@@ -142,7 +141,6 @@
     display: flex;
     flex-direction: column;
     height: 350px;
-    margin-top: -60px;
     
     max-width: 300px;
     transform: translateZ(0);
@@ -345,11 +343,6 @@
 
 .image-preview-outerstyle:hover ~ .project-btn {
     transform: translateX(14px) translateY(5px);
-    background: linear-gradient(
-        145deg,
-        rgba(48, 229, 54, 0.8) 0%,
-        rgba(255, 255, 255, 0.4) 100%
-    );
     box-shadow: 0 12px 25px rgba(48, 229, 54, 0.25);
 }
 
