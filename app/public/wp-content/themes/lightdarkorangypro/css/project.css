@@ -4,13 +4,6 @@
  * @package LightDarkOrangyPro
  */
 
-/* Projects Section */
-#projects {
-    padding-left: 5%;
-    padding-right: 5%;
-    margin-top: -160px;
-}
-
 .section-title-projects {
     text-align: center;
     font-size: 5.5em; 
@@ -21,6 +14,16 @@
     text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
     animation: fadeInUp 0.8s ease forwards;
     color: #ffffff;
+    transform: translateZ(0);
+}
+
+#projects {
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-top: -160px;
+    /* Ensure stacking context */
+    position: relative;
+    z-index: 40; 
 }
 
 /* Project Wrapper */
@@ -29,14 +32,51 @@
     display: block; 
 }
 
-/* Project Card */
-.project-card {
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+
+/* Project Card Shadow (3D Effect) */
+/* Project Card Shadow (3D Effect) */
+.project-card-shadow {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     
-    border-top: 2px solid rgba(255, 255, 255, 0.17);
+    border-top: 2px solid rgba(255, 255, 255, 0.17);  /* Fixed: Changed from 200px to 2px */
     border-left: 4px solid rgba(255, 255, 255, 0.136);
     border-right: 2px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    
+    border-radius: 30px 30px 140px 30px;
+    
+    mask: radial-gradient(120px at 100% 100%, #0000 95%, #000);
+    -webkit-mask: radial-gradient(90px at 100% 100%, #0000 95%, #000);
+    
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    
+    position: absolute;
+    top: -100px;
+    left: -17px;
+    width: 100%;
+    height: 360px;
+    z-index: -1;  
+    
+    opacity: 0.3;  /* Semi-transparent for shadow effect */
+    transform: translateY(15px) scale(0.95);  /* Offset and scale for 3D depth */
+    background: rgba(149, 149, 149, 0.852);  /* Darker base for shadow appearance */
+    
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                opacity 0.3s ease;
+    
+    will-change: transform;
+    contain: layout style paint;
+}
+
+
+.project-card {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    
+    border-top: 1px solid rgba(255, 255, 255, 0.17);
+    border-left: 1px solid rgba(255, 255, 255, 0.136);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     
     border-radius: 30px 30px 140px 30px;
@@ -46,21 +86,26 @@
     -webkit-mask: radial-gradient(90px at 100% 100%, #0000 95%, #000);
     
     /* 3D Shadow Effect */
-    box-shadow: 
-        0 15px 35px rgba(0, 0, 0, 0.12),
-        inset 0 1px 0 rgba(255, 255, 255, 0.7),
-        inset 0 0 20px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
     
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.3s ease,
+                opacity 0.3s ease;
+    
     position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     height: 350px;
     margin-top: -60px;
+    
+    transform: translateZ(0);
+    will-change: transform;
+    contain: layout style paint;
 }
 
 .project-card:hover {
+    transform: translateY(-5px) translateZ(0);
     box-shadow: 
         0 25px 50px rgba(0, 0, 0, 0.18),
         inset 0 1px 0 rgba(255, 255, 255, 0.8),
@@ -85,13 +130,13 @@
 .project-title {
     font-size: 1.4em;
     margin: 0;
-    color: #1a1a1a;
+    color: #ffffff;
     font-family: 'BebasKai', sans-serif;
-    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     line-height: 1.2;
+    transform: translateZ(0);
 }
 
 .project-card-description {
@@ -101,7 +146,7 @@
     margin: 0;
     max-height: 2.6em;
     overflow: hidden;
-    font-family: 'Melo', sans-serif;
+    font-family: 'Poppins', sans-serif;
     text-overflow: ellipsis;
     display: -webkit-box; 
     -webkit-line-clamp: 2;
@@ -121,9 +166,7 @@
         rgba(48, 229, 54, 0.6) 50%,
         rgba(255, 255, 255, 0.1) 100%
     );
-    box-shadow: 
-        0 2px 4px rgba(0, 0, 0, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 2px;
 }
 
@@ -142,6 +185,8 @@
     object-fit: cover;
     display: block;
     transition: transform 0.4s ease;
+    transform: translateZ(0);
+    image-rendering: -webkit-optimize-contrast;
 }
 
 .project-preview::after {
@@ -181,32 +226,34 @@
 
 /* Tech Tags */
 .tech-tag {
-    font-family: 'Melo', sans-serif;
+    font-family: 'BebasKai', sans-serif;
     border-radius: 50px; 
     padding: 6px 14px;
     font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.5px;
-    color: #fff;
+    color: #000000;
     
     background: rgba(71, 169, 1, 0.15);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
     
     border: 1px solid rgba(255, 255, 255, 0.4);
     border-top: 1px solid rgba(255, 255, 255, 0.7);
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     
-    transition: all 0.3s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     cursor: default;
+    text-shadow: white 1px 1px 2px;
+    transform: translateZ(0);
 }
 
 .tech-tag:hover {
-    transform: translateY(-2px);
+    transform: translateY(-2px) translateZ(0);
     background: rgba(255, 255, 255, 0.25);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Tech Tag Color Variations */
@@ -245,8 +292,8 @@
         rgba(48, 229, 54, 0.6) 0%,
         rgba(255, 255, 255, 0.3) 100%
     );
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     
     border-radius: 50%;
     
@@ -255,16 +302,16 @@
     border-right: 2px solid rgba(255, 255, 255, 0.2);
     border-bottom: 2px solid rgba(255, 255, 255, 0.2);
     
-    box-shadow: 
-        0 8px 20px rgba(0, 0, 0, 0.15),
-        inset 0 0 15px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
     z-index: 3;
 
     margin-right: 5px;
     margin-bottom: 5px;
+    transform: translateZ(0);
+    will-change: transform;
 }
 
 .project-btn svg {
@@ -276,15 +323,13 @@
 }
 
 .project-btn:hover {
-    transform: translate(-3px, -3px) scale(1.05);
+    transform: translate(-3px, -3px) scale(1.05) translateZ(0);
     background: linear-gradient(
         145deg,
         rgba(48, 229, 54, 0.8) 0%,
         rgba(255, 255, 255, 0.4) 100%
     );
-    box-shadow: 
-        0 15px 30px rgba(48, 229, 54, 0.3),
-        inset 0 0 20px rgba(255, 255, 255, 0.7);
+    box-shadow: 0 12px 25px rgba(48, 229, 54, 0.25);
 }
 
 .project-btn:hover svg {
@@ -292,14 +337,13 @@
 }
 
 .project-btn:active {
-    transform: translate(-1px, -1px) scale(1);
+    transform: translate(-1px, -1px) scale(1) translateZ(0);
 }
 
-/* Responsive Styles */
+/* RESPONSIVE STYLES FOR PROJECTS */
 @media (max-width: 1024px) {
-    .grid-3 { 
-        grid-template-columns: repeat(2, 1fr); 
-    }
+    /* Assuming .grid-3 is used for projects */
+    .grid-3 { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {
@@ -337,6 +381,8 @@
         width: 20px;
         height: 20px;
     }
+    
+    .grid-3 { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 480px) {

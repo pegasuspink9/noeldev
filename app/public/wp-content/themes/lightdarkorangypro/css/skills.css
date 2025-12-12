@@ -6,6 +6,9 @@
     padding-left: 5%;
     padding-right: 5%;
     margin-top: -80px;
+    position: relative;
+    margin-bottom: -150px;
+    z-index: 50;
 }
 
 #skills .section-title-skills {
@@ -65,7 +68,7 @@
 
 #skills .skills-wrapper.section-light {
     position: relative;
-    z-index: 1;
+    z-index: 10;
     background: transparent; 
     
     /* 3D Glass Borders */
@@ -115,9 +118,12 @@
 
 /* Category Container */
 .skill-category-container {
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    z-index: 1;
     background: linear-gradient(
         145deg, 
-        rgba(48, 229, 54, 0.6) 0%,
+        rgba(182, 28, 199, 0.6) 0%,
         rgba(255, 255, 255, 0.2) 100%
     );
     backdrop-filter: blur(15px);
@@ -138,6 +144,204 @@
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
     flex-shrink: 0; 
+}
+
+/* Distinct Colors for Skill Category Containers */
+.skill-category-container:nth-child(1) {
+    background: linear-gradient(
+        145deg, 
+        rgba(255, 20, 147, 0.6) 0%,  /* Pink */
+        rgba(255, 255, 255, 0.2) 100%
+    );
+}
+
+.skill-category-container:nth-child(2) {
+    background: linear-gradient(
+        145deg, 
+        rgba(255, 165, 0, 0.6) 0%,  /* Orange */
+        rgba(255, 255, 255, 0.2) 100%
+    );
+}
+
+.skill-category-container:nth-child(3) {
+    background: linear-gradient(
+        145deg, 
+        rgba(0, 191, 255, 0.6) 0%,  /* Sky Blue */
+        rgba(255, 255, 255, 0.2) 100%
+    );
+}
+
+.skill-category-container:nth-child(4) {
+    background: linear-gradient(
+        145deg, 
+        rgba(0, 255, 127, 0.6) 0%,  /* Spring Green */
+        rgba(255, 255, 255, 0.2) 100%
+    );
+}
+
+.skill-category-container:nth-child(5) {
+    background: linear-gradient(
+        145deg, 
+        rgba(255, 0, 255, 0.6) 0%,  /* Magenta */
+        rgba(255, 255, 255, 0.2) 100%
+    );
+}
+
+/* Update hover states for distinct colors */
+.skill-category-container:nth-child(1):not(.expanded):hover {
+    background: linear-gradient(
+        145deg, 
+        rgba(255, 20, 147, 0.7) 0%,  /* Darker pink on hover */
+        rgba(255, 255, 255, 0.3) 100%
+    );
+}
+
+.skill-category-container:nth-child(2):not(.expanded):hover {
+    background: linear-gradient(
+        145deg, 
+        rgba(255, 165, 0, 0.7) 0%,  /* Darker orange on hover */
+        rgba(255, 255, 255, 0.3) 100%
+    );
+}
+
+.skill-category-container:nth-child(3):not(.expanded):hover {
+    background: linear-gradient(
+        145deg, 
+        rgba(0, 191, 255, 0.7) 0%,  /* Darker blue on hover */
+        rgba(255, 255, 255, 0.3) 100%
+    );
+}
+
+.skill-category-container:nth-child(4):not(.expanded):hover {
+    background: linear-gradient(
+        145deg, 
+        rgba(0, 255, 127, 0.7) 0%,  /* Darker green on hover */
+        rgba(255, 255, 255, 0.3) 100%
+    );
+}
+
+.skill-category-container:nth-child(5):not(.expanded):hover {
+    background: linear-gradient(
+        145deg, 
+        rgba(255, 0, 255, 0.7) 0%,  /* Darker magenta on hover */
+        rgba(255, 255, 255, 0.3) 100%
+    );
+}
+
+/* Update expanded states for distinct colors (lighter for expanded view) */
+.skill-category-container:nth-child(1).expanded {
+    background: linear-gradient(
+        145deg, 
+        rgba(255, 20, 147, 0.4) 0%,  /* Lighter pink for expanded */
+        rgba(255, 255, 255, 0.3) 100%
+    );
+}
+
+/* Additional Distinct Colors for Skill Category Containers */
+.skill-category-container:nth-child(6) {
+    background: linear-gradient(
+        145deg, 
+        rgba(255, 255, 0, 0.6) 0%,  /* Yellow */
+        rgba(255, 255, 255, 0.2) 100%
+    );
+}
+
+.skill-category-container:nth-child(7) {
+    background: linear-gradient(
+        145deg, 
+        rgba(0, 255, 255, 0.6) 0%,  /* Cyan */
+        rgba(255, 255, 255, 0.2) 100%
+    );
+}
+
+.skill-category-container:nth-child(8) {
+    background: linear-gradient(
+        145deg, 
+        rgba(255, 127, 80, 0.6) 0%,  /* Coral */
+        rgba(255, 255, 255, 0.2) 100%
+    );
+}
+
+/* Update hover states for additional colors */
+.skill-category-container:nth-child(6):not(.expanded):hover {
+    background: linear-gradient(
+        145deg, 
+        rgba(255, 255, 0, 0.7) 0%,  /* Darker yellow on hover */
+        rgba(255, 255, 255, 0.3) 100%
+    );
+}
+
+.skill-category-container:nth-child(7):not(.expanded):hover {
+    background: linear-gradient(
+        145deg, 
+        rgba(0, 255, 255, 0.7) 0%,  /* Darker cyan on hover */
+        rgba(255, 255, 255, 0.3) 100%
+    );
+}
+
+.skill-category-container:nth-child(8):not(.expanded):hover {
+    background: linear-gradient(
+        145deg, 
+        rgba(255, 127, 80, 0.7) 0%,  /* Darker coral on hover */
+        rgba(255, 255, 255, 0.3) 100%
+    );
+}
+
+/* Update expanded states for additional colors */
+.skill-category-container:nth-child(6).expanded {
+    background: linear-gradient(
+        145deg, 
+        rgba(255, 255, 0, 0.4) 0%,  /* Lighter yellow for expanded */
+        rgba(255, 255, 255, 0.3) 100%
+    );
+}
+
+.skill-category-container:nth-child(7).expanded {
+    background: linear-gradient(
+        145deg, 
+        rgba(0, 255, 255, 0.4) 0%,  /* Lighter cyan for expanded */
+        rgba(255, 255, 255, 0.3) 100%
+    );
+}
+
+.skill-category-container:nth-child(8).expanded {
+    background: linear-gradient(
+        145deg, 
+        rgba(255, 127, 80, 0.4) 0%,  /* Lighter coral for expanded */
+        rgba(255, 255, 255, 0.3) 100%
+    );
+}
+
+.skill-category-container:nth-child(2).expanded {
+    background: linear-gradient(
+        145deg, 
+        rgba(255, 165, 0, 0.4) 0%,  /* Lighter orange for expanded */
+        rgba(255, 255, 255, 0.3) 100%
+    );
+}
+
+.skill-category-container:nth-child(3).expanded {
+    background: linear-gradient(
+        145deg, 
+        rgba(0, 191, 255, 0.4) 0%,  /* Lighter blue for expanded */
+        rgba(255, 255, 255, 0.3) 100%
+    );
+}
+
+.skill-category-container:nth-child(4).expanded {
+    background: linear-gradient(
+        145deg, 
+        rgba(0, 255, 127, 0.4) 0%,  /* Lighter green for expanded */
+        rgba(255, 255, 255, 0.3) 100%
+    );
+}
+
+.skill-category-container:nth-child(5).expanded {
+    background: linear-gradient(
+        145deg, 
+        rgba(255, 0, 255, 0.4) 0%,  /* Lighter magenta for expanded */
+        rgba(255, 255, 255, 0.3) 100%
+    );
 }
 
 .skill-category-container:not(.expanded) {
@@ -216,7 +420,7 @@
 }
 
 .category-title {
-    font-family: 'Melo', sans-serif;
+    font-family: 'BebasKai', sans-serif;
     color: #1a1a1a;
     margin: 0;
     text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);

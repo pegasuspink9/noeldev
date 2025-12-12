@@ -111,7 +111,7 @@ function lightdarkorangypro_render_project_meta($post) {
             $grouped_skills = array();
             foreach ($all_skills as $skill) {
                 $terms = get_the_terms($skill->ID, 'skill_category');
-                $cat_name = (!empty($terms) && !is_wp_error($terms)) ? $terms[0]->name : 'Uncategorized';
+                $cat_name = (!empty($terms) && !is_wp_error($terms)) ? $terms[0]->name : 'Others';
                 $grouped_skills[$cat_name][] = $skill;
             }
             

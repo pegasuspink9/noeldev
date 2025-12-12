@@ -65,6 +65,7 @@ if (!defined('ABSPATH')) {
 
 
                     <div class="project-wrapper">
+                         <div class="project-card-shadow"></div>  
                         <div class="project-card">
                             <div class="project-header">
                                 <h3 class="project-title"><?php the_title(); ?></h3>

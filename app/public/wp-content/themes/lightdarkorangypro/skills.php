@@ -35,7 +35,7 @@ if ($skills_query->have_posts()) :
     while ($skills_query->have_posts()) : $skills_query->the_post();
         // Get category from taxonomy
         $skill_terms = get_the_terms(get_the_ID(), 'skill_category');
-        $skill_category = (!empty($skill_terms) && !is_wp_error($skill_terms)) ? $skill_terms[0]->name : 'Uncategorized';
+        $skill_category = (!empty($skill_terms) && !is_wp_error($skill_terms)) ? $skill_terms[0]->name : 'Others';
         
         if (!isset($categories[$skill_category])) {
             $categories[$skill_category] = array(); // Fallback

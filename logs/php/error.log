@@ -128,3 +128,5 @@ Stack trace:
 #4 C:\Users\user\Local Sites\noeldevs\app\public\wp-admin\post.php(187): require('C:\\Users\\user\\L...')
 #5 {main}
   thrown in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php on line 117
+[12-Dec-2025 03:39:56 UTC] PHP Warning:  Undefined variable $trimmed_content in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\projects.php on line 72
+[12-Dec-2025 03:39:56 UTC] PHP Warning:  Undefined variable $trimmed_content in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\projects.php on line 72

@@ -115,7 +115,7 @@ get_header(); ?>
                                 $skill_post = get_post($tid);
                                 if($skill_post) {
                                     $terms = get_the_terms($tid, 'skill_category');
-                                    $cat = (!empty($terms) && !is_wp_error($terms)) ? strtolower($terms[0]->name) : 'uncategorized';
+                                    $cat = (!empty($terms) && !is_wp_error($terms)) ? strtolower($terms[0]->name) : 'Others';
                                     $grouped_skills[$cat][] = $skill_post;
                                 }
                             }
