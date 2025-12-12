@@ -130,3 +130,31 @@ Stack trace:
   thrown in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\inc\custom-fields.php on line 117
 [12-Dec-2025 03:39:56 UTC] PHP Warning:  Undefined variable $trimmed_content in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\projects.php on line 72
 [12-Dec-2025 03:39:56 UTC] PHP Warning:  Undefined variable $trimmed_content in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\projects.php on line 72
+[12-Dec-2025 05:45:57 UTC] PHP Warning:  Undefined variable $tech_name in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\projects.php on line 94
+[12-Dec-2025 05:45:57 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\projects.php on line 94
+[12-Dec-2025 05:45:57 UTC] PHP Warning:  Undefined variable $tech_name in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\projects.php on line 94
+[12-Dec-2025 05:45:57 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\projects.php on line 94
+[12-Dec-2025 05:46:22 UTC] PHP Warning:  Undefined variable $tech_name in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\projects.php on line 94
+[12-Dec-2025 05:46:22 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\projects.php on line 94
+[12-Dec-2025 05:46:22 UTC] PHP Warning:  Undefined variable $tech_name in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\projects.php on line 94
+[12-Dec-2025 05:46:22 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\projects.php on line 94
+[12-Dec-2025 05:47:14 UTC] PHP Warning:  Undefined variable $tech_name in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\projects.php on line 94
+[12-Dec-2025 05:47:14 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\projects.php on line 94
+[12-Dec-2025 05:47:14 UTC] PHP Warning:  Undefined variable $tech_name in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\projects.php on line 94
+[12-Dec-2025 05:47:14 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\projects.php on line 94
+[12-Dec-2025 05:47:16 UTC] PHP Warning:  Undefined variable $tech_name in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\projects.php on line 94
+[12-Dec-2025 05:47:16 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\projects.php on line 94
+[12-Dec-2025 05:47:16 UTC] PHP Warning:  Undefined variable $tech_name in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\projects.php on line 94
+[12-Dec-2025 05:47:16 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\projects.php on line 94
+[12-Dec-2025 05:47:16 UTC] PHP Warning:  Undefined variable $tech_name in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\projects.php on line 94
+[12-Dec-2025 05:47:16 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\projects.php on line 94
+[12-Dec-2025 05:47:16 UTC] PHP Warning:  Undefined variable $tech_name in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\projects.php on line 94
+[12-Dec-2025 05:47:16 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\projects.php on line 94
+[12-Dec-2025 06:13:07 UTC] PHP Warning:  Undefined variable $tech_name in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\projects.php on line 94
+[12-Dec-2025 06:13:07 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\projects.php on line 94
+[12-Dec-2025 06:13:07 UTC] PHP Warning:  Undefined variable $tech_name in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\projects.php on line 94
+[12-Dec-2025 06:13:07 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\projects.php on line 94
+[12-Dec-2025 06:13:13 UTC] PHP Warning:  Undefined variable $tech_name in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\projects.php on line 94
+[12-Dec-2025 06:13:13 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\projects.php on line 94
+[12-Dec-2025 06:13:13 UTC] PHP Warning:  Undefined variable $tech_name in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\projects.php on line 94
+[12-Dec-2025 06:13:13 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\Users\user\Local Sites\noeldevs\app\public\wp-content\themes\lightdarkorangypro\projects.php on line 94

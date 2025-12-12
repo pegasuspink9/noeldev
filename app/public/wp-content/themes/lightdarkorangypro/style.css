@@ -1,7 +1,7 @@
 /*
 Theme Name: Light Dark Orangy Pro
-Description: A minimal clean theme with glassmorphism style - OPTIMIZED
-Version: 1.0.1
+Description: A minimal clean theme with glassmorphism style
+Version: 1.0.0
 Author: Noel Avila
 Text Domain: lightdarkorangypro
 */
@@ -13,6 +13,8 @@ Text Domain: lightdarkorangypro
     font-style: normal;
     font-display: swap; 
 }
+
+
 
 :root {
     --body-background-color: #f5f5f5;
@@ -31,18 +33,11 @@ Text Domain: lightdarkorangypro
     --main-content-width: 70%;
 }
 
-/* PERFORMANCE: Enable GPU acceleration globally */
-html {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    scroll-behavior: smooth;
-}
-
 html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    overflow-x: hidden;
+    overflow-x: auto;
 }
 
 body {
@@ -50,11 +45,9 @@ body {
     color: var(--text-color);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     position: relative;
-    height: 100vh;
-    transform: translateZ(0);
+    min-height: 100vh; 
 }
 
-/* Background Layers */
 body:before {
     content: "";
     position: fixed;
@@ -63,29 +56,37 @@ body:before {
     width: 100%;
     height: 100%;
     z-index: -2;
+
+    background: #298f50;
     background: radial-gradient(circle,rgb(27, 96, 53) 0%, rgb(0, 0, 0) 100%);
+
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    will-change: transform;
+    transition: background-image 0.3s ease;
 }
 
+/* Layered Background Effect */
 body::after {
     content: "";
-    position: fixed;
+    position: fixed; /* Use fixed for full viewport background */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: -1;
-    backdrop-filter: blur(15px) saturate(120%);
-    -webkit-backdrop-filter: blur(15px) saturate(120%);
-    background: linear-gradient(135deg, 
+    
+    background-color: li;
+    
+    backdrop-filter: blur(50px) saturate(120%);
+    -webkit-backdrop-filter: blur(20px) saturate(120%);
+
+     background: linear-gradient(135deg, 
         rgba(16, 16, 16, 0.3) 0%, 
         rgba(54, 54, 54, 0.2) 50%, 
         rgba(255, 255, 255, 0.1) 100%);
-    will-change: transform;
 }
+
 
 header {
     padding: 20px;
@@ -99,7 +100,6 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    will-change: transform;
 }
 
 .main-nav {
@@ -121,14 +121,13 @@ header {
     padding: 10px 25px;
     color: white;
     text-decoration: none;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: background-color 0.3s ease;
 }
 
 .main-nav a:hover {
     background-color: rgba(255, 255, 255, 0.7);
     color: var(--text-color);
     border-radius: 50px;
-    transform: translateY(-1px);
 }
 
 .site-container {
@@ -141,12 +140,9 @@ header {
     flex-grow: 1;
     width: var(--main-content-width); 
     overflow-y: auto;
-    overflow-x: hidden; 
     position: relative;
     min-width: 400px;
     z-index: 2;
-    -webkit-overflow-scrolling: touch;
-    will-change: scroll-position;
 }
 
 .container {
@@ -160,9 +156,8 @@ header {
     gap: 30px;
 }
 
-.grid-2 { 
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-}
+/* General Grid Definitions */
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
 
 .grid-3 {
     display: grid;
@@ -170,6 +165,7 @@ header {
     grid-template-columns: repeat(3, 1fr);
 }
 
+/* 4 Column Grid (Used for Projects) */
 .grid-4 {
     display: grid;
     gap: 30px;
@@ -194,40 +190,34 @@ header {
     background: rgba(255, 255, 255, 0.5);
 }
 
-.section { 
-    padding: 60px 0;
-    content-visibility: auto;
-    contain-intrinsic-size: auto 600px;
-}
+.section { padding: 60px 0; }
 
-/* Generic Section Light */
+/* Generic Section Light (Used for Services, not Skills) */
 .section-light {
     background: linear-gradient(135deg, 
         rgba(255, 255, 255, 0.3) 0%, 
         rgba(240, 240, 240, 0.2) 50%, 
         rgba(255, 255, 255, 0.1) 100%);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     position: relative;
     z-index: 2;
     border-radius: 30px;
     margin: 20px 80px;
     padding: 60px 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
     border: 1px solid rgba(255, 255, 255, 0.4);
     border-top: 1px solid rgba(255, 255, 255, 0.7);
     overflow: hidden;
-    contain: layout style paint;
 }
 
+/* Animations */
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translate3d(0, 20px, 0);
-    }
     to {
         opacity: 1;
-        transform: translate3d(0, 0, 0);
+        transform: translateY(0);
     }
 }
 
@@ -240,34 +230,349 @@ header {
     opacity: 0;
     text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
     animation: fadeInUp 0.8s ease forwards;
-    transform: translateZ(0);
 }   
 
-/* Service Cards */
+.section-title-projects {
+    text-align: center;
+    font-size: 5.5em; 
+    font-family: 'BebasKai', sans-serif;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+    animation: fadeInUp 0.8s ease forwards;
+    color: #ffffff;
+}
+
+/* ================================== */
+
+#projects {
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-top: -160px;
+}
+
+.project-card {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    
+    border-top: 2px solid rgba(255, 255, 255, 0.17);
+    border-left: 4px solid rgba(255, 255, 255, 0.136);
+    border-right: 2px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    
+    border-radius: 30px 30px 140px 30px;
+    
+    /* Mask for bottom right tip */
+    mask: radial-gradient(120px at 100% 100%, #0000 95%, #000);
+    -webkit-mask: radial-gradient(90px at 100% 100%, #0000 95%, #000);
+    
+    /* 3D Shadow Effect */
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7),
+        inset 0 0 20px rgba(255, 255, 255, 0.3);
+    
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+    margin-top: -60px;
+}
+
+
+
+
+/* ========================================
+   UNIQUE PROJECT CARD COLORS
+   ======================================== */
+
+/* --- CARD 1: Fresh Green (Standard) --- */
+
+
+.tech-tag {
+    /* Floating Shape */
+    font-family: 'Melo', sans-serif;
+    border-radius: 50px; 
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #fff;
+    
+    /* Base Glass Style */
+    background: rgba(71, 169, 1, 0.15);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    
+    /* 3D Border */
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.7);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    
+    /* Subtle Shadow */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.tech-tag:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+
+.project-wrapper {
+    position: relative;
+    display: block; 
+}
+
+.project-card-description {
+    color: #f0f0f0; 
+    font-size: 0.8rem; 
+    line-height: 1.3;
+    margin: 0; /* Remove all margins */
+    max-height: 2.6em; /* About 2 lines */
+    overflow: hidden;
+    font-family: 'BebasKai', sans-serif;
+    text-overflow: ellipsis;
+    display: -webkit-box; 
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+
+
+
+/* CARD 2: Teal Theme */
+.project-card:nth-child(2) .tech-tag {
+    background: linear-gradient(135deg, rgba(26, 188, 156, 0.2), rgba(255,255,255,0.1));
+    border-color: rgba(26, 188, 156, 0.5);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+/* CARD 3: Lime Theme */
+.project-card:nth-child(3) .tech-tag {
+    background: linear-gradient(135deg, rgba(180, 230, 50, 0.2), rgba(255,255,255,0.1));
+    border-color: rgba(180, 230, 50, 0.5);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+/* CARD 4: Mint Theme */
+.project-card:nth-child(4) .tech-tag {
+    background: linear-gradient(135deg, rgba(60, 240, 200, 0.2), rgba(255,255,255,0.1));
+    border-color: rgba(60, 240, 200, 0.5);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+
+
+
+.project-card:hover {
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8),
+        inset 0 0 30px rgba(255, 255, 255, 0.4);
+    background: linear-gradient(
+        145deg, 
+        rgba(48, 229, 54, 0.5) 0%, 
+        rgba(240, 202, 202, 0.3) 100%
+    );
+}
+
+/* Project Header (Title + Separator) */
+.project-header {
+    padding: 15px 15px 10px 15px; /* Reduced padding */
+    z-index: 2;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Tight spacing between elements */
+}
+
+.project-title {
+    font-size: 1.4em; /* Slightly smaller */
+    margin: 0; /* Remove all margins */
+    color: #ffffff;
+    font-family: 'BebasKai', sans-serif;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    white-space: nowrap;
+    overflow: hidden;
+    
+    font-weight: 700;
+    font-style: italic;
+    text-overflow: ellipsis;
+    line-height: 1.2; /* Tighter line height */
+}
+
+
+/* 3D Glass Separator Line */
+.project-separator {
+    width: 100%;
+    height: 2px; 
+    position: relative;
+    margin: 5px 0 0 0; 
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(48, 229, 54, 0.6) 50%,
+        rgba(255, 255, 255, 0.1) 100%
+    );
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    border-radius: 2px;
+}
+
+/* Project Preview Image Container */
+.project-preview {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px 10px 0 0;
+}
+
+.project-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+
+/* Overlay for better text readability if needed */
+.project-preview::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.3) 0%,
+        transparent 100%
+    );
+    pointer-events: none;
+}
+
+/* Project Content (Description text - optional) */
+.project-content {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 70px; 
+    z-index: 2;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px; 
+}
+
+.project-content p {
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    font-size: 0.95em;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* 3D Glass Arrow Button - Bottom Right */
+.project-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+
+    background: linear-gradient(
+        145deg,
+        rgba(48, 229, 54, 0.6) 0%,
+        rgba(255, 255, 255, 0.3) 100%
+    );
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    
+    border-radius: 50%;
+    
+    border-top: 3px solid rgba(255, 255, 255, 0.9);
+    border-left: 2px solid rgba(255, 255, 255, 0.7);
+    border-right: 2px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    
+    /* 3D Shadow */
+    box-shadow: 
+        0 8px 20px rgba(0, 0, 0, 0.15),
+        inset 0 0 15px rgba(255, 255, 255, 0.5);
+    
+    transition: all 0.3s ease;
+    cursor: pointer;
+    z-index: 3;
+
+    margin-right: 5px;
+    margin-bottom: 5px;
+    
+}
+
+.project-btn svg {
+    width: 24px;
+    height: 24px;
+    stroke: #1a1a1a;
+    stroke-width: 2.5;
+    transition: transform 0.3s ease;
+}
+
+.project-btn:hover {
+    transform: translate(-3px, -3px) scale(1.05);
+    background: linear-gradient(
+        145deg,
+        rgba(48, 229, 54, 0.8) 0%,
+        rgba(255, 255, 255, 0.4) 100%
+    );
+    box-shadow: 
+        0 15px 30px rgba(48, 229, 54, 0.3),
+        inset 0 0 20px rgba(255, 255, 255, 0.7);
+}
+
+.project-btn:hover svg {
+    transform: translateX(4px);
+}
+
+.project-btn:active {
+    transform: translate(-1px, -1px) scale(1);
+}
+
+
+
+/* Service Cards (Basic styling similar to projects) */
 .service-card {
     background: linear-gradient(135deg, 
         rgba(255, 255, 255, 0.5), 
         rgba(255, 255, 255, 0.2));
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     padding: 30px;
     border-radius: 20px;
     text-align: center;
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-top: 2px solid rgba(255, 255, 255, 0.8);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    transform: translateZ(0);
-    contain: layout style paint;
+    transition: all 0.3s ease;
 }
 
-.service-card:hover {
-    transform: translateY(-5px) translateZ(0);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
 
-/* RESPONSIVE STYLES (Global) */
+/* RESPONSIVE STYLES */
 @media (max-width: 1024px) {
-    .grid-3 { grid-template-columns: repeat(2, 1fr); }
+     .grid-3 { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {
@@ -277,6 +582,21 @@ header {
         left: var(--profile-sidebar-width);
         width: var(--main-content-width);
         position: fixed;
+    }
+
+    .project-header {
+        padding: 10px 10px 6px 10px;
+        gap: 3px;
+    }
+    
+    .project-title {
+        font-size: 1.2em;
+        line-height: 1.1;
+    }
+    
+    .project-card-description {
+        font-size: 0.7rem;
+        line-height: 1.2;
     }
 
     .main-nav {
@@ -317,6 +637,22 @@ header {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
     
+    .grid-3 { grid-template-columns: 1fr; }
+    
+    .tech-tag {
+        padding: 4px 10px;
+        font-size: 0.7rem;
+    }
+
+    .project-title, .service-title {
+        font-size: 1.3em;
+    }
+
+    .project-card, .service-card {
+        padding: 20px;
+        border-radius: 15px;
+    }
+    
     .section-light {
         margin: 20px;
         padding: 40px 15px;
@@ -326,6 +662,29 @@ header {
         font-size: 1em;
         margin-bottom: 30px;
     }
+
+    .project-card {
+        min-height: 300px;
+        border-radius: 20px 20px 45px 20px;
+    }
+    
+    .project-title {
+        font-size: 1.3em;
+    }
+    
+    .project-btn {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .project-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .grid-4 { 
+        grid-template-columns: repeat(2, 1fr); 
+    }
 }
 
 @media (max-width: 480px) {
@@ -333,6 +692,20 @@ header {
         padding: 15px;
         position: fixed;
     }
+    
+    .project-header {
+        padding: 8px 8px 5px 8px;
+        gap: 2px;
+    }
+    
+    .project-title {
+        font-size: 1.1em;
+    }
+    
+    .project-card-description {
+        font-size: 0.65rem;
+    }
+
 
     .section-light {
         margin: 15px;
@@ -371,16 +744,50 @@ header {
     .grid-2 {
         grid-template-columns: 1fr;
     }
-}
+    
+    .grid-3 { grid-template-columns: 1fr; }
+    
+    .tech-tag {
+        padding: 4px 10px;
+        font-size: 0.7rem;
+    }
 
-/* PERFORMANCE: Disable animations for users who prefer reduced motion */
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
+    
+    .grid-4 {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .project-title, .service-title {
+        font-size: 1.1em;
+    }
+
+    .project-card, .service-card {
+        padding: 15px;
+        border-radius: 12px;
+    }
+
+     .project-card {
+        min-height: 250px;
+        border-radius: 15px 15px 40px 15px;
+    }
+    
+    .project-title {
+        font-size: 1.1em;
+    }
+    
+    .project-btn {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .project-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .grid-4 {
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
 }

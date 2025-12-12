@@ -64,30 +64,32 @@ if (!defined('ABSPATH')) {
                     ?>
 
 
-                    <div class="project-wrapper">
-                         <div class="project-card-shadow"></div>  
-                        <div class="project-card">
-                            <div class="project-header">
-                                <h3 class="project-title"><?php the_title(); ?></h3>
-                                <?php
-                                $full_content = get_the_content();
-                                $stripped_content = wp_strip_all_tags($full_content);
-                                $trimmed_content = wp_trim_words($stripped_content, 20, '...');
-                                ?>
-                                <p class="project-card-description"><?php echo esc_html($trimmed_content); ?></p>
-                                <div class="project-separator"></div>
-                            </div>
-                            
-                            <div class="project-preview">
-                                <img src="<?php echo esc_url($display_image_url); ?>"
-                                    alt="<?php the_title_attribute(); ?>"
-                                    loading="lazy"
-                                />
-                            </div>
-                            
-                            <div class="project-content">
-                                <?php 
-                                 if (!empty($tech_skills)) {
+                <div class="project-wrapper">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-title"><?php the_title(); ?></h3>
+                            <?php
+                            $full_content = get_the_content();
+                            $stripped_content = wp_strip_all_tags($full_content);
+                            $trimmed_content = wp_trim_words($stripped_content, 7, '...');
+                            ?>
+                            <p class="project-card-description"><?php echo esc_html($trimmed_content); ?></p>
+                            <div class="project-separator"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Moved after the card -->
+                    <div class="image-preview-outerstyle">
+                        <div class="project-preview">
+                            <img src="<?php echo esc_url($display_image_url); ?>"
+                                alt="<?php the_title_attribute(); ?>"
+                                loading="lazy"
+                            />
+                        </div>
+                        
+                        <div class="project-content">
+                            <?php 
+                            if (!empty($tech_skills)) {
                                 $count = 0;
                                 foreach ($tech_skills as $skill_name) {
                                     if ($count >= 4) break; // Limit to 4 tags
@@ -96,17 +98,20 @@ if (!defined('ABSPATH')) {
                                     echo '<span class="tech-tag" style="background: ' . $bg_gradient . ';">' . esc_html($skill_name) . '</span>';
                                     $count++;
                                 }
-                                }
-                                ?>
-                            </div>
+                            }
+                            ?>
                         </div>
-
-                        <a href="<?php the_permalink(); ?>" class="project-btn" aria-label="View Project">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </a>
                     </div>
+                    
+                    <!-- Shadow moved here -->
+                    <div class="project-card-shadow"></div>
+                    
+                    <a href="<?php the_permalink(); ?>" class="project-btn" aria-label="View Project">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
 
                 <?php endwhile; 
                 wp_reset_postdata();

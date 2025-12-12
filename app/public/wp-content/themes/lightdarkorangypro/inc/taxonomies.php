@@ -7,10 +7,9 @@
 
 // Register taxonomies
 function lightdarkorangypro_register_taxonomies() {
-    // Taxonomy for Projects: project_type
     register_taxonomy('project_type', 'project', array(
         'labels' => array(
-            'name' => 'Project Types',
+            'name' => 'Project Category',
             'singular_name' => 'Project Type',
             'add_new_item' => 'Add New Project Type',
             'edit_item' => 'Edit Project Type',
