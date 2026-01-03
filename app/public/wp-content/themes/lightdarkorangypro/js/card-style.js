@@ -29,4 +29,19 @@ document.addEventListener('DOMContentLoaded', function() {
         card.style.transitionDelay = `${index * 0.1}s`;
         observer.observe(card);
     });
+
+    // Observe skill category containers for the drop-in animation
+    const skillCategories = document.querySelectorAll('.skill-category-container');
+    skillCategories.forEach((cat, index) => {
+        // Stagger the animation delay for each category
+        cat.style.animationDelay = `${index * 0.15}s`;
+        observer.observe(cat);
+    });
+
+    const projectWrappers = document.querySelectorAll('.project-wrapper');
+    projectWrappers.forEach((wrapper, index) => {
+        // Optional: add a slight delay based on index if you want them to slide one after another
+        wrapper.style.animationDelay = `${index * 0.1}s`;
+        observer.observe(wrapper);
+    });
 });

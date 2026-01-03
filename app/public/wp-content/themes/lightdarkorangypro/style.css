@@ -257,43 +257,35 @@ header {
 
 /* Optimized layer cards with GPU acceleration */
 .layer-card {
-    /* KEY: Sticky positioning for stacking effect */
     position: sticky;
     top: 0;
-    
-    /* Full viewport height for complete coverage */
     min-height: 120vh;
-    
-    /* Flexbox layout */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     
-    /* GPU acceleration - CRITICAL for performance */
+    /* REMOVED: contain: layout style paint; (This was causing the glitching) */
+    
+    /* KEEP: GPU acceleration */
     transform: translateZ(0);
-    will-change: transform, visibility; /* Added visibility */
+    will-change: transform; 
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     
-    /* Smooth transitions - optimized timing */
     transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
     
-
+    /* REDUCED BLUR: High blur + Animation causes hover lag/refreshing. 
+       Reduced slightly for stability. */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     
-    /* Visual styling */
     border-radius: 60px 60px 0 0;
     box-shadow: 0 -15px 40px rgba(0, 0, 0, 0.15);
-    
     padding-top: 40px;
     box-sizing: border-box;
-    overflow: hidden;
-    
-    /* Performance optimization */
-    contain: layout style paint;
-
+    overflow: hidden; /* This crops the wave so it doesn't spill out */
 }
+
 
 
 #layer-hero {
@@ -312,28 +304,121 @@ header {
 #layer-skills {
     top: 0;
     z-index: 2;
-    /* CHANGE THIS GRADIENT */
     background: linear-gradient(
         135deg, 
         rgba(223, 48, 229, 0.4) 0%,
         rgba(0, 0, 0, 0.2) 100% 
     );
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    
+    /* Isolates the stacking context so hover effects inside don't repaint the background */
+    isolation: isolate; 
 }
+
+@keyframes wavyReflection {
+    0% {
+        transform: translate3d(0, 15%, 0) skewY(-3deg) scaleX(1.1);
+    }
+    100% {
+        transform: translate3d(0, -35%, 0) skewY(3deg) scaleX(1.1);
+    }
+}
+
 /* Projects Layer - Optimized blur */
 #layer-projects {
     top: 0;
     z-index: 2;
     background: linear-gradient(
         135deg, 
-        rgba(48, 151, 229, 0.4) 0%, /* Green start */
-        rgba(0, 0, 0, 0.058) 100% /* Fade to transparent/white */
+        rgba(48, 151, 229, 0.4) 0%,
+        rgba(0, 0, 0, 0.06) 100% 
     );
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    
+    isolation: isolate; 
+}
+
+
+
+#layer-skills::before {
+    content: '';
+    position: absolute;
+    
+    /* INCREASED SIZE: Prevents the "cut off" glitch by making the canvas much bigger */
+    top: -50%;
+    left: -50%;
+    width: 200%; 
+    height: 200%;
+    z-index: -1;
+    
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 100px,
+        rgba(220, 220, 220, 0.2) 200px, 
+        rgba(223, 48, 229, 0.2) 250px,   
+        rgba(167, 167, 167, 0.4) 200px,
+        transparent 400px
+    );
+    background-size: 100% 500px;
+    
+    filter: blur(45px);
+    mix-blend-mode: screen;
+    
+    animation: wavyReflection 10s ease-in-out infinite alternate;
+    
+    /* FIX: Force hardware acceleration to stop hover flickering */
+    transform: translateZ(0); 
+    will-change: transform;
+    pointer-events: none;
+}
+
+
+#layer-projects::before {
+    content: '';
+    position: absolute;
+    
+    top: -50%;
+    left: -50%; 
+    width: 250%; /* Made wider to accommodate the skew movement */
+    height: 200%;
+    z-index: -1;
+    
+    background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 120px,
+        rgba(220, 220, 220, 0.2) 200px, 
+        rgba(48, 151, 229, 0.2) 270px,  
+        rgba(167, 167, 167, 0.4) 200px, 
+        transparent 420px
+    );
+    background-size: 600px 100%;
+    
+    filter: blur(50px);
+    mix-blend-mode: screen;
+    
+    animation: wavyHorizontal 14s ease-in-out infinite alternate;
+    
+    /* FIX: Force hardware acceleration */
+    transform: translateZ(0); 
+    will-change: transform;
+    pointer-events: none;
+}
+
+#layer-skills::before,
+#layer-projects::before {
+    pointer-events: none; /* Prevent hover interference */
+    will-change: transform; /* Tell browser to optimize this */
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+@keyframes wavyHorizontal {
+    0% {
+        transform: translate3d(-10%, 0, 0) skewX(-4deg) scaleY(1.1);
+    }
+    100% {
+        transform: translate3d(20%, 0, 0) skewX(4deg) scaleY(1.1);
+    }
 }
 
 /* Services Layer - Optimized blur */

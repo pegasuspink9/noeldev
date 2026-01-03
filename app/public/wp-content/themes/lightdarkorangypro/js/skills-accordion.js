@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     categoryContainers.forEach(container => {
         container.addEventListener('click', function(e) {
-            // Prevent the "click outside" listener from firing
             e.stopPropagation();
 
             // If clicking a card inside an already expanded category, don't collapse
@@ -16,32 +15,44 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const isExpanded = this.classList.contains('expanded');
             
-            // 1. Collapse all other containers first
-            categoryContainers.forEach(c => c.classList.remove('expanded'));
-            
             if (!isExpanded) {
+                // ENTER FOCUS MODE
+                
+                // 1. Hide all other containers
+                categoryContainers.forEach(c => {
+                    if (c !== this) {
+                        c.classList.add('hidden-category');
+                        c.classList.remove('expanded');
+                    }
+                });
+
                 // 2. Expand the clicked one
+                this.classList.remove('hidden-category');
                 this.classList.add('expanded');
                 skillsWrapper.classList.add('expanded-active');
                 
-                // Scroll the wrapper to show the expanded content if it's off-screen
-                const wrapperRect = skillsWrapper.getBoundingClientRect();
-                const containerRect = this.getBoundingClientRect();
-                
-                if (containerRect.left < wrapperRect.left || containerRect.right > wrapperRect.right) {
-                    this.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-                }
             } else {
-                // 3. If it was already expanded, just collapse it
+                // EXIT FOCUS MODE (Restore all)
+                
+                // 1. Show all containers
+                categoryContainers.forEach(c => {
+                    c.classList.remove('hidden-category');
+                    c.classList.remove('expanded');
+                });
+
+                // 2. Reset wrapper
                 skillsWrapper.classList.remove('expanded-active');
             }
         });
     });
 
-    // Collapse when clicking anywhere else on the page
+    // Collapse/Reset when clicking anywhere else on the page
     document.addEventListener('click', function(e) {
         if (!e.target.closest('.skills-wrapper.section-light')) {
-            categoryContainers.forEach(c => c.classList.remove('expanded'));
+            categoryContainers.forEach(c => {
+                c.classList.remove('hidden-category');
+                c.classList.remove('expanded');
+            });
             skillsWrapper.classList.remove('expanded-active');
         }
     });

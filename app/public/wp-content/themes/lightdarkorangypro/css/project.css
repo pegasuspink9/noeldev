@@ -112,10 +112,44 @@
 /* Project Wrapper */
 .project-wrapper {
     position: relative;
-    display: flex; /* Changed to flex to help centering */
+    display: flex; 
     justify-content: center;
     isolation: isolate;
-    width: 320px; /* Fixed width to keep cards consistent */
+    width: 320px; 
+     
+    opacity: 0;
+    will-change: transform, opacity;
+}
+
+.project-wrapper.visible:nth-child(odd) {
+    animation: slideInLeft 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes slideInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Right card animation (Even) */
+.project-wrapper.visible:nth-child(even) {
+    animation: slideInRight 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
 .project-card-shadow {
