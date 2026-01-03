@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
         { id: 'layer-hero', hash: 'home' }, 
         { id: 'layer-skills', hash: 'skills' },
         { id: 'layer-projects', hash: 'projects' },
-        { id: 'layer-services', hash: 'services' }
+        { id: 'layer-achievements', hash: 'achievements' }
     ];
 
     // --- PART 1: HANDLE INITIAL LOAD (SEARCH) ---

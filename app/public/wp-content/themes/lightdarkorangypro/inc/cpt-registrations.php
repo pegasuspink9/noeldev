@@ -33,6 +33,22 @@ function lightdarkorangypro_register_cpts() {
         'show_in_rest' => true,
     ));
 
+      register_post_type('achievement', array(
+        'labels' => array(
+            'name' => 'Achievements',
+            'singular_name' => 'Achievement',
+            'add_new_item' => 'Add New Achievement',
+            'edit_item' => 'Edit Achievement',
+        ),
+        'public' => true,
+        'has_archive' => false,
+        'menu_icon' => 'dashicons-trophy', 
+        'supports' => array('title', 'thumbnail'),
+        'show_in_rest' => true,
+    ));
+
+
+
     // Note: Taxonomies are now registered in inc/taxonomies.php
 }
 add_action('init', 'lightdarkorangypro_register_cpts');

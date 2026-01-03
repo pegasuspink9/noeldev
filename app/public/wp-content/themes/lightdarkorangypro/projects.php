@@ -25,7 +25,8 @@ if (!defined('ABSPATH')) {
             
             <!-- Viewport -->
             <div class="projects-viewport">
-                <div class="grid grid-3 projects-track">
+                <!-- REMOVED 'grid grid-3' classes to fix layout issues -->
+                <div class="projects-track">
                     <?php
                     $gradient_colors = array(
                         array('rgba(255, 99, 133, 0.77)', 'rgba(255, 255, 255, 0.37)'),
@@ -52,15 +53,16 @@ if (!defined('ABSPATH')) {
                             $tech_ids = get_post_meta(get_the_ID(), '_project_tech_stack_ids', true);
                             $custom_preview_url = get_post_meta(get_the_ID(), '_project_preview_image_url', true);
 
-                            if (!empty($custom_preview_url)) {
+                             if (!empty($custom_preview_url)) {
                                 $display_image_url = $custom_preview_url;
                             } elseif (has_post_thumbnail()) {
-                                $display_image_url = get_the_post_thumbnail_url(get_the_ID(), 'large');
+                                $display_image_url = get_the_post_thumbnail_url(get_the_ID(), size: 'large');
                             } else {
-                                $display_image_url = get_template_directory_uri() . '/images/placeholder.png';
+                            $display_image_url = ''; 
                             }
-
+                            
                             $tech_skills = array();
+
 
                             if (is_array($tech_ids) && !empty($tech_ids)) {
                                 foreach ($tech_ids as $tid) {

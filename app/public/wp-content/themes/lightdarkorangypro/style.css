@@ -28,10 +28,25 @@ Text Domain: lightdarkorangypro
     --header-fixed-height: 80px;
     --hero-section-height: 300px;
 
-    --burger-sidebar-width: 10%;
+    --burger-sidebar-width: 5%;
     --profile-sidebar-width: 20%;
-    --main-content-width: 70%;
+    --main-content-width: 75%;
 }
+
+header {
+    padding: 20px;
+    background: transparent;
+    position: fixed;
+    top: 0;
+    left: var(--profile-sidebar-width); 
+    width: var(--main-content-width);  
+    z-index: 100; 
+    min-height: var(--header-fixed-height);
+    display: none; /* Hidden by default on desktop */
+    align-items: center;
+    justify-content: center;
+}
+
 
 html, body {
     margin: 0;
@@ -88,19 +103,6 @@ body::after {
 }
 
 
-header {
-    padding: 20px;
-    background: transparent;
-    position: fixed;
-    top: 0;
-    left: var(--profile-sidebar-width); 
-    width: var(--main-content-width);  
-    z-index: 100; 
-    min-height: var(--header-fixed-height);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
 .main-nav {
     list-style: none;
@@ -422,13 +424,13 @@ header {
 }
 
 /* Services Layer - Optimized blur */
-#layer-services {
+#layer-achievements {
     top: 0;
     z-index: 2;
     background: linear-gradient(
         135deg, 
-        rgba(180, 28, 28, 0.4) 0%, /* Green start */
-        rgba(0, 0, 0, 0.2) 100% /* Fade to transparent/white */
+        rgba(180, 28, 28, 0.4) 0%, 
+        rgba(0, 0, 0, 0.2) 100% 
     );
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
@@ -466,11 +468,13 @@ header {
 
 /* --- RESET PREVIOUS NEGATIVE MARGINS --- */
 #skills, 
-#projects {
+#projects,
+#achievements {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
     padding-top: 90px
 }
+
 
 /* Adjust Admin Bar offset if logged in */
 body.admin-bar .layer-card {

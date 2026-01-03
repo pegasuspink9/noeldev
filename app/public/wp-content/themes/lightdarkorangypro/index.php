@@ -52,30 +52,12 @@
             </div>
 
             <!-- Layer 4: Services (Covers Projects) -->
-            <div class="layer-card" id="layer-services">
+            <div class="layer-card" id="layer-achievements">
                 <div class="layer-content">
-                    <section id="services" class="section section-light">
-                        <div class="container">
-                            <h2 class="section-title">Services</h2>
-                            <div class="grid grid-2">
-                                <div class="service-card">
-                                    <h3 class="service-title">Web Design</h3>
-                                    <p>Creating beautiful and functional websites.</p>
-                                </div>
-                                <div class="service-card">
-                                    <h3 class="service-title">Development</h3>
-                                    <p>Building custom web applications.</p>
-                                </div>
-                                <div class="service-card">
-                                    <h3 class="service-title">Consulting</h3>
-                                    <p>Providing expert advice and guidance.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                    <?php get_template_part('./achievements'); ?>
                 </div>
             </div>
-
+            
         </main>
     </div>
 

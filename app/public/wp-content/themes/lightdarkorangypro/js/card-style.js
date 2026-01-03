@@ -5,23 +5,30 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     let observerCallback = (entries) => {
-    requestAnimationFrame(() => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
+        requestAnimationFrame(() => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                } else {
+                    // OPTIMIZATION: Remove class when out of view to reset animation
+                    entry.target.classList.remove('visible');
+                }
+            });
         });
-    });
     };
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
 
-    // Observe both possible class names
+    // Observe Skills section title
     const sectionTitle = document.querySelector('#skills .section-title, #skills .section-title-skills');
     if (sectionTitle) {
         observer.observe(sectionTitle);
+    }
+
+    // Observe Achievements section title
+    const achievementsTitle = document.querySelector('.section-title-achievements');
+    if (achievementsTitle) {
+        observer.observe(achievementsTitle);
     }
 
     const skillCards = document.querySelectorAll('.skill-card-scene');

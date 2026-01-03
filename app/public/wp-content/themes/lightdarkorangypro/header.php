@@ -23,7 +23,7 @@
                 <a href="#projects">Projects</a>
             </li>
             <li>
-                <a href="#services">Services</a>
+            <a href="#achievements">Achievements</a>
             </li>
             <li>
                 <a href="<?php echo esc_url( home_url( '/contact' ) ); ?>">Contact</a>

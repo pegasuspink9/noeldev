@@ -145,7 +145,7 @@
     );
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    
+    transform: translateY(-50px);
     /* 3D Borders */
     border-top: 2px solid rgba(255, 255, 255, 0.9);
     border-left: 1px solid rgba(255, 255, 255, 0.6);
@@ -569,6 +569,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    -webkit-font-smoothing: subpixel-antialiased;
 }
 
 .skill-category-container .skill-card-face {
@@ -582,9 +583,10 @@
 }
 
 .skill-card-front {
-   transform: rotateY(0deg) translateZ(1px);
+   transform: rotateY(0deg) translateZ(2px);
    z-index: 2;
 }
+
 
 .skill-card-back {
     transform: rotateY(180deg);

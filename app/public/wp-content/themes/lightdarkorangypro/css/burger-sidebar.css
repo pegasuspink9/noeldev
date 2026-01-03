@@ -1,44 +1,173 @@
-
+/* ==========================================
+   BURGER SIDEBAR - Desktop Vertical Navigation
+   ========================================== */
 .burger-sidebar {
-    width: 5%; 
-    background-color: var(--sidebar-bg-color); 
+    width: 10%; 
+    background: linear-gradient(
+        145deg, 
+        rgba(255, 255, 255, 0.08) 0%, 
+        rgba(255, 255, 255, 0.02) 100%
+    );
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    
+    /* 3D Borders */
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    
+    /* Layered Shadow */
+    box-shadow: 
+        -4px 0 25px rgba(0, 0, 0, 0.1),
+        inset 1px 0 15px rgba(255, 255, 255, 0.05);
+    
     color: var(--sidebar-text-color);
-    box-shadow: -2px 0 5px rgba(0,0,0,0.1); 
     flex-shrink: 0;
     overflow: hidden;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center; 
     position: relative; 
     z-index: 11;
-    padding-top: 20px;
+    padding: 20px 0;
 }
 
-.burger-toggle {
-    background: var(--primary-accent-color);
+.burger-nav {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.burger-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Buttons aligned together */
+    width: 100%;
+}
+
+.burger-nav-list li {
+    margin: 0;
+    width: 100%;
+}
+
+.burger-nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 10px;
     color: white;
-    border: none;
-    padding: 10px 15px;
-    font-size: 1.5em;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    font-family: 'BebasKai', sans-serif;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 0 10px;
+    text-align: center;
+    
+    /* 3D Glass effect */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 
+        0 4px 10px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
-.burger-toggle:hover {
-    background-color: var(--secondary-accent-color);
+/* --- UNIQUE RADIAL GRADIENTS PER BUTTON --- */
+
+/* 1. Pink/Magenta Radial */
+.burger-nav-list li:nth-child(1) .burger-nav-link {
+    background: radial-gradient(circle at 30% 50%, rgba(255, 20, 147, 0.4), rgba(255, 20, 147, 0.1), rgba(255, 255, 255, 0.05));
+    border-color: rgba(255, 20, 147, 0.5);
+}
+
+/* 2. Orange/Gold Radial */
+.burger-nav-list li:nth-child(2) .burger-nav-link {
+    background: radial-gradient(circle at 30% 50%, rgba(255, 165, 0, 0.4), rgba(255, 165, 0, 0.1), rgba(255, 255, 255, 0.05));
+    border-color: rgba(255, 165, 0, 0.5);
+}
+
+/* 3. Sky Blue Radial */
+.burger-nav-list li:nth-child(3) .burger-nav-link {
+    background: radial-gradient(circle at 30% 50%, rgba(0, 191, 255, 0.4), rgba(0, 191, 255, 0.1), rgba(255, 255, 255, 0.05));
+    border-color: rgba(0, 191, 255, 0.5);
+}
+
+/* 4. Spring Green Radial */
+.burger-nav-list li:nth-child(4) .burger-nav-link {
+    background: radial-gradient(circle at 30% 50%, rgba(0, 255, 127, 0.4), rgba(0, 255, 127, 0.1), rgba(255, 255, 255, 0.05));
+    border-color: rgba(0, 255, 127, 0.5);
+}
+
+/* 5. Purple/Violet Radial */
+.burger-nav-list li:nth-child(5) .burger-nav-link {
+    background: radial-gradient(circle at 30% 50%, rgba(255, 0, 255, 0.4), rgba(255, 0, 255, 0.1), rgba(255, 255, 255, 0.05));
+    border-color: rgba(255, 0, 255, 0.5);
+}
+
+/* Hover States */
+.burger-nav-link:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: translateX(-5px);
+    box-shadow: 
+        0 6px 15px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.burger-nav-list li:nth-child(1) .burger-nav-link:hover {
+    background: radial-gradient(circle at 30% 50%, rgba(255, 20, 147, 0.6), rgba(255, 20, 147, 0.2), rgba(255, 255, 255, 0.1));
+}
+
+.burger-nav-list li:nth-child(2) .burger-nav-link:hover {
+    background: radial-gradient(circle at 30% 50%, rgba(255, 165, 0, 0.6), rgba(255, 165, 0, 0.2), rgba(255, 255, 255, 0.1));
+}
+
+.burger-nav-list li:nth-child(3) .burger-nav-link:hover {
+    background: radial-gradient(circle at 30% 50%, rgba(0, 191, 255, 0.6), rgba(0, 191, 255, 0.2), rgba(255, 255, 255, 0.1));
+}
+
+.burger-nav-list li:nth-child(4) .burger-nav-link:hover {
+    background: radial-gradient(circle at 30% 50%, rgba(0, 255, 127, 0.6), rgba(0, 255, 127, 0.2), rgba(255, 255, 255, 0.1));
+}
+
+.burger-nav-list li:nth-child(5) .burger-nav-link:hover {
+    background: radial-gradient(circle at 30% 50%, rgba(255, 0, 255, 0.6), rgba(255, 0, 255, 0.2), rgba(255, 255, 255, 0.1));
+}
+
+/* Active State - Scale when clicked */
+.burger-nav-link:active {
+    transform: scale(1.1);
+    z-index: 10;
+}
+
+.nav-icon {
+    font-size: 1.8rem;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.nav-text {
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    display: block;
 }
 
 /* ==========================================
-   Responsive Burger Sidebar
+   MOBILE - Show Header, Hide Burger Sidebar
    ========================================== */
 @media (max-width: 768px) {
     .burger-sidebar {
-        height: 60px;
-        padding: 10px 20px;
-        justify-content: flex-start;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        align-items: center;
-        padding-top: 0;
+        display: none; /* Hide burger sidebar on mobile */
+    }
+}
+
+@media (min-width: 769px) {
+    /* Desktop - ensure burger sidebar is visible */
+    .burger-sidebar {
+        display: flex;
     }
 }

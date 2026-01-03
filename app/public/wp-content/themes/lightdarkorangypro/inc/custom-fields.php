@@ -254,3 +254,86 @@ function lightdarkorangypro_save_skill_meta($post_id) {
 
 }
 add_action('save_post', 'lightdarkorangypro_save_skill_meta');
+
+
+function lightdarkorangypro_add_achievement_meta_box() {
+    add_meta_box(
+        'achievement_details_meta',
+        'Achievement Details',
+        'lightdarkorangypro_render_achievement_meta',
+        'achievement', // Post Type
+        'normal',
+        'high'
+    );
+}
+add_action('add_meta_boxes', 'lightdarkorangypro_add_achievement_meta_box');
+
+function lightdarkorangypro_render_achievement_meta($post) {
+    wp_nonce_field('save_achievement_meta', 'achievement_meta_nonce');
+    
+    $location = get_post_meta($post->ID, '_achievement_location', true);
+    $description = get_post_meta($post->ID, '_achievement_description', true);
+    $image_url = get_post_meta($post->ID, '_achievement_image_url', true);
+    ?>
+    <div class="ldo-meta-row">
+        <label for="achievement_image_url">Achievement Image URL</label>
+        <input type="url" id="achievement_image_url" name="achievement_image_url" value="<?php echo esc_attr($image_url); ?>" style="width:100%; padding:8px;" placeholder="https://example.com/image.jpg">
+        <p class="description">Enter the URL for the achievement image. A preview will appear below.</p>
+        
+        <div id="achievement_image_preview" style="margin-top: 10px; max-width: 300px; border: 1px solid #ddd; padding: 5px; background: #f9f9f9; display: <?php echo $image_url ? 'block' : 'none'; ?>;">
+            <img src="<?php echo esc_url($image_url); ?>" style="max-width: 100%; height: auto; display: block;">
+        </div>
+    </div>
+
+    <div class="ldo-meta-row">
+        <label for="achievement_location">Location / Organization</label>
+        <input type="text" id="achievement_location" name="achievement_location" value="<?php echo esc_attr($location); ?>" style="width:100%; padding:8px;">
+        <p class="description">E.g., "San Francisco, CA" or "Awwwards, Online"</p>
+    </div>
+
+    <div class="ldo-meta-row">
+        <label for="achievement_description">Description</label>
+        <textarea id="achievement_description" name="achievement_description" rows="5" style="width:100%; padding:8px;"><?php echo esc_textarea($description); ?></textarea>
+        <p class="description">Enter a short description of the achievement.</p>
+    </div>
+
+    <script>
+    (function($) {
+        $(document).ready(function() {
+            $('#achievement_image_url').on('input change', function() {
+                var url = $(this).val();
+                var $preview = $('#achievement_image_preview');
+                if (url) {
+                    $preview.find('img').attr('src', url);
+                    $preview.show();
+                } else {
+                    $preview.hide();
+                }
+            });
+        });
+    })(jQuery);
+    </script>
+    <?php
+}
+
+function lightdarkorangypro_save_achievement_meta($post_id) {
+    if (!isset($_POST['achievement_meta_nonce']) || !wp_verify_nonce($_POST['achievement_meta_nonce'], 'save_achievement_meta')) return;
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+    if (!current_user_can('edit_post', $post_id)) return;
+
+    if (isset($_POST['achievement_location'])) 
+        update_post_meta($post_id, '_achievement_location', sanitize_text_field($_POST['achievement_location']));
+    else
+        delete_post_meta($post_id, '_achievement_location');
+
+    if (isset($_POST['achievement_description'])) 
+        update_post_meta($post_id, '_achievement_description', sanitize_textarea_field($_POST['achievement_description']));
+    else
+        delete_post_meta($post_id, '_achievement_description');
+
+    if (isset($_POST['achievement_image_url'])) 
+        update_post_meta($post_id, '_achievement_image_url', esc_url_raw($_POST['achievement_image_url']));
+    else
+        delete_post_meta($post_id, '_achievement_image_url');
+}
+add_action('save_post', 'lightdarkorangypro_save_achievement_meta');

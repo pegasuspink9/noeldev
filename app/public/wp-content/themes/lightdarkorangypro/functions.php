@@ -34,6 +34,8 @@ function lightdarkorangypro_scripts() {
     // Projects styles
     wp_enqueue_style( 'lightdarkorangypro-projects', get_template_directory_uri() . '/css/project.css', array('lightdarkorangypro-style'), '1.0.0' );
 
+    wp_enqueue_style( 'lightdarkorangypro-achievements', get_template_directory_uri() . '/css/achievements.css', array('lightdarkorangypro-style'), '1.0.0' );
+
     // Sidebar styles
     wp_enqueue_style( 'lightdarkorangypro-sidebar', get_template_directory_uri() . '/css/sidebar.css', array('lightdarkorangypro-style'), '1.0.0' );
     
