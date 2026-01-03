@@ -52,6 +52,17 @@ function lightdarkorangypro_scripts() {
         get_template_directory_uri() . '/js/skills-accordion.js', 
         array(), '1.0.0', true );
 
+    wp_enqueue_script( 'lightdarkorangypro-skills-accordion', 
+        get_template_directory_uri() . '/js/skills-accordion.js', 
+        array(), '1.0.0', true );
+
+    // Enqueue Scroll Optimization to hide covered layers
+    wp_enqueue_script( 'lightdarkorangypro-scroll-opt', get_template_directory_uri() . '/js/scroll-optimization.js', array(), '1.0.0', true );
+
+    wp_enqueue_script( 'lightdarkorangypro-url-update', get_template_directory_uri() . '/js/url-update.js', array(), '1.0.0', true );
+
+    wp_enqueue_script( 'lightdarkorangypro-projects-carousel', get_template_directory_uri() . '/js/projects-carousel.js', array(), '1.0.0', true );
+
     // Single project page styles
     if ( is_singular('project') ) {
         wp_enqueue_style( 'lightdarkorangypro-project-single', get_template_directory_uri() . '/css/project-single.css', array('lightdarkorangypro-style'), '1.0.0' );

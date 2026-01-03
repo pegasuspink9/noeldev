@@ -17,6 +17,9 @@
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a>
             </li>
             <li>
+                <a href="#skills">Skills</a>
+            </li>
+            <li>
                 <a href="#projects">Projects</a>
             </li>
             <li>

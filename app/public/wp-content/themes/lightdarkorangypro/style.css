@@ -262,7 +262,7 @@ header {
     top: 0;
     
     /* Full viewport height for complete coverage */
-    min-height: 100vh;
+    min-height: 120vh;
     
     /* Flexbox layout */
     display: flex;
@@ -271,7 +271,7 @@ header {
     
     /* GPU acceleration - CRITICAL for performance */
     transform: translateZ(0);
-    will-change: transform;
+    will-change: transform, visibility; /* Added visibility */
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     
@@ -292,6 +292,7 @@ header {
     
     /* Performance optimization */
     contain: layout style paint;
+
 }
 
 
@@ -301,7 +302,7 @@ header {
     -webkit-backdrop-filter: none;
     box-shadow: none;
     border-radius: 0;
-    min-height: auto;
+    min-height: 100vh; 
     margin-bottom: 0;
     padding-top: 0;
     z-index: 1;
@@ -327,8 +328,8 @@ header {
     z-index: 2;
     background: linear-gradient(
         135deg, 
-        rgba(28, 180, 170, 0.4) 0%, /* Green start */
-        rgba(0, 0, 0, 0.2) 100% /* Fade to transparent/white */
+        rgba(48, 151, 229, 0.4) 0%, /* Green start */
+        rgba(0, 0, 0, 0.058) 100% /* Fade to transparent/white */
     );
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
@@ -383,7 +384,7 @@ header {
 #projects {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
-    padding-top: 40px;
+    padding-top: 90px
 }
 
 /* Adjust Admin Bar offset if logged in */
