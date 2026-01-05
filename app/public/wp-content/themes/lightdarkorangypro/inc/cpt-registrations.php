@@ -41,10 +41,11 @@ function lightdarkorangypro_register_cpts() {
             'edit_item' => 'Edit Achievement',
         ),
         'public' => true,
-        'has_archive' => false,
+        'has_archive' => true,
+        'rewrite' => array('slug' => 'achievements'),
         'menu_icon' => 'dashicons-trophy', 
         'supports' => array('title', 'thumbnail'),
-        'show_in_rest' => true,
+        'show_in_rest' => true
     ));
 
 

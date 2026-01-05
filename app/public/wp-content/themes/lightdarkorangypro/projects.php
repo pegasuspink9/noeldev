@@ -53,6 +53,12 @@ if (!defined('ABSPATH')) {
                             $tech_ids = get_post_meta(get_the_ID(), '_project_tech_stack_ids', true);
                             $custom_preview_url = get_post_meta(get_the_ID(), '_project_preview_image_url', true);
 
+                            $terms = get_the_terms(get_the_ID(), 'project_type');
+                            $project_cat = (!empty($terms) && !is_wp_error($terms)) ? $terms[0]->name : '';
+
+                            $terms = get_the_terms(get_the_ID(), 'project_type');
+                            $project_cat = (!empty($terms) && !is_wp_error($terms)) ? $terms[0]->name : '';
+ 
                              if (!empty($custom_preview_url)) {
                                 $display_image_url = $custom_preview_url;
                             } elseif (has_post_thumbnail()) {
@@ -77,6 +83,12 @@ if (!defined('ABSPATH')) {
                         <div class="project-wrapper">
                             <div class="project-card">
                                 <div class="project-header">
+                                    <?php if ($project_cat) : 
+                                        $cat_colors = $gradient_colors[array_rand($gradient_colors)];
+                                        $cat_bg = 'linear-gradient(135deg, ' . $cat_colors[0] . ', ' . $cat_colors[1] . ')';
+                                    ?>
+                                        <span class="project-category-tag" style="background: <?php echo $cat_bg; ?>;"><?php echo esc_html($project_cat); ?></span>
+                                    <?php endif; ?>
                                     <h3 class="project-title"><?php the_title(); ?></h3>
                                     <?php
                                     $full_content = get_the_content();
@@ -135,6 +147,16 @@ if (!defined('ABSPATH')) {
                     <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </button>
+        </div>
+
+        <div class="view-all-projects-container">
+            <a href="<?php echo get_post_type_archive_link('project'); ?>" class="view-all-btn">
+                <span>View All Projects</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </a>
         </div>
     </div>
 </section>

@@ -18,6 +18,7 @@ function lightdarkorangypro_register_taxonomies() {
         'public' => true,
         'show_in_rest' => true, 
         'rewrite' => array('slug' => 'project-type'),
+        'show_admin_column' => true,
     ));
 
     // Taxonomy for Skills: skill_category

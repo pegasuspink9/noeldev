@@ -6,7 +6,7 @@
             <?php
             $achievements_query = new WP_Query(array(
                 'post_type' => 'achievement',
-                'posts_per_page' => -1, // Show all achievements
+                'posts_per_page' => 3,
                 'orderby' => 'date',
                 'order' => 'DESC'
             ));
@@ -43,6 +43,12 @@
             ?>
                 <p style="color: white; text-align: center; grid-column: 1/-1;">No achievements found. Please add some in the WordPress admin.</p>
             <?php endif; ?>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="<?php echo get_post_type_archive_link('achievement'); ?>" class="view-all-btn-achievements">
+                View All Achievements
+            </a>
         </div>
     </div>
 </section>

@@ -8,13 +8,13 @@
 // Define categories
 $skill_categories = get_terms(array(
     'taxonomy' => 'skill_category',
-    'hide_empty' => false, // Include empty categories if needed
+    'hide_empty' => false, 
 ));
 
 $categories = array();
 if (!empty($skill_categories)) {
     foreach ($skill_categories as $cat) {
-        $categories[$cat->name] = array(); // Use category name as key
+        $categories[$cat->name] = array(); 
     }
 }
 

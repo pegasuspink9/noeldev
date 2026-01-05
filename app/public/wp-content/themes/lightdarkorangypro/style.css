@@ -147,6 +147,30 @@ body::after {
     z-index: 2;
 }
 
+.main-content-wrapper::-webkit-scrollbar {
+    width: 5px;
+}
+
+.main-content-wrapper::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.main-content-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+.main-content-wrapper::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.main-content-wrapper::-webkit-scrollbar-thumb:hover {
+    scrollbar-color: rgba(255, 255, 255, 0.5) rgba(255, 255, 255, 0.05);
+}
+
+
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -265,7 +289,7 @@ body::after {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    
+    visibility: visible; 
     /* REMOVED: contain: layout style paint; (This was causing the glitching) */
     
     /* KEEP: GPU acceleration */
@@ -276,9 +300,7 @@ body::after {
     
     transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
     
-    /* REDUCED BLUR: High blur + Animation causes hover lag/refreshing. 
-       Reduced slightly for stability. */
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);    
     -webkit-backdrop-filter: blur(10px);
     
     border-radius: 60px 60px 0 0;
@@ -439,9 +461,27 @@ body::after {
 
 /* Performance optimization for layer content */
 .layer-content {
-    transform: translateZ(0);
-    will-change: contents;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
 }
+
+.active-layer .layer-content {
+    display: block;
+    opacity: 1;
+}
+
+#layer-skills::before,
+#layer-projects::before {
+    animation-play-state: paused !important;
+}
+
+.active-layer#layer-skills::before,
+.active-layer#layer-projects::before {
+    animation-play-state: running !important;
+}
+
+
 
 /* Optimize images and heavy elements */
 .layer-card img {
@@ -466,11 +506,20 @@ body::after {
     will-change: auto;
 }
 
-/* --- RESET PREVIOUS NEGATIVE MARGINS --- */
+#projects {
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-top: -70px; 
+    position: relative;
+    margin-bottom: -50px; 
+    z-index: 50; 
+}
+
+
 #skills, 
 #projects,
 #achievements {
-    margin-top: 0 !important;
+    margin-top: -30px !important;
     margin-bottom: 0 !important;
     padding-top: 90px
 }

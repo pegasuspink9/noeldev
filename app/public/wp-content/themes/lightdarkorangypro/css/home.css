@@ -157,6 +157,63 @@
         white-space: normal;
     }
 
+    .hero-wrapper {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Ensure blobs stay behind content */
+    z-index: 0; 
+}
+
+/* Update Hero Sections to match Achievement Glass Style */
+.hero, .hero-right {
+    padding-top: 80px;
+    padding-bottom: 80px;
+    height: var(--hero-section-height);
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    
+    /* NEW GLASS STYLE */
+    background: linear-gradient(
+        145deg, 
+        rgba(255, 255, 255, 0.4) 0%, 
+        rgba(255, 255, 255, 0.2) 100%
+    );
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    
+    border-top: 2px solid rgba(255, 255, 255, 0.9);
+    border-left: 1px solid rgba(255, 255, 255, 0.6);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    
+    box-shadow: 
+        0 10px 20px rgba(0, 0, 0, 0.1),
+        inset 0 0 15px rgba(255, 255, 255, 0.5);
+        
+    transition: transform 280ms cubic-bezier(.2,.9,.3,1), box-shadow 280ms ease;
+    margin: 10px 80px 0px 80px;
+    border-radius: 24px; /* Ensure radius is kept */
+}
+
+/* Remove the old pseudo-elements if they conflict with the new clean glass look */
+.hero::before,
+.hero-right::before,
+.hero::after,
+.hero-right::after {
+    display: none
+    ;
+}
+
     .hero-description {
         font-size: 1.8em;
         margin: 0;

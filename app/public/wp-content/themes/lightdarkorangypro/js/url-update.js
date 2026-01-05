@@ -9,53 +9,65 @@ document.addEventListener('DOMContentLoaded', function() {
         { id: 'layer-achievements', hash: 'achievements' }
     ];
 
-    // --- PART 1: HANDLE INITIAL LOAD (SEARCH) ---
-    function scrollToHash() {
-        const hash = window.location.hash.replace('#', '');
-        if (!hash) return;
+    const layerElements = document.querySelectorAll('.layer-card');
 
-        const targetLayer = layers.find(l => l.hash === hash);
-        if (targetLayer) {
-            const element = document.getElementById(targetLayer.id);
-            if (element) {
-                // Small delay to ensure layout is ready
-                setTimeout(() => {
-                    element.scrollIntoView({ behavior: 'smooth' });
-                }, 100);
-            }
-        }
-    }
-
-    // Run on load
-    scrollToHash();
-
-    // --- PART 2: UPDATE URL ON SCROLL ---
-    let currentHash = window.location.hash.replace('#', '') || 'home';
-
-    function updateURL() {
-        const layerElements = document.querySelectorAll('.layer-card');
+    function updateActiveState() {
         let activeIndex = 0;
-
         layerElements.forEach((layer, index) => {
             const rect = layer.getBoundingClientRect();
-            if (rect.top <= 10) { 
+            // Threshold adjusted to 50% of viewport for snappier activation
+            if (rect.top <= window.innerHeight / 2) { 
                 activeIndex = index;
             }
         });
-        const activeId = layerElements[activeIndex].id;
-        const target = layers.find(l => l.id === activeId);
 
-        if (target && currentHash !== target.hash) {
-            currentHash = target.hash;
-            const newUrl = target.hash === 'home' ? 
-                window.location.pathname : 
-                '#' + target.hash;
-            
+        const activeLayer = layerElements[activeIndex];
+        const target = layers.find(l => l.id === activeLayer.id);
+
+        // Update Classes
+        layerElements.forEach(layer => layer.classList.remove('active-layer'));
+        activeLayer.classList.add('active-layer');
+
+        // Update URL
+        if (target && window.location.hash !== '#' + target.hash) {
+            const newUrl = target.hash === 'home' ? window.location.pathname : '#' + target.hash;
             history.replaceState(null, null, newUrl);
         }
     }
 
+    // Initial Load
+    const hash = window.location.hash.replace('#', '');
+    if (hash) {
+        const targetLayer = layers.find(l => l.hash === hash);
+        if (targetLayer) {
+            const element = document.getElementById(targetLayer.id);
+            if (element) element.scrollIntoView();
+        }
+    }
+    updateActiveState(); // Run once on load
+
     scrollContainer.addEventListener('scroll', () => {
-        requestAnimationFrame(updateURL);
+        requestAnimationFrame(updateActiveState);
     }, { passive: true });
+
+    document.addEventListener('click', function(e) {
+        const link = e.target.closest('.burger-nav-link, .hero-cta'); // Target sidebar and hero buttons
+        if (!link) return;
+
+        const href = link.getAttribute('href');
+        
+        // Check if it's an internal hash link
+        if (href && href.includes('#')) {
+            const hash = href.split('#')[1] || 'home';
+            const targetLayer = layers.find(l => l.hash === hash);
+
+            if (targetLayer) {
+                const element = document.getElementById(targetLayer.id);
+                if (element) {
+                    e.preventDefault(); // Stop browser from jumping
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        }
+    });
 });

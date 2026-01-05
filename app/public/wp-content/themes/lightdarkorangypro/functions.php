@@ -108,6 +108,18 @@ function lightdarkorangypro_performance_optimizations() {
 }
 add_action( 'wp_head', 'lightdarkorangypro_performance_optimizations', 1 );
 
+function lightdarkorangypro_project_archive_limit( $query ) {
+    if ( ! is_admin() && $query->is_main_query() ) {
+        if ( is_post_type_archive( 'project' ) || is_tax( 'project_type' ) || is_post_type_archive( 'achievement' ) ) {
+            $query->set( 'posts_per_page', 3 );
+        }
+    }
+}
+
+add_action( 'pre_get_posts', 'lightdarkorangypro_project_archive_limit' );
+
+
+
 /**
  * Load Custom Post Types and Fields
  */
