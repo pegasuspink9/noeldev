@@ -1,4 +1,3 @@
-<div class="hero-background-overlay"></div>  
 
 <?php get_header(); ?>
 
